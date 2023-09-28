@@ -1,0 +1,93 @@
+Team:
+Project 1
+========
+ 
+**Team Project: Bash Script for System Management**
+
+**Objective**: Collaborate with your team members to create a comprehensive Bash script that 
+includes functions for User Management, File Management, Package Management, and Service Management.
+
+---
+
+**1. Script Requirements**:
+
+*User Management Functions*:
+1. `add_user [username]`: Adds a new user.
+2. `delete_user [username]`: Deletes an existing user.
+3. `list_users`: List  a minimum of 6 users.
+
+*File Management Functions*:
+1. `create_file [filename]`: Creates a new file.
+2. `delete_file [filename]`: Deletes an existing file.
+3. `list_files [directory]`: Lists all files in a directory.
+
+*Package Management Functions*:
+1. `install_package [package_name]`: Installs a package.
+2. `uninstall_package [package_name]`: Uninstalls a package.
+3. `list_installed_packages`: Lists all installed packages.
+
+*Service Management Functions*:
+1. `start_service [service_name]`: Starts a service.
+2. `stop_service [service_name]`: Stops a service.
+3. `service_status [service_name]`: Checks the status of a service.
+
+---
+
+**2. Script Execution Guide**:
+
+1. Give execute permissions to the script:
+
+   ```bash
+   chmod +x your_script_name.sh
+   ```
+
+2. To run a function from the script:
+
+   ```bash
+   ./your_script_name.sh function_name arguments
+   ```
+
+   For example, to add a user named "john":
+   ```bash
+   ./your_script_name.sh add_user john
+   ```
+
+---
+
+**3. Evaluation Criteria**:
+
+1. **Functionality**:
+   - Each function should work as described without errors. (3 pts each )
+   - The script should handle potential errors gracefully (e.g., trying to delete a non-existent user). (5 pts)
+
+2. **Readability**:
+   - Code should be well-commented, explaining what each function does. (5 pts)
+   - Use meaningful variable names. (2 pts)
+   - Follow a consistent coding style. (5 pts)
+
+3. **Usability**:
+   - The script should provide feedback to the user about what it's doing (e.g., "Adding user...", "User added successfully"). (5pts)
+   - Any potential dangerous operations, like deleting a user, should ask for user confirmation. (5 pts)
+
+
+**4. Deliverables**:
+
+1. The Bash script file (`united_core.sh`). (5 pts)
+2. A documentation file explaining:
+   - How to use the script. (10 pts)
+   - A brief overview of how each function was implemented. (10 pts)
+
+---
+
+**5. Tips**:
+
+- Before making changes to the system, always check if the script is running with root privileges.
+- Make use of commands like `useradd`, `userdel`, `touch`, `rm`, `apt-get`, and `systemctl` to manage users, files, packages, and services respectively.
+- Always test each function thoroughly after implementation to ensure it works as expected.
+
+---
+
+**Good luck and happy scripting!**
+
+
+
