@@ -1,0 +1,109 @@
+   <!--
+						<div class="uk-child-width-1-3 uk-child-width-expand@s uk-text-center" uk-grid uk-height-match="> * > div">
+							<div>
+								<div class="uk-flex uk-flex-center uk-flex-middle">
+									<img src="https://raw.githubusercontent.com/vital987/vital987/master/assets/linux.svg" width="50" height="50" alt="Linux">
+								</div>
+									<p>Linux</p>
+							</div>
+							<div>
+								<div class="uk-flex uk-flex-center uk-flex-middle">
+									<img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" width="50" height="50" alt="Git">
+								</div>
+									<p>Git</p>
+							</div>
+							<div>
+								<div class="uk-flex uk-flex-center uk-flex-middle">
+									<img src="https://www.vectorlogo.zone/logos/docker/docker-icon.svg" width="50" height="50" alt="Docker">
+								</div>
+									<p>Docker</p>
+							</div>
+							<div>
+								<div class="uk-flex uk-flex-center uk-flex-middle">
+									<img src="https://www.vectorlogo.zone/logos/nginx/nginx-icon.svg" width="50" height="50" alt="Edge">
+								</div>
+									<p>Nginx</p>
+							</div>
+						</div>
+						
+						<div class="uk-child-width-1-3 uk-child-width-expand@s uk-text-center uk-grid">
+							<div>
+								<div class="uk-flex uk-flex-center uk-flex-middle">
+									<img src="https://www.vectorlogo.zone/logos/jenkins/jenkins-icon.svg" width="50" height="50" alt="Jenkins">
+								</div>
+									<p>Jenkins</p>
+							</div>
+							<div>
+								<div class="uk-flex uk-flex-center uk-flex-middle">
+									<img src="https://www.vectorlogo.zone/logos/python/python-icon.svg" width="50" height="50" alt="Python">
+								</div>
+									<p>Python</p>
+							</div>
+							<div>
+								<div class="uk-flex uk-flex-center uk-flex-middle">
+									<img src="https://www.vectorlogo.zone/logos/ansible/ansible-icon.svg" width="50" height="50" alt="Ansible">
+								</div>
+									<p>Ansible</p>
+							</div>
+							<div>
+								<div class="uk-flex uk-flex-center uk-flex-middle">
+									<img src="https://www.vectorlogo.zone/logos/terraformio/terraformio-icon.svg" width="50" height="50" alt="Terraform">
+								</div>
+									<p>Terraform</p>
+							</div>
+						</div>
+						
+						<div class="uk-child-width-1-3 uk-child-width-expand@s uk-text-center uk-grid" uk-height-match="> * > div">
+							<div>
+								<div class="uk-flex uk-flex-center uk-flex-middle">
+									<img src="https://www.vectorlogo.zone/logos/kubernetes/kubernetes-icon.svg" width="50" height="50" alt="Kubernetes">
+								</div>
+									<p>Kubernetes</p>
+							</div>
+							<div>
+								<div class="uk-flex uk-flex-center uk-flex-middle">
+									<img src="https://www.vectorlogo.zone/logos/apache_tomcat/apache_tomcat-icon.svg" width="50" height="50" alt="Tomcat">
+								</div>
+									<p>Tomcat</p>
+							</div>
+							<div>
+								<div class="uk-flex uk-flex-center uk-flex-middle">
+									<img src="https://www.vectorlogo.zone/logos/jfrog/jfrog-icon.svg" width="50" height="50" alt="JFrog">
+								</div>
+									<p>JFrog</p>
+							</div>
+							<div>
+								<div class="uk-flex uk-flex-center uk-flex-middle">
+									<img src="https://www.vectorlogo.zone/logos/prometheusio/prometheusio-icon.svg" width="50" height="50" alt="Prometheus">
+								</div>
+									<p>Prometheus</p>
+							</div>
+						</div>
+						
+						<div class="uk-child-width-1-3 uk-child-width-expand@s uk-text-center uk-grid" uk-height-match="> * > div">
+							<div>
+								<div class="uk-flex uk-flex-center uk-flex-middle">
+									<img src="https://upload.wikimedia.org/wikipedia/commons/5/52/Apache_Maven_logo.svg" width="100" height="100" alt="Maven">
+								</div>
+									<p>Maven</p>
+							</div>
+							<div>
+								<div class="uk-flex uk-flex-center uk-flex-middle">
+									<img src="https://www.vectorlogo.zone/logos/google_cloud/google_cloud-icon.svg" width="50" height="50" alt="Google Cloud">
+								</div>
+									<p>Google Cloud</p>
+							</div>
+							<div>
+								<div class="uk-flex uk-flex-center uk-flex-middle">
+									<img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Microsoft_Azure.svg" width="50" height="50" alt="Azure">
+								</div>
+									<p>Azure</p>
+							</div>
+							<div>
+								<div class="uk-flex uk-flex-center uk-flex-middle">
+									<img src="https://www.vectorlogo.zone/logos/amazon_aws/amazon_aws-icon.svg" width="50" height="50" alt="AWS">
+								</div>
+									<p>AWS</p>
+							</div>
+						</div>
+						-->
