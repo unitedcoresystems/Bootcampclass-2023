@@ -1,0 +1,966 @@
+Amazon Web Services - aws:
+	======================
+	amazon.com is the parent company of AWS
+
+	website: aws.amazon.com 
+
+	1. You need an aws account
+	    Login into your aws account
+	    Root email address:  abc@gmail.com
+	     password: Admin@123
+
+	2. Search aws ec2 service console  
+   Launch your Linux ec2-instance/VM/server 
+   We need the server to run tasks for clients [DoD, BOA, CITI ]
+
+   3. Connect to the server and run tasks 
+   - You need a computer, e.g windows system or Linux
+   - SSH (secure shell) protocol is required  
+   - we need an ssh-client software e.g mobaXterm or VSCode 
+
+   We need the server's details:
+        ip-address: 18.234.79.178
+        userName: ec2-user   
+        password:   
+        ssh-private-Key:  isaac.pem   
+         macOS terminal = ssh -i  isaac.pem ec2-user@18.234.79.178 
+
+
+         ip-address: 52.14.193.56
+        userName: ec2-user   
+        password:   
+        ssh-private-Key: ~\Desktop\Keys\United2023.pem  
+
+        "C:\Users\Isaac Hologic\Desktop\Keys\United2023.pem"
+
+        ~\Desktop\Keys\United2023.pem
+
+
+VSCode Connect:
+===============
+Host UnitedServer2023 
+    HostName 52.14.193.56
+    User ec2-user
+    IdentityFile ~\Desktop\Keys\United2023.pem
+
+===============================================
+ Linux File Structure:
+
+ 				Windows         Linux:
+ 				Files           Files
+ 				Folders			Directories
+ 				Sub-folder		Sub- Directories
+ Root			C:\					/
+
+ Commands: 
+
+ 	/home/isaac  = ~
+ 	/home/isaac # = Root user 
+ 	/home/isaac $ = Standard use
+ 	/home/ec2-user
+
+ 	/home/isaac
+ 	/home/ben
+ 	/home/emma
+ 	/home/theo
+ 	/home/obi
+
+Commands:
+        ls  = List the content of a Directory
+        pwd = present Working Directory 
+        touch = creat a file
+        mkdir = creat a directory
+        cd = change Directory
+        su = Change user = sudo su - ec2-user 
+        mv= renaming Files = mv name newname( Distination)
+        rm = Delete any directories OR files = rm -rf filename
+        vi = View or creat content in a file= vi filename
+        cat = reador view the content
+        Save = Shift ZZ or :wq
+        quit without saveing = vi     
+
+19 August 2023:
+==================
+   Project Work Review
+
+
+
+
+   to install:  sudo yum install (name of the appliaction)
+                
+            vim: Definition of Vim Command in Linux. Vim 
+                is a text editor that is an upgraded version 
+                of the Vi editor and is more compatible with Vi. 
+                The most usage of vi editors is to create a new file, 
+                edit an existing one, or just read one
+
+                sudo yum install vim -y
+                -y= install automatically
+
+              sudo yum install nano -y
+
+              ll    = list all the file and folders on the machine
+              ll -a = all hidden directories and files
+              - clear  = clears your command terminal
+              sudo useradd (name) = add users to the server
+
+              tree = sudo yum install tree -y
+              tree = list all directories and files in a treelike format
+
+21 August 2023:
+================
+     Directory management Commands: 
+  mkdir  = Create a Directory  
+  rmdir  = delete an empty Directory 
+  rm -rf = delete any Directory 
+  cd     = Directory navigation  
+  pwd    = present Working Directory 
+  ls     = list the Directory's content
+      cat
+      vi 
+      vim
+      nano
+      clear
+      yum
+      tree
+      cp = copy
+      mv = Move a file or Directory 
+      mv = Rename a file or Directory 
+Mkdir -pv file name      
+Dev/git/maven/aws/nexus/java
+
+── Dev
+│   └── git
+│       └── maven
+│           └── aws
+│               └── nexus
+│                   └── java
+
+Class/Class1/Classs2/Class3/class4/class4
+
+─ Class
+│   └── Class1
+│       └── Classs2
+│           └── Class3
+│               └── class4
+│                   └── class4
+
+sudo = Super User Do
+
+sudo useradd
+
+drwxr-xr-x. 5 ec2-user ec2-user  45 Aug 19 03:22 America
+drwxr-xr-x. 3 ec2-user ec2-user  20 Aug 22 01:19 Class
+drwxr-xr-x. 3 ec2-user ec2-user  17 Aug 22 01:15 Dev
+drwxr-xr-x. 5 ec2-user ec2-user  58 Aug 22 00:50 Europe
+drwxr-xr-x. 2 ec2-user ec2-user  38 Aug 22 00:46 frank
+-rw-r--r--. 1 ec2-user ec2-user 664 Aug 19 16:43 isaac
+
+FileType:
+
+  d  = Directory navigation
+  -  = Regular file
+  l  = link
+
+  GUI
+
+  CLI
+
+  mkdir -pv jenkins/docker/k8s/ansible/packer 
+  touch jenkins/docker/boston.txt
+  vi enkins/docker/boston.txt
+
+  boston.txt
+
+  ── jenkins
+│   └── docker
+│       ├── boston.txt
+│       └── k8s
+│           └── ansible
+│               └── packer
+
+
+mkdir -pv tesla/docker/k8s/ansible/packer 
+
+maine.py in ansible
+
+Mkdir -v file name = verbose
+Mkdir -p file name = append
+
+sudo useradd username
+
+23 August 2023:
+
+  File Security / Permissions:
+
+  To Creat a user
+  ================ 
+1. **Family Members**: John (father), Jane (mother),
+ Alice (daughter), and Bob (son).
+  
+Create users for each family member:
+sudo useradd username = 
+
+sudo useradd john
+sudo useradd jane
+sudo useradd alice
+sudo useradd bob
+
+### **Group Management**:
+
+- Create the groups:
+
+  sudo groupadd parents
+  sudo groupadd children
+
+To check for group creation:
+  sudo cat /etc/group
+  sudo cat /etc/passwd = Check for actual users
+
+  Add John and Jane to the "parents" group:
+    sudo usermod -aG parents john
+    sudo usermod -aG parents jane
+
+    Add Alice and Bob to the "children" group:
+    sudo usermod -aG children alice
+    sudo usermod -aG children bob
+
+    ### **File Permissions Scenario**:
+    
+    Imagine the Smith family has a shared computer:
+
+      sudo mkdir /home/john/documents
+      sudo mkdir /home/jane/documents
+      sudo mkdir /home/alice/documents
+      sudo mkdir /home/bob/documents
+
+Ensure only the owner can access their directory:
+
+  chmod = (Change Mode)
+     chmod = Changes file or directory permissions
+     700`: A numeric representation of permissions. 
+     The first digit represents the owner's permission, the second digit the group's 
+     permission, and the third for everyone else. `7` means read (4), write (2), and execute (1) permissions.
+      
+      Who can access a file?
+     u owner   
+     g groupOwner   
+     o others / world
+Access levels: 
+Numeric Representation       
+      read    = r = 4   
+      write   = w = 2
+      execute = x = 1 
+        -     = - = no access (0)
+
+        owner   groupOwner  others  Default Permission  
+   Dir   rwx=7   r-x=5       r-x=5     0755  
+         rwx=7    0           0         700
+
+    D rwx       r-x       r-x
+      4+2+1      4+0+1     4+0+1 
+      7           5        5  = 755
+     r--          r--        r--
+      4           4          4
+
+      rwx        rwx         rwx 
+      7          7            7   
+chmod 777 /home/bob/documents
+chmod 770 /home/shared_family
+
+
+      chmod 700 /home/john/documents
+      chmod 700 /home/jane/documents
+      chmod 700 /home/alice/documents
+      chmod 700 /home/bob/documents
+
+      chmod 1770 /home/kids_artwork
+The "1" at the start is the sticky bit, which 
+means only the file's owner (or root) can modify or 
+delete it.
+
+**Shared Family Directory**: A directory where any family member can read and write:
+
+mkdir /home/shared_family
+sudo chown :family /home/shared_family
+chown
+
+chown alice
+
+26 August 2023:
+  1. Develop Application
+  2. Test
+  3. Build
+  4. Review + qualify 
+  5. Secure Application
+  6. Deploy
+  7. Access 
+  8. Maintain 
+  7. Managed and monitor
+  8. Computerized automated Technologies 
+
+
+  1. Created Directories
+  2. Modify file's
+  3. Created group's
+  4. Users
+  5. Permissions
+
+
+Create users for each family member:
+sudo useradd username = 
+
+sudo useradd john
+sudo useradd jane
+sudo useradd alice
+sudo useradd bob
+
+
+ll /home = list all users
+sudo cat /etc/passwd =m list the home of the user
+E.g isaac:x:1005:1008::/home/isaac:/bin/bash
+
+Create Group:
+sudo groupadd class2023
+
+Assign groups:
+sudo usermod -aG  class2023 isaac
+sudo cat /etc/group
+e.g class2023:x:1009:
+
+Results; class2023:x:1009:isaac
+
+
+Tail
+
+tail -5 /etc/group 
+
+[ec2-user@ip-172-31-15-164 ~]$ tail -5 /etc/group
+children:x:1006:alice,bob
+family:x:1007:john,jane,alice,bob
+isaac:x:1008:
+class2023:x:1009:isaac,mena
+mena:x:1010:
+
+[ec2-user@ip-172-31-15-164 ~]$ tail -10 /etc/group
+john:x:1001:
+jane:x:1002:
+alice:x:1003:
+bob:x:1004:
+parents:x:1005:john,jane
+children:x:1006:alice,bob
+family:x:1007:john,jane,alice,bob
+isaac:x:1008:
+class2023:x:1009:isaac,mena
+mena:x:1010:
+
+
+
+head:
+  head -5 /etc/group 
+[ec2-user@ip-172-31-15-164 ~]$ head -5 /etc/group
+root:x:0:
+bin:x:1:
+daemon:x:2:
+sys:x:3:
+adm:x:4:ec2-user
+
+grep: This is to search the content of a file.
+
+grep isaac /etc/passwd= Users
+
+[ec2-user@ip-172-31-15-164 ~]$ grep isaac /etc/passwd
+isaac:x:1005:1008::/home/isaac:/bin/bash
+
+grep class2023 /etc/group = group
+
+[ec2-user@ip-172-31-15-164 ~]$ grep class2023 /etc/group
+class2023:x:1009:isaac,mena
+
+verify if a user was created/existed:
+====================================
+ fileName  = /etc/passwd  
+ dirName   = /home/
+ cat /etc/passwd   
+ tail -5 /etc/passwd 
+ grep john /etc/passwd  
+ grep bob /etc/passwd: 
+
+verify if a user was created/existed:
+====================================
+ fileName  = /etc/passwd  
+ dirName   = /home/
+ cat /etc/passwd   
+ tail -5 /etc/passwd 
+ grep john /etc/passwd  
+ grep bob /etc/passwd: 
+
+**output**
+/etc/passwd
+
+**How to set/reset users password:
+  passwd = use to assign/modify user's passwd**
+
+  sudo passwd [userName]
+  e.g sudo passwd john
+
+[ec2-user@ip-172-31-15-164 ~]$ sudo passwd john
+Changing password for user john.
+New password: admin123
+
+  [ec2-user@ip-172-31-15-164 ~]$ sudo passwd john
+Changing password for user john.
+New password: 
+BAD PASSWORD: The password fails the dictionary check - it is based on a dictionary word
+Retype new password: admin123
+passwd: all authentication tokens updated successfully.
+[ec2-user@ip-172-31-15-164 ~]$ 
+
+**How to Switch Users**
+====================================
+
+sudo su - john
+[ec2-user@ip-172-31-15-164 ~]$ sudo su - john
+Last login: Fri Aug 25 03:09:26 UTC 2023 on pts/0
+[john@ip-172-31-15-164 ~]$ 
+
+[ec2-user@ip-172-31-15-164 ~]$ sudo su - jane
+Last login: Fri Aug 25 03:10:11 UTC 2023 on pts/0
+[jane@ip-172-31-15-164 ~]$ su - john
+Password: 
+Last login: Sat Aug 26 17:35:32 UTC 2023 on pts/0
+[john@ip-172-31-15-164 ~]$ 
+
+set passwd for alice:
+
+  sudo passwd alice
+[ec2-user@ip-172-31-15-164 ~]$ sudo passwd alice
+Changing password for user alice.
+New password: 
+
+
+
+**How to Switch Users**
+ su - username  = su - john   or su - jane
+
+ su  = switch user
+ su - [username]
+Examples:   
+su -
+su - root  = switch to the root user's account   
+su - john   = switch to the obi user's account 
+[ec2-user@IP ~]$ exit
+logout
+[root@IP ~]#
+
+root has given privelages to ec2-user in the [sudoer] groupOwner 
+
+
+
+
+chmod: change the permission for individual files and directories
+
+chmod 600 filename
+
+Permissions     owner       group       fileName:
+d  rw     --   ---. 2 ec2-user    ec2-user    class 2023
+
+   4+2+   000  00
+
+   6        0      0
+
+
+   chmod 755 filename
+
+   - rwx  rwx  rwx.
+      7    7    7 
+
+
+      **userMgt Part1 Assignment**
+=============================
+1. creating user's account for each of your group members 
+2. assign passwords to 3 members of the group ( Leader, Asst. and Yourself)  
+3. assign/add Leader and Asst. to group called Team_Lead  
+4. assign/add members to group called Team_Members 
+5. delete 2 users    
+6. create a Shared Directory for Team_Members and Team_Leads
+7. Change group ownership of the Shared Directories
+8. Change Shared Directories permissions to 770
+
+ 28 Augus 2023:
+
+  mkdir -p Africa/Egypt/Mumbia 
+  mkdir -p Africa/Ghana/Accra
+  touch Africa/Ghana/Accra/City.txt
+
+mkdir -p America/USA/Massachussets
+touch America/USA/Massachussets/unitedcore.txt
+mkdir -p America/Canada/Toronto
+mkdir -p America/Mexico/Tijuana
+
+mkdir -p Asia/India/Cario
+
+mkdir -p Europe/UK/London
+touch Europe/UK/London/Chelsea.txt
+
+mkdir -p Europe/Morocco/Casablanca
+
+mkdir -p Europe/Nigeria/Abuja
+touch Europe/Nigeria/Abuja/Tenebu.txt
+
+mv Africa/Egypt/Mumbia Asia/India
+mv Asia/India/Cario Africa/Egypt
+mv Europe/Nigeria Africa
+
+
+Add users 
+====================
+sudo useradd john
+ sudo useradd jane
+ sudo useradd alice
+ sudo useradd bob
+sudo useradd Isaac 
+
+Group User 
+=====================
+sudo groupadd parents
+sudo groupadd children
+sudo groupadd family 
+
+Assign users to Group 
+=====================
+sudo usermod -aG parents john
+sudo usermod -aG parents jane
+sudo usermod -aG children alice
+sudo usermod -aG children bob
+
+Create a directory for each user
+==========================
+sudo mkdir /home/john/documents
+sudo mkdir /home/jane/documents
+sudo mkdir /home/alice/documents
+sudo mkdir /home/bob/documents
+
+Modify permission 
+===========================
+ sudo chmod 700 /home/john/documents
+ sudo chmod 700 /home/jane/documents
+ sudo chmod 700 /home/alice/documents
+ sudo chmod 700 /home/bob/documents
+
+mkdir /home/shared_family
+sudo chown :family /home/shared_family
+chmod 770 /home/shared_family
+
+tail = tail -4 /etc/passwd
+        tail -3 /etc/group
+
+head  = head -4 /etc/passwd
+        head -5 /etc/group 
+
+grep  = grep isaac /etc/passwd
+        grep isaac /etc/group
+
+*user info*:
+
+whoami = Display the username of the current user.
+[ec2-user@ip-172-31-13-185 ~]$ whoami
+ec2-user
+
+id  - Display user and group ID information for a 
+specified user or the current user if no user is specified.
+
+who - Display information about users who are 
+currently logged in.
+
+w - Show who is logged in and what they are doing.
+
+last - Display the list of recent logins.
+
+
+**echo [""] / Pipe [|] and Append [>or >>] Command**
+
+echo: This is used to display the arguments passed
+echo "united core will make you rich"
+
+[john@ip-172-31-13-185 ~]$ echo "united core will make you rich forever"
+result: united core will make you rich forever
+
+pipe | 
+
+[john@ip-172-31-13-185 ~]$ echo "united core will make you rich forever"
+result: united core will make you rich forever
+
+
+ touch newfile.txt
+
+ ** output**
+united core will make you rich
+
+[ec2-user@ip-172-31-15-164 ~]$ echo "united core will makae you rich"
+united core will makae you rich
+touch newfile.txt
+echo "united core will makae you rich" | tee newfile.txt
+Result: united core will makae you rich
+
+$ cat newfile.txt
+result: united core will makae you rich
+
+$ vi newfile.txt 
+
+$ echo "yes this is true" | tee -a newfile.txt
+yes this is true
+
+$ vi newfile.txt 
+
+
+Apend:
+$ echo "yes this is true" > newfile1.txt
+
+$ cat newfile1.txt
+Result:yes this is true
+
+$ echo "yes you bet it" >> newfile1.txt
+$ cat newfile1.txt
+results:
+yes this is true
+yes you bet it
+ 
+to get out vi mode:
+shift ZZ / 
+:q! = quit without saving
+:wq = save and exit
+
+
+
+ **Granting sudo access to users**
+===================================
+sudo vi /etc/sudoers   
+save and quit = :wq! and press enter 
+
+It is not recommended to run tasks directly as
+the admin/root user for security reasons.
+
+
+**Elevate user's privilidges:**
+================================= 
+sudo vi /etc/sudoers  or sudo visudo 
+Grand sudo access to john user
+sudo echo "userName ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/userName
+
+Example
+sudo echo "jane ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/jane
+
+**grant and remove admin/sudo prilvileges:**
+
+passwd -l userName
+
+**unlock user accounts: = sudo/root access  is required:**
+passwd -u userName
+sudo passwd -uf john
+
+
+**delete user account: = sudo/root access  is required**
+    userdel userName  
+    sudo userdel bob
+    sudo userdel userName     = delete user's account without the UHD 
+    sudo userdel -r userName  = delete user's account with the UHD  
+       UHD = Hser Home Hirectory
+
+**Searching**
+find [path] -name [pattern] - Searches for files by name
+grep [pattern] [filename] - Searches for a specific pattern within
+
+**System Information:**
+uname: Displays system information.
+-a: Display all system information.
+top/htop: Real-time system monitoring.
+uptime: Shows how long the system has been running.
+date: show current time and date
+hostname: show system hostname
+cal: Show current day and month
+
+**System Management** 
+shutdown: Shuts down or reboots the system.
+-r: Reboot.
+-h: Shutdown.
+reboot: Reboots the system.
+init: Initializes the system (typically used to change run levels).
+dmesg: Displays kernel-related messages.
+systemctl: Configures kernel parameters at runtime.
+timedatectl: manage the system clock
+modprobe: Adds or removes modules from the kernel.
+
+
+**userMgt Part1 Assignment**
+=============================
+1. creating user's account for each of your group members 
+2. assign passwords to 3 members of the group ( Leader, Asst. and Yourself)  
+3. assign/add Leader and Asst. to group called Team_Lead  
+4. assign/add members to group called Team_Members 
+5. delete 2 users    
+6. create a Shared Directory for Team_Members and Team_Leads
+7. Change group ownership of the Shared Directories
+8. Change Shared Directories permissions to 770
+
+
+**userMgt Part2 Assignment**
+
+1. Elevate user's privilidges 
+2. modify user account
+3. lock and unlock user accounts
+4. Reset user's password 
+5. set expiry date for user's account/password  
+6. Assign task to users 
+7. grant and remove admin/sudo prilvileges
+
+
+30 Aug 2023:
+
+
+ Searching 
+===========
+  find ~/Africa/Ghana -name "City.txt"
+  /home/ec2-user/Africa/Ghana/Accra/City.txt
+
+find ~/America -name "unitedcore.txt"
+/home/ec2-user/America/USA/Massachussets/unitedcore.txt
+
+Adding content to files using Pipe [|] and Append [>]:
+===================
+
+echo "madina" > City.txt
+echo "east legon" >> City.txt 
+
+
+Another use of pipe is pipe and grep
+cat City.txt | grep "madina"
+
+Results:
+[ec2-user@ip-172-31-13-185 Accra]$ cat City.txt | grep "madina"
+madina
+
+[ec2-user@ip-172-31-13-185 Accra]$ cat City.txt | grep "Dansoman"
+Dansoman
+
+System Information:
+uname: Displays system information
+-a:  Display all system information.
+
+[ec2-user@ip-172-31-13-185 Accra]$ uname -a
+Linux ip-172-31-13-185.us-east-2.compute.internal 
+5.14.0-284.11.1.el9_2.x86_64
+ #1 SMP PREEMPT_DYNAMIC Wed Apr 12 10:45:03 EDT 2023 x86_64 x86_64 x86_64 GNU/Linux
+
+How to set dates in Linux:
+
+  date: show current time and date
+  timedatectl: 
+    Results
+    Local time: Thu 2023-08-31 00:26:03 UTC
+           Universal time: Thu 2023-08-31 00:26:03 UTC
+                 RTC time: Thu 2023-08-31 00:26:03
+                Time zone: UTC (UTC, +0000)
+System clock synchronized: yes
+              NTP service: active
+          RTC in local TZ: no
+
+
+          sudo timedatectl set-timezone America/New_York
+
+          [ec2-user@ip-172-31-13-185 ~]$ timedatectl
+               Local time: Wed 2023-08-30 20:31:36 EDT
+           Universal time: Thu 2023-08-31 00:31:36 UTC
+                 RTC time: Thu 2023-08-31 00:31:36
+                Time zone: America/New_York (EDT, -0400)
+System clock synchronized: yes
+              NTP service: active
+          RTC in local TZ: no
+
+timedatectl list-timezones : List all time zones 
+timedatectl list-timezones | grep New_York : search for New_york in the list 
+
+
+Cal: Show current day and month
+
+How to set hostname: 
+=========================================
+
+hostname:show system hostname
+
+  [ec2-user@ip-172-31-13-185 ~]$ hostname
+ip-172-31-13-185.us-east-2.compute.internal
+
+hostnamectl set-hostname new_hostname
+hostnamectl set-hostname unitedlinux2023
+
+sudo su -  = root 
+sudo su - root
+
+su - ec2-user or exit 
+
+hostnamectl
+
+
+Results:
+  [ec2-user@unitedlinux2023 ~]$
+
+  **User Environment**:
+
+    env:
+    Printenv:
+
+env - Display all the environment variables.
+printenv - [variable] Print the value of the specified environment variable.
+set Display environment and shell variables. Can also be used to set shell options.
+unset [variable]  Remove an environment or shell variable.
+
+How to set ENV variable
+=======================================
+export NEW_VARIABLE=value of
+
+export ACCRA=~/Africa/Ghana/Accra
+
+jollof_rice= rice + tomatoes + onions + oil + spices
+
+How to remove ENV variable:
+========================================
+unset4 [Virable name]
+
+unset ACCRA
+
+Linking: 
+=======================================
+
+Hard Link: Hard Link - is a reference to an original file, if the original file 
+is deleted the hardlink remains accessible 
+
+ln [source] [linkname]  Creates a hard link
+ln ~/Africa/Ghana/Accra/City.txt  Accra_cities
+
+
+Soft link:
+softlink (symbolic link) - is a seperate file that points to another file or directory 
+like a shortcut. if the original file is deleted the link becomes a broken link.
+
+ ln -s ~/America/USA/Massachusetts Mass
+
+
+2 September 2023:
+================
+Package Management:
+
+**Red Hat and CentOS**
+Primary Tool: yum
+sudo yum install [package-name] : install packages
+sudo yum update : Update packages
+sudo yum remove [package-name] : Remove / uninstall packages
+yum search [package-name]:Search packages
+
+
+sudo yum install httpd
+
+systemctl: Manages systemd services.
+
+sudo systemctl start [service-name]: Start a Service
+
+sudo systemctl start httpd   & sudo yum install git -y
+sudo systemctl status httpd
+sudo systemctl enable httpd
+
+package-name  apache-httpd  from github
+
+URL: https://github.com/emortoo/apache-httpd.git
+
+git clone
+
+
+git clone https://github.com/emortoo/apache-httpd.git
+
+Results:
+  [ec2-user@ip-172-31-43-228 ~]$ ls
+   apache-httpd
+
+
+https://github.com/emortoo/apache-httpd.git
+
+[ec2-user@ip-172-31-43-228 ~]$ ls
+apache-httpd
+[ec2-user@ip-172-31-43-228 ~]$ cd apache-httpd/
+
+[ec2-user@ip-172-31-43-228 apache-httpd]$ ls
+Results: css  fonts  img  index.html  js  syntax-highlighter
+
+sudo cp -r apache-httpd/* /var/www/html
+Results:
+[ec2-user@ip-172-31-43-228 ~]$ ll /var/www/html
+total 16
+drwxr-xr-x. 2 root root    75 Sep  2 17:35 css
+drwxr-xr-x. 2 root root   154 Sep  2 17:35 fonts
+drwxr-xr-x. 2 root root    56 Sep  2 17:35 img
+-rw-r--r--. 1 root root 12800 Sep  2 17:35 index.html
+drwxr-xr-x. 2 root root    72 Sep  2 17:35 js
+drwxr-xr-x. 4 root root    52 Sep  2 17:35 syntax-highlighter
+
+Change ownership= owner and group 
+sudo chown -R apache:apache /var/www/html
+
+
+Open port 80 in AWS
+copy and paste server IP address 18.191.221.67
+
+if you want to make changes to the content of
+cd /var/www/html
+
+Sudo vi index.html = then make you changes
+
+
+systemctl: Manages systemd services.
+sudo systemctl start [service-name]: Start a Service
+sudo systemctl stop [service-name] : Stop a Service
+sudo systemctl restart [service-name]: Restart a Service
+sudo systemctl reload [service-name]: Reload Service Configuration without Restarting
+sudo systemctl enable [service-name]: Enable a Service to Start on Boot
+sudo systemctl disable [service-name]Disable a Service from Starting on Boot
+systemctl status [service-name] : Check Service Status
+systemctl list-units --type=service --state=active : List Active Services
+
+
+**Debian and Ubuntu**
+
+sudo apt install apache2 git -y  
+
+sudo systemctl start apache2   
+sudo systemctl status apache2
+sudo systemctl enable apache2
+
+git clone https://github.com/emortoo/apache-httpd.git
+sudo cp -r apache-httpd/* /var/www/html/
+ll /var/www/html/
+
+Change ownership to this Application:
+sudo chown -R www-data:www-data /var/www/html
+
+ll /var/www/html: = to display the content
+
+
+Remeber to open port 80 in AWS.
+lunch your website with the server IP 18.223.122.243
+
+
+Process Management
+ps: Shows running processes.
+pgrep: Searches for processes by name or other attributes.
+kill/pkill: Kills processes.
+systemctl: Manages systemd services.
+cron: Schedules tasks to run at fixed times (used with crontab).
+at: Schedules a command to be run once at a specified time.
+
+
+# Networking 
+
+wget: Retrieve files from the web.
+curl: Tool to transfer data from or to a server, supports multiple protocols.
+telnet: Communicate with another host using the TELNET protocol (often used for testing connectivity).
+ssh: Secure Shell client, for secure remote login.
+scp: Securely copy files between hosts over SSH. 
