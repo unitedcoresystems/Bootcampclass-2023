@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Maven's Objectives:
 Maven's primary goal is to allow a developer to comprehend the 
 complete state of a development effort in the shortest period of 
@@ -58,7 +59,7 @@ Python:
 
 Ruby:
 ----
-  Rake
+Rake
 
 NodeJS:
   npm
@@ -674,3 +675,6 @@ A Maven repository can be one of the following types:
 ► Maven Local Repository
 ► Maven Central Repository
 ► Remote Repository
+=======
+
+>>>>>>> origin/main
