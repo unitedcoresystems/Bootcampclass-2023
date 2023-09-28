@@ -1,0 +1,61 @@
+**Group Assignment: Collaborative Five-Course Meal Recipe using Git**
+
+**Objective:** 
+Familiarize with the basic git commands by collaboratively creating a recipe for a five-course meal. Each group member will represent a chef responsible for a particular course.
+
+**Prerequisites:**
+1. Basic understanding of Git.
+2. Git installed on your machine.
+
+**Instructions:**
+
+1. **Repository Setup**:
+    - One team member (the "Head Chef") will create a new repository on GitHub titled `FiveCourseMeal`.
+    - Add all other members as collaborators to this repository.
+    - Everyone should clone this repository to their local machines.
+
+2. **Create Branches**:
+    - Each chef (member) should create their own branch named after their course. For example: `appetizer`, `soup`, `main_course`, `dessert`, `drink`.
+
+3. **Add Recipes**:
+    - On your branch, create a new `.md` (Markdown) file named after your course. For example: `appetizer.md`.
+    - Write down the recipe for your assigned course, including ingredients and step-by-step instructions.
+    - Use markdown formatting to structure your recipe (e.g., `## Ingredients`, `### Steps`).
+    - Commit your changes with a message, such as "Added appetizer recipe."
+
+4. **Push to Repository**:
+    - Push your branch to the remote repository.
+
+5. **Reviewing & Merging**:
+    - Once all members have pushed their branches to the remote repository, each member should review at least two other courses (not their own) by:
+      - Checking out the branch of the course they're reviewing.
+      - Leaving comments or suggestions (this can be done on GitHub using the "Pull Request" feature or directly in the code).
+      - Approving the recipe if everything looks good.
+    - The Head Chef will be responsible for merging all the branches into the `main` branch once reviews are done.
+
+6. **Resolve Conflicts**:
+    - If there are any merge conflicts, the team must work together to resolve them. 
+    - Use this as an opportunity to practice resolving merge conflicts, a crucial skill when collaborating with Git.
+
+7. **Compile the Five-Course Meal**:
+    - Once all recipes are merged into the `main` branch, create a new file called `FiveCourseMeal.md`.
+    - Compile all the recipes into this single file in the correct order: Appetizer, Soup, Main Course, Dessert, Drink.
+    - Commit and push the compiled recipe to the `main` branch.
+
+8. **Wrap Up**:
+    - Reflect on the collaborative experience. Discuss what went well and what challenges arose during collaboration. 
+    - Each member should pull the final version of the `main` branch to have the complete recipe on their local machine.
+
+**Evaluation Criteria:**
+- Correct usage of Git commands.
+- Proper structuring and formatting of the Markdown files.
+- Active participation of all members in creating, reviewing, and merging recipes.
+- Successful resolution of any merge conflicts.
+- Compilation of the complete Five-Course Meal recipe.
+
+**Tips:**
+- Regularly pull from the `main` branch to ensure your branch is up to date.
+- Communicate with your team, especially during the review and merging processes.
+- Practice good commit messages to keep track of changes made.
+
+Good luck, chefs! Let's create a delightful five-course meal together.
