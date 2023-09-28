@@ -1,0 +1,630 @@
+United Core    Zelle:
+======================  
+Develops, Tests, Builds, deploys & monitors applications 
+    Applications are the output from Softwares  
+
+    Zelle:  
+   Releases:
+   Releasing an application is taking/deploying it to the client
+   In realtime we have multiple Releases.  
+
+
+   Release Code1 = version 1  = 1000 lines of code
+   echo "Welcome to Zelle"
+
+  Release Code2 = version 2   = 2000 lines of codes
+  echo "Welcome to Zelle"  
+  echo "Your convenient payment gateway"
+
+  Release Code3  = version 3  = 3000 lines of code  
+  echo "Welcome to Zelle"  
+  echo "Your convenient payment gateway"
+  echo "Zellers the best payment gateway"
+
+
+Rollout   --> version1 --> version2 ---> version3
+
+RollBack  --> version3 --> version2 
+
+
+The client is not happy with the latest version of the application.   
+What can we do??? RollBack
+
+Versioning in Software Development:
+  ==================================
+
+  Version control systems = VCS:
+  Local = version1, 
+          version2,[5000LINES ] 
+          version3 [2000LINES ] 
+  Cons: Single point of failure
+         lacks collaboration
+         in-efficient use of resources including time  
+         can't RollBack
+
+
+         Centralised:
+    cons: can't RollBack
+          The central server can fail 
+
+          Distributed VCS:
+        ====================
+
+Distributed VCS:
+  ===============
+
+GitHub is a web-based platform that provides a hosting service for Git 
+repositories. It allows developers to store, manage, and collaborate on 
+code projects. GitHub was founded in 2008 and has grown to become one of 
+the most popular code hosting platforms in the world. GitHub is built on 
+top of Git, a distributed version control system. It allows developers to 
+track and manage changes to their codebase, create branches, merge changes,
+and revert to previous versions. Git's distributed nature enables multiple 
+developers to work on the same project simultaneously and synchronize their 
+changes.
+
+GIT: DVCs 
+  Distributed Version Control system 
+  - Git manage data as snapshots. 0 / 10 / 20 / 30 / 40 / 50 / 60 / 
+  - It takes a picture of what all your files look like 
+     at that moment and stores 
+    a reference to that snapshot.
+
+  Benefits: Nearly every operation is local
+            git has data intergrity
+            Git generally only adds data
+
+
+            Zelle, BOA, Macy's ........
+
+  Deploy.java
+    echo "Welcome to Zelle"                    = Isaac
+    echo "Zelle your payment gateway"          = Ben        
+    echo "Zelle is the gateway of the future"  = UnitedCore   
+    echo "Zelle is offering 30% discount"      = Emma
+    echo "Good deals for returning clients"     = Theo
+  
+
+  other DVCs:
+SVN --> Sub Version
+CVS --> Concurrent Version system
+TFS --> Team Foundation Server
+Git --> 95% plus of companies are using GIT   
+
+SCM = Source Code management
+=======================-====  
+SCM service plaforms :
+  GitHub - MS
+  GitLab
+  BitBucket (Stash) - A
+  awsCodeCommit 
+
+  IQ: As a DevOps Engineer, what are your roles & responsilities in Versioning with Git?
+
+  Answer:
+  1. We ensure that Developers environments are configured and secured 
+     We create an enabling environment for Developers to code/Develope
+       DevelopmentServers are created in AWS.  
+       share login details with Developers/Team [ userName/password ]  
+       Ensure that git package/Software is installed 
+
+  2. Project Onboarding: 
+       Create organisations where applicable in a SCM  
+       Create repositories in SCM [GitHub] 
+       Create teams in SCM and assign members[Developers, etc.] 
+
+3. Zelle: 
+  1. Create a github account where applicable - 1:200 [0.5%]
+        https://github.com/
+        Email address: unitedcoresystems@gmail.com  or isaac.ntim@unicoresys.com   
+        userName: unitedcore    
+        password: Admin123
+
+  2. Create organisation in your GitHub account for the client [Zelle]
+        userName: unitedcore    
+        password: Admin123    
+        organisation url =  https://github.com/UnitedCoreSystems
+
+. Create project TEAM(S) and add members & collaborators and 
+         url = https://github.com/orgs/UnitedCoreSystems/teams/Zelle   
+
+  4. assign roles to Team members using 
+     security best practices including Least Priviledges  
+
+  4. Create repositories in the GitHub organisation for the client  
+       url = https://github.com/UnitedCoreSystems/Zelle     = public 
+       url = https://github.com/UnitedCoreSystems/Zelle-be  = private  
+
+  6. Ensure that Git and relevant IDEs are installed by Developers
+
+
+  United Core Class2023Teams:
+Project:
+  1a. Create your GitHub account 
+  1b. Onboard our new project for unitedtech a FinTech Client
+
+  2. Managers and assistant
+       Create a Team in your created organisation for Zelle and add members of your 
+       your group with write access 
+
+
+Git Commands:
+
+Basic git config (~/.gitconfig)
+===================================
+git config --global user.name "Isaac Ntim"
+git config --global user.email "unitedcoresystem@gmail.com"
+
+to check 
+git config --list
+
+git config --global core.editor "/urs/bin/nano"
+
+Mkdir {nameofdiretory}
+cd [nameofdirectory]
+
+git init
+git status
+git log
+git add
+git commits
+git push 
+
+ 
+    create a Local repository [.git]  
+git add 
+  
+Isaac Hologic@Isaac-DevOps MINGW64 ~/united2023 (master)
+$ git status
+On branch master
+
+No commits yet
+
+nothing to commit (create/copy files and use "git add" to track)
+
+workingArea  stagingArea LocalRepo RemoteRepo
+
+working area        staging     localRepo     RemoteRepo[GitHub]    :
+  -----------        -------      ---------     ------------------  
+  Untracked files     git add     git commit    git push 
+    red                green     
+
+
+git init          = to initialised a git empty repository
+                    create the default branch[master]
+git status        = to track files location
+git log           = list all commits  
+git add .           = move files to staging area from working area
+git commit -m     = move files to the local repository FROM STAGING AREA
+                    good commit message for tracking changes/authors 
+    
+
+20 September 2023:
+===================
+
+Deploy.java
+    echo "Welcome to Zelle"                    = Isaac
+    echo "Zelle your payment gateway"          = Ben        
+    echo "Zelle is the gateway of the future"  = UnitedCore   
+    echo "Zelle is offering 30% discount"      = Emma
+    echo "Good deals for returning clients"     = Theo
+
+Repository:
+    https://github.com/UnitedCore-Class2023/Deploy.java.git
+
+creat a directory
+git init 
+git status
+git add . 
+git commit -m "comments"
+git remote add origin https://github.com/UnitedCore-Class2023/Deploy.java.git
+git push -u origin master
+
+
+Git Branch :
+ git branch [name]
+
+ git branch --list
+
+  Master
+  stage branches
+  development
+  main
+
+
+ssh-keygen -t ed25519 -C "your_email@example.com"
+
+  ssh-keygen -t ed25519 -C "unitedcoresystems@gmail.com"
+
+    ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIcxxmAe/NYZ29/r+turtCppTdkdDzo9M4kqkeljXB1r unitedcoresystems@gmail.com
+
+
+  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    git token
+
+  ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOV16gpdi2UhFrrDPSKnkV8+/eO6l8cDmp65S4BpD2sG unitedcoresystems@gmail.com
+   tempserver
+
+   UnitedCore-Class2023
+
+  Git fetch                           <-------------------
+  git merge    
+  git pull <------------------------------------------------------
+   
+  git init          = to initialised a git empty repository
+  git status        = to track files location
+  git log           
+  git add           = move files to staging area from working area
+  git commit -m     = move files to the local repository FROM STAGING AREA
+                      good commit message for tracking changes/authors 
+
+git commit -m "users list created"
+git push RemoteRepo master 
+=================================================:
+
+23 September 2023:
+
+==================
+create a directory called class2023
+$ mkdir class2023
+$ cd class2023
+$ touch / vi git-note
+$ git init 
+git status
+
+Staging:
+git add .  / git add fileName / git add *.txt
+
+UnStaging:
+git restore --staged <file>..." to unstage)
+git commit -m "comments" / git commit -a -m "comments"
+git status to check if your working tree is clean
+git remote add origin https://github.com/UnitedCore-Class2023/Deploy.java.git
+verify the branch---------- git branch
+Rename:
+$ git branch -M main = rename branch
+git push -u origin master
+=====================================  10min
+
+Git Branch :
+Git branch branchName   = creates a new branch
+git branch development  = created the development branch 
+
+ git branch [name]
+ git branch --list
+
+ Create these branches:
+Master
+stage branches
+development
+main
+
+Switching and creating new branches: 
+-------------------------
+git checkout -b (branch) : lets you exit your current, then create and switch to new branch   
+
+$ git checkout -b <new branch>
+
+How to delete branches:
+$ git branch -d <branchname>
+
+Switching Branch:
+Switching between branches: 
+-------------------------
+git checkout  : lets you exit your current branch to the branchname specified  
+$ git checkout <branchname>  
+git switch master
+git checkout branchName
+git diff development 
+git merge development
+  merging branches: 
+-----------------
+ git merge : lets your merge to content in one branch onto another branch 
+ 
+$ git merge <branchname>
+
+Note* you will have to be in the current branch in which you wish to merge to 
+
+
+git push aliasName --all  = push changes to all branches 
+git push pay --all 
+
+IQ: How many branches are you supporting in your projects?
+    Branches are used to create lines of development in git. 
+    A branch is a line development 
+  We maintain a minimun of 3 branches:
+        development branch  
+           app.java     
+        staging branch  
+           app.java
+        master branch  
+           app.java
+
+git branch  = list all the branches [lines of development]
+git branch branchName  = create a new branch     
+git checkout branchName = switch branches 
+
+git fetch --> It brings changes in the code to the LocalRepo
+git pull --> It brings changes in the code to the Working area 
+git clone --> It brings the entire code to the working area 
+
+
+
+git commit --amend -m "an updated commit message" : 
+   Change most recent Git commit message.
+
+   git log --author
+
+IQ: What is the difference b/w git commit and git rebase
+
+reverting commits  
+======================================
+git revert : lets you remove a commit in git system
+
+$git revert Commit ID 
+
+HEAD : lets you remove the latest commit 
+$ git revert HEAD 
+
+HEAD~1 : the last but 1 commit
+$ git revert HEAD~1
+
+HEAD~2 : the last but 2 commit 
+$ git revert HEAD~2
+
+
+2. Using tags : 
+
+adding and removing tags 
+==================================
+git tag : lets you put a sticky notes on your commits 
+
+lightwieght tags
+----------------
+tag : tags without -a options are know as lightwieght tags  
+$ git tag <tag name> -m <message> 
+
+Annotatated tags 
+-----------------
+ -a (Annotated tags) : gives more detailed information about your tags 
+$ git tag -a <tag name> -m <message> 
+
+displaying you tags:
+
+$ git show tagName
+
+removing tags: 
+---------------
+-d (delete tags)
+$ git tag -d <tag name>
+
+rebasing branches: 
+-----------------
+git rebase : appending changes made from one branch to another branch
+$ git rebase <branchname>
+
+
+using diff command: 
+-------------------
+git diff: lets you view a detailed difference between two commits
+$ git diff <commitid> <commitid>
+
+--summary :: give a summary of files that have been added between two commits 
+
+4. cloning repositories:
+
+local repository: 
+-----------------------
+git clone : lets you create a copy of a repository 
+$ git clone <local repo> <new repo>
+
+
+Securing your github account with ssh key: 
+------------------------------------
+ssh-keygen : generate ssh key pairs for your git account
+
+remote repository: 
+-----------------------
+git clone : lets you create a copy of a remote repository into your local / remote enviroment 
+$ git clone <url>
+
+forking repository:
+----------------------
+its a GUI action of replicating a remote repository onto your github account 
+
+5. Tracking Remote Repositories 
+
+Remote Repositories:
+-----------------------------
+git remote : shows the alias for your remote server that are being tracked for the current repository
+
+$ git remote 
+
+-v : Shows the url linked to the remate server 
+$ git remote -v 
+
+show : gives a detailed information about the origin 
+$ remote show <remote>
+
+tracking remote repository: 
+------------------------------
+git fetch : fetches new commit infortmation down from the remote server for the current repository, it doesn't commit anything to local repo
+$ git fetch <remote>
+
+Git push : pushes local changes to the upstream git repository 
+-u (upstream) : lets you set a connection between remote and local branch 
+
+$ git push -u <remote> <branch>
+
+Git Best Practices:
+    Use branching strategy and pull requests
+    Commit once you finish the task. 
+    Avoid merge Conflicts.
+    Don’t Commit Half-Done - git stash
+    Test your code before commit.
+    Write Good Commit Messages before committing 
+    Try to use git commands rather than GUI tools.
+    use ssh url and PAT over https 
+    use rebase over git merge
+
+Git Summary:
+===========
+ Git is a distributed version control system.
+   We use git for Versioning in our projects.      
+ Git keeps/records changes made in codes/files/scripts
+
+ Basic concepts:
+  1. git installation   
+       yum install git  [for RedHAT/centos]  
+       apt install git  [for ubuntu and debain ]
+       
+       download the microsoft installer file for git 
+          Git-2.37.2.2-64-bit.exe   
+          git bash  
+  
+  2. git commands
+      - git [init/add/commit -m/status/  ] 
+      - git pull/fetch/clone/  
+  
+  3. git branch  = a branch is a line of development   
+     - git branches: 
+          dev stage master 
+     - git branch branchName  
+     - git branch -d branchName 
+       git switch branchName or git checkout branchName
+       git checkout -b branchName  
+
+  4. git tag   
+  5. git merge  
+  6. pull requests = PR     
+
+  git fetch/pull/clone   
+  git clone UnitedCore repo  
+  git config --global user.name "Isaac"
+  git config --global user.email "isaac.ntim@gmail.com"
+  git config --global --list  
+
+1. Coding is done by Developers using programming LANDGUAGES
+   java, python, c++, JS, NodeJS, Groovy   
+
+2. DevOps Engineers work with Developers  
+
+2. DevOps Engineers write and modify scripts.
+   scripting LANDGUAGES: 
+       bash shell scripts / 
+       python scripts
+       groovy scripts(Jenkinsfiles)  
+       yaml (Kubernetes and ansible) 
+       terraform codes    
+   The use SCM [GitHub, GitLab, etc.] to record changes in scripts
+
+
+ACHIEVING ZERO DOWNTIME AND SUCCEEDING:
+   1.  Attend all live your classes 
+        and follow videos shared on time. 3PM   
+   2A. Revise videos and notes before the next class 
+   2.  Consistently dedicated 1+ hours for daily studies
+   3.  Raise ticket of issues and share in the Solution groups.
+   4.  Be quick to help others reslove issues/tickets - 
+
+
+Assignment Solutions:
+======================
+
+   #!/bin/bash
+
+
+# User Management Functions
+
+add_user() {
+    if id "$1" &>/dev/null; then
+        echo "User already exists."
+    else
+        useradd "$1"
+        echo "User $1 added successfully."
+    fi
+}
+
+delete_user() {
+    echo -n "Are you sure you want to delete user $1? (y/n): "
+    read confirm
+    if [[ "$confirm" == "y" || "$confirm" == "Y" ]]; then
+        userdel "$1"
+        echo "User $1 deleted successfully."
+    else
+        echo "User deletion cancelled."
+    fi
+}
+
+list_users() {
+    echo "Listing users:"
+    cat /etc/passwd | cut -d: -f1 | head -6
+}
+
+# File Management Functions
+
+create_file() {
+    touch "$1"
+    echo "File $1 created successfully."
+}
+
+delete_file() {
+    if [ ! -f "$1" ]; then
+        echo "File does not exist."
+    else
+        echo -n "Are you sure you want to delete file $1? (y/n): "
+        read confirm
+        if [[ "$confirm" == "y" || "$confirm" == "Y" ]]; then
+            rm "$1"
+            echo "File $1 deleted successfully."
+        else
+            echo "File deletion cancelled."
+        fi
+    fi
+}
+
+list_files() {
+    echo "Listing files in directory $1:"
+    ls "$1"
+}
+
+# Package Management Functions
+
+install_package() {
+    apt-get install "$1"
+    echo "Package $1 installed successfully."
+}
+
+uninstall_package() {
+    echo -n "Are you sure you want to uninstall package $1? (y/n): "
+    read confirm
+    if [[ "$confirm" == "y" || "$confirm" == "Y" ]]; then
+        apt-get remove "$1"
+        echo "Package $1 uninstalled successfully."
+    else
+        echo "Package uninstallation cancelled."
+    fi
+}
+
+list_installed_packages() {
+    echo "Listing installed packages:"
+    dpkg --list | grep ii
+}
+
+# Service Management Functions
+
+start_service() {
+    systemctl start "$1"
+    echo "Service $1 started successfully."
+}
+
+stop_service() {
+    systemctl stop "$1"
+    echo "Service $1 stopped successfully."
+}
+
+service_status() {
+    systemctl status "$1"
+}
+
+# Main script execution
+"$@"
