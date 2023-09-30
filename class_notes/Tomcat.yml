@@ -1,0 +1,206 @@
+Tomcat:
+Application Deployment.:
+
+Application Deployment. 
+How to deploy java based applications:
+maven-standalone-application
+   java -jar appName.jar 
+        .jar
+    java -jar packageName.jar
+    java -jar user-banking.jar 
+      java JDK 1.7+
+
+maven-web-application  :
+    app.war 
+    Tomcat
+    JBoss/WildFly
+
+maven-enterprise-application:
+      app.ear
+    JBoss/WildFly
+ 
+
+30m daily requests  
+    30mUsers ----> 10-appServers
+    users(30m) --> webServers/LB --> appServer --> database  :
+                                      userName/
+                                      Password/
+                                      addresses/
+                                      SSN/DOB/tel   
+
+
+    India      filter 
+  users(30m)-->appServer-->
+   hackers 
+
+
+ multi-tier applications :
+   backend tier  : High security   = Militarised zone = MZ 
+      applications tier 
+      data base tier  
+   frontend tier  : Medium security = D-Militarised zone = DMZ 
+      webServers-- 
+      LoadBalancers
+      JumpServers  
+Application Server: 
+  IBM WebSphere Application Server (WAS)  --> IBM
+  Apache Tomcat   --> Apache  --> OS
+
+Application Server: 
+  IBM WebSphere Application Server (WAS)  --> IBM
+  Apache Tomcat   --> Apache  --> OS
+  
+  JBoss/WildFly   --> Redhat/IBM 
+    1.0.0 to 7.0.9
+    1.x to 7.x --> JBoss
+    from 8.x-->    WildFly
+         versioning  
+    git branch and git tag 
+
+  WebLogic --> Oracle  
+
+
+IQ: What is the d/f b/w JBoss/WildFly and Tomcat? 
+    vendors: Tomcat==Apache  
+             JBoss=Redhat  
+    Applications:          
+        JBoss; Web applications .WAR 
+               enterprise applications .ear 
+        Tomcat; web applications ONLY 
+
+
+============================
+Tomcat Installation:
+---------------------
+https://tomcat.apache.org/download-90.cgi
+https://downloads.apache.org/tomcat/tomcat-9/v9.0.63/bin/apache-tomcat-9.0.63.tar.gz
+
+Java is the pre-requisit for Tomcat 
+
+Tomcat home directory =  /opt/tomcat9  :                            
+
+THD: The Tomcat Home Directory is 
+     where the tomcat software is extracted 
+        wget   to download tomcat  
+        tar or unzip to extract
+common use cases for THD are:
+    /app/tomcat 
+    /usr/local/tomcat 
+    /opt/tomcat9* 
+[ec2-user@tomcat tomcat9]$ ls
+bin: --- binary files  
+    startup.sh    LINUX SYSTEM
+    startup.bat   ----> WINDOWS OS
+    shutdown.sh
+    shutdown.bat     ----> WINDOWS OS
+    catalina.sh start
+    catalina.sh stop | start | restart | status  
+    version.sh
+    version.bat  
+
+
+
+conf:
+  server.xml
+    <Connector port="8080" protocol="HTTP/1.1"
+    <Connector port="8177" protocol="HTTP/1.1"
+    <Host name="localhost"  appBase="webapps"
+    unpackWARs="true" autoDeploy="true">                   :
+ mavenServer 
+     app.war   -----> tomcat9/webapps/app.war  
+  tomcat-users.xml
+
+webapps:
+  we effect deployments in Tomcat in the webapps Directory
+   default deployment Directory in Tomcat is = webapps 
+    war files
+        maven-web-app.war  # mvn package 
+        maven-web-app
+        cp *.war /webapps
+    cp *war   /opt/tomcat9/webapps/maven-web-app.war
+
+lib: 
+  contain all the jar files
+logs:
+  catalina.out
+  host-manager.log
+IQ:  What are the log files available in the tomcat log dir?
+
+LICENSE
+NOTICE   
+temp
+work
+
+Install tomcat   
+start tomcat:
+   sudo sh /opt/tomcat9/bin/startup.sh
+   sh /opt/tomcat9/bin/startup.sh
+   sh startup.sh
+ Verify if the tomcat service/process is running:
+    ps -ef | grep tomcat  
+    curl -v localhost:8080  
+
+README.md      
+BUILDING.txt      
+RELEASE-NOTES  
+RUNNING.txt
+CONTRIBUTING.md  
+
+configure tomcat:
+    http://44.204.71.5:8177/ 
+    403 Access Denied
+ Enable external access  and comment it out
+  ABV:=
+ 
+  vi /opt/tomcat9/webapps/manager/META-INF/context.xml
+<!--
+  <Valve className="org.apache.catalina.valves.RemoteAddrValve"
+          allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" /> 
+-->
+
+vi /opt/tomcat9/conf/tomcat-users.xml  =# to add user
+vi /opt/tomcat9/conf/tomcat-users.xml
+
+  
+  <user username="isaac" password="admin123" roles="admin-gui"/> 
+
+  <user username="mark" password="admin123" roles="manager-gui,admin-gui"/>
+
+Deploy applications to tomcat from the build Server[maven]:
+  scp -i unitedlinux2023.pem maven-web-application.war ec2-user@13.59.176.220:/opt/tomcat9/webapps/ 
+
+
+HotFixes:
+    
+
+on Tomcat server:
+
+ls /opt/tomact9/webapps/zelle/jsps/home.jsp
+
+vi /opt/tomact9/webapps/zelle/jsps/home.jsp  to make changes to html
+
+http://44.204.71.5:8177/zelle/  
+http://44.204.71.5:8177/maven-web-app  
+
+How to improve tomcat server performance?
+  Multiple deployments will reduce tomcat server performance.
+  Multiple requests on a single tomcat server will affect performance
+  The resource level or computing capacity OF   your tomcat server   
+     8GB RAM,   480GB Hard drive HDD 
+     64GB RAM,  4000GB Hard drive SSD   
+
+  01 appServer  
+  10 appServers  
+
+  heapsize = 64mb -- 128mb/256mb    
+
+  Port no:
+    80  -- http
+    443 -- https
+    8080 -- Jenkins / Tomcat  / JBoss
+    0-1024 -- Reserve ports
+    1025-65535  
+    465 --- SMTP
+    587  --- SMTP
+    22   --- ssh
+    23   -- ftp
