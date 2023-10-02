@@ -14,14 +14,14 @@
 	<packaging>war</packaging>
 	<version>1.0</version>
 
-	<name>MavenEnterpriseApplication</name>
-	<url>http://mithuntechnologies.com</url>
+	<name>Maven-Enterprise-Application</name>
+	<url>http://unitedcoresystem.com</url>
 	
 	<description>Maven Enterprise Project</description>
 
 	<organization>
-		<name>Landmark Technologies</name>
-		<url>http://mylandmarktech.com/</url>
+		<name>United Core System</name>
+		<url>http://unitedcoresystem.com/</url>
 	</organization>
 
 	<properties>
@@ -95,19 +95,19 @@
 	<distributionManagement>
 	    <repository>
 	      <id>nexus</id>
-	      <name>Landmark Technologies Releases Nexus Repository</name>
-	      <url>http://localhost:8085/landmarktechnologies/repository/flipkart-releases/</url>
+	      <name>United Core System Releases Nexus Repository</name>
+	      <url>http://localhost:8085/unitedcore/repository/flipkart-releases/</url>
 	    </repository>
 	    <snapshotRepository>
 	      <id>nexus</id>
-	      <name>Mithun Technologies Snapshot Nexus Repository </name>
-	      <url>http://localhost:8085/landmarktechnologies/repository/flipkart-snapshot/</url>
+	      <name>United Core System Snapshot Nexus Repository </name>
+	      <url>http://localhost:8085/unitedcore/repository/flipkart-snapshot/</url>
 	    </snapshotRepository>
 	</distributionManagement>
 	
 
 	<build>
-		<finalName>MavenEnterpriseApplication</finalName>
+		<finalName>Maven-Enterprise-Application</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

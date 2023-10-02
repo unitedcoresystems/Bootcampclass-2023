@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 Maven's Objectives:
 Maven's primary goal is to allow a developer to comprehend the 
 complete state of a development effort in the shortest period of 
@@ -580,8 +579,8 @@ Maven Enterprise applications:
   MavenEnterpriseApplication.war
 
 MavenEnterpriseApp-ear
-https://github.com/mylandmarktechs/maven-enterprise-application
-git clone https://github.com/mylandmarktechs/maven-enterprise-application
+https://github.com/unitedcoresystems/Bootcampclass-2023.git
+git clone https://github.com/unitedcoresystems/Bootcampclass-2023.git
 
 [ec2-user@maven meapp]$ tree
 .
@@ -677,4 +676,3 @@ A Maven repository can be one of the following types:
 ► Remote Repository
 =======
 
->>>>>>> origin/main
