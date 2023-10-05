@@ -1,25 +1,32 @@
- We maintain a in Fault tolerant Architecture / Infrastructure:
-Deploying a Highly available Architecture / Infrastructure:
-  Upload Artifacts into:
-    Nexus/
+How we maintain a Fault tolerant Architecture / Infrastructure:
+by Deploying a Highly available Architecture / Infrastructure:
+
+Example of Artifacts:
+    Nexus
     JFrog 
-    AWScodeArtifact jar/war/ear
+    AWScodeArtifact 
+Software Developing Lifecycle
 
 Coding: 
   Git for versioning 
   GitHub/GitLab/Bitbucket as a SCM tool 
 
 Build: 
-  maven create artifacts (deployable packages 
-    that deployment(Tomcat/JBoss) servers can interprets )
-  Runs JUnitTest cases written by developers 
+  Maven to create artifacts (deployable packages) that is deployed to a 
+  webserver (Tomcat/JBoss). This web servers interprets and Runs JUnitTest 
+  cases written by developers 
 
-Lifecycle:
+Test: 
+Sonarqube performs code quality analysis on artifacts 
+
+Deploy: 
+Artifacts can be deployed into webservers or stored in artifactory like (Nexus or JFrog)
+
+Maven Lifecycle:
     1.  clean Lifecycle 
        mvn clean  --- delete old artifacts
     2.  site/swagger Lifecycle
        site --- Create java classes 
-
     3.  default Lifecycle
         mvn validate 
         mvn compile 
@@ -28,11 +35,11 @@ Lifecycle:
         mvn install 
             (target/*war, app.war. app.jar, app.ear)
             (MHD/*war, app.war. app.jar, app.ear)
-
+    4.  Sonar Lifecycle
         mvn sonar:sonar 
             sonar = plugin
             sonar = goal
-
+    5.  Artifactory Lifecycle
         mvn deploy = Uploads artifacts to Nexus 
 
 mvn package  
@@ -44,47 +51,17 @@ mvn deploy
     maven = jar, war or ear 
     nexus = jar, war or ear 
 
-What can be done if the packages are deleted IN MAVEN?
-What can be done if the packages can't be access because the build server is down?
+1. Why do we deploy artifacts into Nexus ?
+2. What happens when packages can't be access because the build server is down?
 
 Disaster management:
-  We need to create backups for artifacts in artifactories
-
-Coding:
-  Local computers (Laptops) 
-  What will happened if a developers laptop or env't breakdowns 
-  developers commits changes in code in their local Repository 
-  developers push their commits to the remote Repository in GitHub
+We need to create backups for artifacts in artifactories to recover builds in case of a disaster 
 
 Artifactory Repository:
   maven Repository   [jar/war/ear]
   yum Repository     [yum packages] 
   NodeJs Repository  [node packages] 
   apt Repository     [apt packages]
-
-artifacts depends on the project and language:
-  java   --> app.jar, maven-web-app.war, boa.ear 
-  docker -->   Docker Image 
-               docker build
-               docker run 
-  NodeJs  -- > NPM Packages
-  yum --- > yum Packages  =  
-            yum install maven git httpd tree
-            yum is a package manager for Redhat and CentOS  
-  
-       yum install maven
-
-  apt  -->  apt install tree 
-            apt is a package manager for Ubuntu/Debian
-
-  chocolatey --> choco install terraform 
-             --> chocolatey is a package manager for windows OS  
-
-  brew:     brew install terraform    
-         --> brew is a package manager for mac OS  
-  helm-->  is a package manager for kubernetes
-
-  pip --> is a is a package manager for python 
 
 -----
 IQ: How do you use Nexus in your environment?
@@ -173,6 +150,7 @@ Nexus Home directory:
 http://52.53.227.31:8081/ 
 http://52.53.227.31:8191/unitedcore   
 http://52.53.227.31:8191/unitedcore/
+
 Fintech:
  1. clone the code 
  2. maven clean package = build artifacts 
@@ -182,14 +160,15 @@ Fintech:
       configure the serve  
       Intergrating Maven with nexus 
 fintech client  
+
 Maven SonarQube Integration:  mvn sonar:sonar
    54.236.232.85
    172.31.0.41
    PORT = 9000
  1. vi pom.xml and check for "properties" tag
 mvn package  
-Maven Nexus Integration:
 
+Maven Nexus Integration:
 sonarqube vs sonacloud
 ---->        
 Databases 
