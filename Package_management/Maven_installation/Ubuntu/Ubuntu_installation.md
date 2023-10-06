@@ -8,11 +8,6 @@ cd /opt
 sudo apt-get install wget vim tree unzip git-all -y
 sudo apt-get install java-11-openjdk-devel java-1.8.0-openjdk-devel -y
 sudo su - ec2-user
-
-# Verify git and Java JDK 11+ installation.
-sudo su - ec2-user
-java -version
-git --version
 ```
 
 ## 2. Download, extract and Install Maven

@@ -7,11 +7,6 @@ sudo hostnamectl set-hostname maven
 cd /opt
 sudo yum install wget vim tree unzip git-all -y
 sudo yum install java-11-devel java-1.8.0-devel -y
-
-# Verify git and Java JDK 11+ installation.
-sudo su - ec2-user
-java -version
-git --version
 ```
 
 ## 2. Download, extract and Install Maven

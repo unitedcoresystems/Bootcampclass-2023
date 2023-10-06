@@ -2,7 +2,7 @@
 
 #   Organization: United Core Systems, Worcester, Massachusetts.
 ##  Contacts: Phone: 774-515-0044, 617-955-5115 WebSite : http://unitedcoresystem.com Email: info@unicoresystem.com
-### Authur : Emmanuel Mortoo, Ben Otoo Isaac Ntim and Theophilus Akonnor 
+### Authors : Emmanuel Mortoo, Ben Otoo Isaac Ntim and Theophilus Akonnor 
 
 # install Java JDK 11+ as a prerequisit for maven to run.
 sudo hostnamectl set-hostname maven
