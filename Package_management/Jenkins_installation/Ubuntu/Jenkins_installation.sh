@@ -6,7 +6,7 @@
 
 #update the server and change timezone and hostname 
 sudo apt update -y
-sudo hostnamectl set-hostname jenkins-docker-server
+sudo hostnamectl set-hostname jenkins-server
 sudo timedatectl set-timezone America/New_York
 
 #1.Install prerequisit: JAVA, git, unzip

@@ -1,6 +1,6 @@
 #update the server and change timezone and hostname 
 sudo apt update -y
-sudo hostnamectl set-hostname Jenkins
+sudo hostnamectl set-hostname jenkins-server
 sudo timedatectl set-timezone America/New_York
 sudo apt install wget git unzip tar -y
 sudo apt install openjdk-17-jre -y
