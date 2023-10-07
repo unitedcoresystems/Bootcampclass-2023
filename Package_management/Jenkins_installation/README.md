@@ -43,9 +43,9 @@ echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
 sudo apt-get update
 sudo apt-get install jenkins
 ```
-### 7. Ensure that Jenkins is running and accesible on the browser
-# Jenkins default port is = 8080
+###  Ensure that Jenkins is running and accesible on the browser
 ```sh
+# Jenkins default port is = 8080
 curl -v localhost:8080
 ```
 
@@ -71,7 +71,7 @@ Wait for the Jenkins to Install suggested plugins
 
 <img width="1291" alt="Screenshot 2023-02-01 at 10 59 31 AM" src="https://user-images.githubusercontent.com/43399466/215959398-344b5721-28ec-47a5-8908-b698e435608d.png">
 
-Create First Admin User or Skip the step [If you want to use this Jenkins instance for future use-cases as well, better to create admin user]
+Create First Admin User and add your email address
 
 <img width="990" alt="Screenshot 2023-02-01 at 11 02 09 AM" src="https://user-images.githubusercontent.com/43399466/215959757-403246c8-e739-4103-9265-6bdab418013e.png">
 
