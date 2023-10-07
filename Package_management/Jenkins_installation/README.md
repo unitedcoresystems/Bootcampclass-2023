@@ -52,6 +52,7 @@ curl -v localhost:8080
 ```sh
 sudo systemctl enable jenkins
 sudo systemctl start jenkins
+sudo systemctl status jenkins
 ```
 
 ### Login to Jenkins using the below URL:
