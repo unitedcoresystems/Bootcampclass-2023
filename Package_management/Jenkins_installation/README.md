@@ -23,13 +23,13 @@
 sudo hostnamectl set-hostname Jenkins
 sudo apt update
 sudo apt install openjdk-11-jre -y
-sudo  install wget vim tree unzip git-all -y
+sudo apt install wget vim tree unzip git-all -y
 ```
 ### Run the below commands to Verify Java and git is Installed
 
 ``` sh
 java -version
-git -version
+git --version
 ```
 
 ### Run this commands to Install Jenkins
@@ -47,6 +47,11 @@ sudo apt install jenkins -y
 ```sh
 # Jenkins default port is = 8080
 curl -v localhost:8080
+```
+### Start and Enable the Jenkins service to start at boot:
+```sh
+sudo systemctl enable jenkins
+sudo systemctl start jenkins
 ```
 
 ### Login to Jenkins using the below URL:
