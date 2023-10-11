@@ -13,16 +13,15 @@
 
 # Installation 
 
+#### Update server, change hostname and Install Java JDK 11+ and other pre-quisite software packages (git, vim and wget)
 ``` sh
-### Update server, change hostname and Install Java JDK 11+ and other pre-quisite software packages (git, vim and wget)
 sudo apt update
 sudo hostnamectl set-hostname Jenkins
 sudo apt-get install openjdk-11-jre -y
 sudo apt-get install wget vim git -y
 ```
-
+#### Run this commands to Install Jenkins
 ```sh
-# Run this commands to Install Jenkins
 curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee \
   /usr/share/keyrings/jenkins-keyring.asc > /dev/null
 echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
@@ -31,20 +30,19 @@ echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
 sudo apt update -y
 sudo apt install jenkins -y 
 ```
-
+#### Start and Enable the Jenkins service to start at boot:
 ```sh
-# Start and Enable the Jenkins service to start at boot:
 sudo systemctl enable jenkins
 sudo systemctl start jenkins
 sudo systemctl status jenkins
 #NB: control C to exit from systemctl 
 ``` 
+####  Ensure that Jenkins is running and accesible on the browser. Jenkins default port is 8080
 ```sh
-###  Ensure that Jenkins is running and accesible on the browser. Jenkins default port is 8080
 curl -v localhost:8080
 ```
+#### Run the command to copy the Jenkins Admin Password 
 ```sh
-# Run the command to copy the Jenkins Admin Password 
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 ```
 

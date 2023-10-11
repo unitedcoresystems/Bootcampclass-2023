@@ -29,19 +29,16 @@ sudo unzip apache-maven-3.9.4-bin.zip
 sudo rm -rf apache-maven-3.9.4-bin.zip
 sudo mv apache-maven-3.9.4/ maven
 ```
-#### 3. Set Environmental Variable  - For Specific User eg ec2-user
-
-##### Open .bash_profile file a insect the script below # .bash_profile 
+#### 3. Set environmental variable  - for specific user eg. ec2-user
 ``` sh
 vi ~/.bash_profile
 ```
-
+#### 4. Insect the script below under first line "# .bash_profile" 
 ``` sh
 export M2_HOME=/opt/maven
 export PATH=$PATH:$M2_HOME/bin
 ```
-
-#### 4. Refresh the profile file and Verify if maven is running
+#### 5. Refresh the profile file and Verify if maven is running
 ```sh
 source ~/.bash_profile
 mvn --version
@@ -51,12 +48,12 @@ mvn --version
 
 ### Nexus - Maven intergration 
 
-#### Configure nexus login credentials in settings.xml file in the conf directory in the maven server 
+#### 1. Configure nexus login credentials in settings.xml file in the conf directory in the maven server 
 ```sh 
 sudo vi /opt/maven/settings.xml          
 ```
 
-#### Edit and add credentials as shown below under commentted <server> </server> tag  
+#### 2. Edit and add credentials as shown below under commentted <server> </server> tag  
 ```sh
    <server>
       <id>nexus</id>
@@ -64,3 +61,6 @@ sudo vi /opt/maven/settings.xml
       <password>admin@123</password>
     </server>
 ```
+#### 3. Save and exit from settings.xml  
+$ esc :wq! 
+$ esc hold "Shift" +  ZZ
