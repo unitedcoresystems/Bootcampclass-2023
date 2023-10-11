@@ -54,6 +54,8 @@ sudo ln -s /opt/nexus/bin/nexus /etc/init.d/nexus
 sudo systemctl enable nexus
 sudo systemctl start nexus
 sudo systemctl status nexus
+
+#NB: 
 ```
 ```sh
 ## 8. Ensure that nexus is running on port 8081 and Access nexus on the browser with public ip address with default Username ans Password
@@ -69,3 +71,19 @@ sudo cat /opt/sonatype-work/nexus3/admin.password
 ```
 # Configuration 
 
+```sh
+# Edit this in the POM.xml file
+<distributionManagement>
+	    <repository>
+	      <id>nexus</id>
+	      <name>United Core System Releases Nexus Repository</name>
+	      <url>http://54.255.174.111:8081/repository/unitedcore/</url>
+	    </repository>
+	    
+	    <snapshotRepository>
+	      <id>nexus</id>
+	      <name>United Core System Snapshot Nexus Repository </name>
+	      <url>http://54.255.174.111:8081/repository/unitedcore/</url>
+	    </snapshotRepository>    
+</distributionManagement>
+```

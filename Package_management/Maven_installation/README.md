@@ -15,47 +15,52 @@
 # AWS EC2 Instance 
 - Luanch an [ec2 instance](../EC2_Instances/README.md)
 
-
-## 1. Install Java JDK 11+ and other prerequisite softwares (GIT, wget, tree and VIM)
-
+# Installation 
 ``` sh
-# install Java JDK 11+ as a pre-requisit for maven to run.
+## 1. Install Java JDK 11+ and other prerequisite softwares (GIT, wget, tree and VIM)
 sudo hostnamectl set-hostname maven
 sudo yum install wget vim tree unzip git-all -y
 sudo yum install java-11-openjdk-devel java-1.8.0-openjdk-devel -y
 sudo su - ec2-user
+```
 
+```sh
 # Verify git and Java JDK 11+ installation.
 java -version
 git --version
 ```
 
-## 2. Download, extract and Install Maven
 ``` sh
-# Download the Maven Software and remove zipped files
+## 2. Download, extract and Install Maven
 cd /opt
 sudo wget https://dlcdn.apache.org/maven/maven-3/3.9.4/binaries/apache-maven-3.9.4-bin.zip
 sudo unzip apache-maven-3.9.4-bin.zip
 sudo rm -rf apache-maven-3.9.4-bin.zip
 sudo mv apache-maven-3.9.4/ maven
 ```
-## 3. Set Environmental Variable  - For Specific User eg ec2-user
+
 ``` sh
+## 3. Set Environmental Variable  - For Specific User eg ec2-user
 # Open .bash_profile file a insect the script below # .bash_profile 
 vi ~/.bash_profile  
 export M2_HOME=/opt/maven
 export PATH=$PATH:$M2_HOME/bin
 ```
-## 4. Refresh the profile file and Verify if maven is running
+
 ```sh
+## 4. Refresh the profile file and Verify if maven is running
 source ~/.bash_profile
 mvn --version
 ```
-### nexus - maven intergration 
-```sh
-# Configure nexus login credentials in settings.xml file in the conf directory in the maven server  
+
+# Configuration 
+
+## 1. nexus - maven intergration 
+
+#### Configure nexus login credentials in settings.xml file in the conf directory in the maven server  
 sudo vi /opt/maven/settings.xml          
-# Edit and add credentials as shown below under server 
+
+#### Edit and add credentials as shown below under server 
    <server>
       <id>nexus</id>
       <username>admin</username>
