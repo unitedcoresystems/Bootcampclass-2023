@@ -1,0 +1,922 @@
+Jenkins: 
+====================================================
+
+DevOps is all about automation   
+7Cs:
+   CD---> Continuous Development [Git/GitHub/IDEs /GitBranch/gitTag]
+   CI --> Continuous Integration [Git/GitHub/Jenkins/maven/sonarqube/nexus] [Build and Release Engineering]
+   CD --> Continuous Delivery [build=packages/artifacts-->testing/UAT--manualApproval--- prod]
+   CD --> Continuous Deployment [build=packages/artifacts-->testing/UAT--auto--- prod]
+   CM --> Continuous Monitoring
+   CS --> Continuous security
+   CT --> Continuous Testing 
+
+What is Jenkins ? :
+Jenkins is open source automation server for continuous integration (CI) 
+and continuoues delivery (CD).It provides hundreds of plugins to support building, testing, 
+deploying and automating any project.
+  
+
+How do you use Jenkins for CI/CD automation ?
+In Unitedcore, we manage federated JAVA based web & enterprise applications (web.ear) 
+for Finacial Technology (Fintech) Clients.
+
+Note: over 90% of companies uses FinTech today.
+
+Examples of Companies:
+  Banks : Bank of America, DCU, Chase, Capital One
+  Insurance : Gico, Progressive, MetLife  
+  Payment Gateways: Zelle, paypal, visa, master, interac, pushpay, cashapp, zelle, mobileMoney  
+  E-commerce : amazon, ebay, alibaba, 
+  Telecoms  :  Verizon, T-mobile, at&t, Sprint, MTN, Vadafone, 
+  Health care : NIS, NIH, 
+  Retail : Walmart, Cotsco, BJ's 
+  Airlines : AA, UA, BA, KLM, Spirit, Delta
+  Sports : FIFA, UEFA, CAF, NBA, UFC, 
+  Governments : DOD, IRS, CRA
+  Betting : 1XBET,DraftKing, Betway, Sporty Bet
+  Oil & Gas : Shell, Exxon, Total, BP,  
+  Crypto : Coinbase, FTX
+  Taxi :  Uber, Lyft 
+  Food chain : Grubhub, Ubereats, 
+  IT Companies : AWS, AZURE, GCP  
+  Automotive : Tesla, Toyota, Mercedes, BMW, Honda, GMC, 
+
+Jenkins is also a cross platform application meaning it can be installed on Multiple Platforms like :  
+  Linux 
+  Windows 
+  macOS 
+  Solaris 
+
+IQ: Explain you EXPERIENCE in applying Jenkins? 
+
+ 1. I have installed and configure Multiple Jenkins servers 
+    
+Installation Resources:  
+==============================================================
+Jenkins installation:
+Which edition of jenkins have you used in Production??
+ Installation of Jenkins:  Community Edition (CE)
+     Jenkins CE  
+     Jenkins EE - CloudBees Jenkins  
+
+Installation of CloudBees Jenkins: ENTERPRISE ENTERPRISE -EE 
+
+How to install Jenkins:  
+https://github.com/unitedcoresystems/Bootcampclass-2023/tree/dev/Package_management/Jenkins_installation
+https://www.jenkins.io/doc/book/installing/
+www.jenkins.io
+
+Managing Jenkins : 
+Question:  Installing sonarqube and Nexus we created users to manage them, how about Jenkins did we 
+create a user ?
+ 
+Ans: No we didn't but when installing jenkins as part of security measures, Jenkins automatically creates a user called   
+Jenkins to manage it resources. Jenkins shouldn't be manage as the root-user for security reasons.
+
+Lets check 
+$ grep jenkins /etc/passwd
+$ id jenkins 
+$ tail -5 /etc/passwd
+
+Result :
+jenkins:x:987:987:Jenkins Automation Server:/var/lib/jenkins:/bin/false
+ec2-user:x:1000:1000:Cloud User:/home/ec2-user:/bin/bash
+
+Question : Can we log in as a Jenkins user ? 
+Ans : No. Because /bin/false wont allow you to login unless we change it to /bin/bash. 
+$ sudo vi /etc/passwd 
+
+
+Customize Jenkins:
+=======================================================================
+Jenkins provides hundreds of plugins to support building, testing, 
+deploying and automating any project.
+Plugins extend Jenkins with additional features to support 
+many different needs in the devops cycle . 
+
+  url = http://18.207.215.17:8080/  
+
+Jenkins Project 
+==================================================================
+Zelle Client:
+
+Java web applications    
+
+1. We have created and shared the project GitHub repo  with developers 
+
+https://github.com/unitedcoresystems/Maven-Web-Application
+Developers commit/push code to the project repo in GitHub using Git BEST branching strategy 
+
+2. Jenkins GitHub Integration:
+   - install git Plugin in Jenkins / Install git in your jenkins server    
+       sudo yum -y install git
+   - authenticate Jenkins to pull code from GitHub using credential MGT  
+       UserName / Token 
+       private repo:
+       AUTHENTICATION: 
+          username: isaac
+          password: admin123 
+          token: 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 
+  
+       Credentials: 
+
+3. Run JUnit Testing and Build with Maven  :  mvn package 
+   Jenkins maven Integration:  
+   
+  Jenkins-Dashboard--manage Jenkins ---  Global Tool configuration --maven   
+  project -- java-web-app
+  Building war: /var/lib/jenkins/workspace/webapp/target/myapps.war
+
+4. Jenkins SonarQube Integration;  mvn sonar:sonar :
+----------------------------------------------  
+NB: Your SonarQube server must be running 
+    sudo su - sonar 
+          sh /opt/sonarqube/bin/linux-x86-64/sonar.sh status
+          sh /opt/sonarqube/bin/linux-x86-64/sonar.sh start
+
+    1. Edit pom.xml with SonarQube server URL and login Credentials 
+       in the Property TAG  
+          44.211.250.87:9000
+          172.31.90.124:9000
+         username: admin 
+         password: admin 
+
+      <Property>
+    <sonar.host.url>http://172.31.90.124:9000/</sonar.host.url>
+    <sonar.login>admin</sonar.login>
+    <sonar.password>admin</sonar.password>
+      </Property>
+
+      2. Open required ports in SonarQube server to allow traffic from jenkins server
+         port 9000 should be open in the firewall/security group
+  or Install and configure JaCoCo plugin in Jenkins UI:
+
+5. Jenkins Nexus Integration;  mvn deploy:
+Upload build artifacts:
+--------------------------------------  
+1. Create repos in nexus-UI to upload artifacts
+      http://3.84.49.142:8081/repository/unitedcore-snapshots/ 
+      http://3.84.49.142:8081/repository/unitedcore-releases/    
+
+2. modify 'distributionManagement' tag with nexus repos details  in  pom.xml
+        vi pom.xml
+        distributionManagement>
+
+   <distributionManagement>
+      <repository>
+        <id>nexus</id>
+        <name>Unitedcore Releases Nexus Repository</name>
+        <url>http://3.84.49.142:8081/repository/paypal-releases/</url>
+      </repository>
+      
+      <snapshotRepository>
+        <id>nexus</id>
+        <name>Unitedcore Snapshot Nexus Repository </name>
+        <url>http://3.84.49.142:8081/repository/paypal-snapshots/</url>
+      </snapshotRepository>
+      
+  </distributionManagement>
+  
+  <build>
+    <finalName>Zelle</finalName>
+
+3. modify /maven/conf/setting.xml in maven JENKINS-server with login credentials  
+=# vi /nexus/conf/setting.xml
+sudo vi  /var/lib/jenkins/tools/hudson.tasks.Maven_MavenInstallation/maven3.8.6/conf/settings.xml
+sudo vi  tools/hudson.tasks.Maven_MavenInstallation/maven3.8.6/conf/settings.xml
+vi /var/lib/jenkins/tools/hudson.tasks.Maven_MavenInstallation/maven3.9.1/conf/settings.xml
+sudo vi /var/lib/jenkins/tools/hudson.tasks.Maven_MavenInstallation/maven3.9.1/conf/settings.xml
+
+            <server>
+                <id>nexus</id>
+                <username>admin</username>
+                <password>admin123</password>
+            </server> 
+
+status code: 401, reason phrase: Unauthorized (401) -> [Help 1]
+            
+    4. Open required ports[8081] in Nexus server to allow traffic from jenkins server
+
+JENKINS-TOMCAT INTEGRATION:
+============================= 
+1. INSTALL 'Deploy to container' Plugin on Jenkins UI
+   This plugin allows you to deploy a war to a container after a successful build. 
+
+      100.26.217.86:8080
+      172.31.50.230:8080 
+      curl 100.26.217.86:8080
+      http://100.26.217.86:8080/
+
+
+2. ADD A TOMCAT USER in /tomcat9/conf/tomcat-users.xml 
+   sudo vi /tomcat9/conf/tomcat-users.xml
+   <user username="myLandmark" password="admin123" roles="manager-gui,admin-gui,manager-script"/>
+   <user username="landmark" password="admin123" roles="manager-gui,admin-gui,manager-script"/>
+
+   Server returned HTTP response code: 403 for URL:
+
+3.  vi /opt/tomcat9/webapps/manager/META-INF/context.xml
+  
+     http://100.26.217.86:8080/paypal  
+
+<!-- <Valve className="org.apache.catalina.valves.RemoteAddrValve"
+         allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" />  -->
+
+===============================================================================
+
+
+
+==========================================================
+tesla-webapp =  
+Onboard a new project for Tesla  web-app =  
+Create a Jenkins job to test, build and deploy the application to a tomcat server
+Requirements:
+  1. Create Team in our GitHub company a/c add and and assign member's roles and tasks
+  2. Create a github repository for the  project  
+  3. share the repository details for Team members and developers  
+  4. Install and configure:
+      jenkins and setup for ci/cd
+      setup jenkins-maven integration for builds   
+      jenkins-SonarQube integration for CodeQualityAnalysis  
+      jenkins-nexus integration for artifactory   
+      jenkins-tomcat integration as appSever Deployment
+      nginx as web server
+  6. Create a Jenkins job for the project  
+  7. configure Jenkins:
+        maven Integration  
+        SonarQube Integration  
+        nexus integration  
+        tomcat integration  
+        git Integration
+        GitHub  Integration
+        notification [slack, email]
+
+  git clone https://github.com/LandmakTechnology/maven-web-app   = privateRepo 
+     ctrl + c 
+   
+  git clone https://github.com/LandmakTechnology/maven-web-application  = publicRepo
+
+1. Clone, Import or fork the project repo:  
+    https://github.com/LandmakTechnology/maven-web-application
+
+   9787d8595c5872771f9dc47058b5a384540a27f0
+
+   [ERROR] Failed to execute goal org.sonarsource.scanner.maven:sonar-
+   maven-plugin:3.9.1.2184:sonar (default-cli) on project maven-web-application: 
+    Not authorized. Please check the properties sonar.login and sonar.password. -> [Help 1]
+[ERROR] 
+
+
+    http://172.31.4.141:8181/mylandmarktech/repository/tesla-web-releases/
+    http://172.31.4.141:8181/mylandmarktech/repository/tesla-webapp-snapshots/
+
+
+    http://44.204.71.5:8177/tesla  
+
+https://github.com/LandmakTechnology/maven-web-application
+
+========================
+How do you automate builds in Jenkins?   
+======================================
+Build Now:  is a limited measure of automation  
+
+Automate builds using build triggers.
+===================================== 
+1. build periodically = Timer [cronjob ] =   :
+     run this job every mid night [database backup]  
+     run this job every 2am       [database backup] 
+     run this job every minute * * * * *
+     run this job every HOUR H * * * * 
+   Started by timer:
+     database backup
+     system Monitoring   
+     system update   
+     application performance Monitoring
+        minutes =    1  2  3      ... 100
+        jobs    =    j1 j2 j3         j100 
+
+2. poll SCM - Timer + Changes in SCM via   :
+     * * * * * Every minute Jenkins will check for changes in the src to trigger a build  
+     H * * * * Every hour Jenkins will check for changes in the src to trigger a build
+     Software builds 
+     application build and Deployment
+     Started by an SCM change
+
+Started by user: LandmarkTechnologies
+Started by timer: 
+
+3. GitHub-webhook :
+    GitHub will notify Jenkins to trigger a build once there is a change in the scm [src]  
+     
+    Jenkins Server url =  http://3.235.166.127:8080/
+    GitHub-webhook     =  http://3.235.166.127:8080/github-webhook/   
+
+     Software builds 
+     application build and Deployment
+     Started by GitHub push by legah2045 
+
+    Started by GitHub push by legah2045
+
+  API-CALLS  
+
+1:00PM ----   
+1:05PM ---- 
+2:00PM ----  
+
+4. Build other projects:  
+5. Build after other projects:  
+     Upstrean project  
+       1. app-Test   
+       2. app-Build+Release
+       3. app-deployment-UAT/QA  
+       4. app_deployment-Production   
+       5. app_apm
+       6. app-logMGT  
+       7. app-discovery[webSevers/Services]       
+
+
+Started by upstream project "tesla-dev" build number 12
+originally caused by:
+ Started by user Unitedcore
+
+       Downstream project 
+             deploy2Tomcat
+
+Started by user Unitedcore
+  Project tesla-uat
+  Upstream Projects
+    tesla-dev
+Downstream Projects
+    tesla-prod
+
+  tesla-dev---->tesla-uat---->tesla-prod  
+=====================================
+Types of Jenkins jobs:
+======================
+- Freestyle  project  ===   :
+     Software build
+     application deployment     
+     server Monitoring / apm    
+ clone--mvn package sonar:sonar deploy  40mins
+
+- Maven project  :
+    - reduces the configurations to build with Maven    
+          mvn package  [ pom.xml, src]   
+          apple [ apple.xml, src]      
+    - clean package 
+   clone--mvn package sonar:sonar deploy  25mins
+  install Maven integration plugin to run jobs using maven project: 
+  
+
+- Pipeline projects  :
+
+- Mulit-Branch Pipeline projects  :
+
+Jenkins options:
+  1. Discard Old Build
+     Building in workspace /var/lib/jenkins/workspace/tesla-app
+
+  2. Disable this project = tesla-app: maven / sonarqube / nexus / tomcat  
+          This project is currently disabled 
+      schedule Maintainance of servers 
+         Jenkins--Git/GitHub--Maven--sonarqube--nexus---tomcat 
+            H * * * * 
+      database backup 
+
+  3. Delete workspace before build starts 
+
+  4. Add timestamps to the Console Output 
+      sudo timedatectl set-timezone America/New_York
+
+  5. build with parameters  :
+
+Building in workspace /var/lib/jenkins/workspace/tesla-app
+
+Jenkins Home Directory = /var/lib/jenkins/
+Jenkins User = jenkins  
+su - jenkins  = run as a normal user  
+sudo su - jenkins  = run as the root user      
+
+mavenHomeDir = /opt/maven   
+JHD = /var/lib/jenkins/:
+   workspace/tesla-app/src pom.xml    
+   jobs/tesla-app/1 2 3 4 5 6 7 8 
+   users/users.xml     
+   plugins/deploy.jpi 
+   credentials.xml
+   config.xml 
+      <useSecurity>true</useSecurity>        
+
+plugins
+
+
+
+
+PROJECTS: 
+  In LandmakTechnology I work in a Team where we:
+1. Develop, test, build, secure, deploy, manage & monitor web and 
+   enterprise applications for FinTech clients like;
+      Banks  [ boa, wf, barclays, rbc, td, bicec, uba, ecobank ] 
+      Insurance [BLI, WFG, TD, Sunlife, AIG  ] 
+      Money Transfer [zelle, cashApp, interact, MTN-MOMO,
+      payment gateways = VISA, MASTERCard, Paypal 
+
+
+2. We automate the entire process stated above:
+   PROJECTS Requirements:
+    Git [git-bash]:
+        IDEs = Integrated Development Environments
+               simplifies the deployment process  
+        vscode, pycharm, eclipes, atom 
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp
+  labels:
+    name: myapp
+spec:
+  containers:
+  - name: myapp
+    image: hello
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 80
+
+=========================================
+===========================================
+Plugins Mgt in Jenkins 
+==========================
+ ---Plugins extends the functionality of jenkins, maven, etc.   
+
+   mvn validate/
+       compile/
+       test/
+       package/
+       install/
+       deploy/
+       clean/
+       sonar[plugin]:sonar[goal] 
+
+Plugin Management
+  --> manageJenkins -- 
+  • Deploy to container
+  • Deploy WebLogic
+  • Maven Integration 
+  • Safe Restart
+       This plugin allows you to restart Jenkins safely.
+  • Next Build Number
+
+  • JACOCO
+
+  • SSH Agent
+
+  • Email Extension
+
+  • SonarQube Scanner
+
+  • Audit Trail Plugin
+        = 10 team members 
+        username=simon      | pwd=admin123
+        username=percy      | pwd=admin123
+        username=mercy      | pwd=admin123
+        username=florence   
+        username=olu  
+
+  • Schedule Build
+  • Artifactory Plugin
+  • Cloud Foundry
+
+• Next Build Number
+     1, 2, 3, 4 
+     dev1, dev2, dev3 
+     uat1, uat2, uat3 
+     prod1, prod2, prod3
+
+• Build Name Setter
+
+• Cloud Foundry
+
+• Blue Ocean 
+
+• Publish Over SSH
+     jenkins --> ansible --deployment
+     JENKINS-server    ------ appServer   
+• ThinBackup
+
+• Convert To Pipeline
+
+• Job import plugin 
+  jenkins job migration 
+    Jenkins server1 redhat6 
+    Jenkins server2 redhat8  
+    Jenkins server3 docker-container
+    decommissioning Jenkins Server
+
+=========================
+Technology stack:
+  Linux Servers/OS 
+  Windows 
+  maven 
+  Nexus  
+  SonarQube   
+  Bash shell scripting    
+  Git  
+  GitHub  
+  SonacLoud  
+  AWS cloud     
+  NGINX 
+  java  
+  Tomcat 
+  Jenkins   
+--------------------------------
+IQ: Explain your experience using Jenkins in your Environment??? 
+IQ: What problems have you faced using/applying Jenkins in your Environment??
+
+FAIL BUILDS 
+
+
+We use Jenkins to automate tasks and run jobs/workloads:
+   ---  freestyle projects --- 5mins
+   ---- maven projects     --- 2mins  
+   ---- Pipeline projects  
+   ---- multi-branch pipeline   
+With Jenkins i have managed projects such as:
+    --- software/application [builds and testing and deployment ]  
+    --- systems/application monitoring  
+    --- database backup
+    --- Infrastructure creation / provisioning
+    --- Infrastructure Configuration mgt 
+I have installed, removed and updated plugins that extend Jenkins functionality:
+   installed deploy to container
+   update deploy to container 
+   remove deploy to container
+   Read The Release Notes [Documentation] for the Plugins 
+   most Jenkins Plugins are developed by the Community  
+
+Using Jenkins Plugins to achieve automation:
+  ssh, sshAgent, Publish-over-SSH, deploy to container, Slack notification,   
+  job import, jacoco,
+
+Configuring Build triggers [pollSCM, webhooks] for automation:
+Configuring credentials for authentications:
+   GitHub credentials 
+   Tomcat-user 
+   Docker-hub/Nexus/SonarQube/SONARCLOUD 
+   username/temporal access /  
+Configuring Jenkins slave agents  using ssh plugins:
+
+Troubleshooting jenkins build related problems:
+  -- permissions, Unauthorized [4** error codes]  
+  -- Jenkins [GitHub/sonarqube/nexus/tomcat] 
+  -- Jenkins agent/slave failing to connect to the master
+        [java not install], wrong java version, AUTHENTICATION
+
+
+Installation and configuration of the Jenkins server in Linux/Windows:     
+
+Securing the Jenkins server  :
+
+Jenkins Pipeline projects :
+
+JENKINS MASTER -SLAVE ARCHITECTURE:
+====================================
+
+  54.204.78.6
+  172.31.85.142  
+
+  bash: line 1: /home/ec2-user/app31/: No such file or directory
+agent:
+  publicIP = 3.85.175.10   [DYNAMICIP]
+  privaetIP= 172.31.56.219 [staticIP]
+
+ssh -i class31key.pem ec2-user@3.85.175.10 
+ssh -i class31key.pem ec2-user@172.31.56.219
+ssh -i "class31key.pem" ec2-user@ec2-3-85-175-10.compute-1.amazonaws.com
+
+Ticket0045:
+Create a jenkins job to run on agent02 slave  
+     https://github.com/LandmakTechnology/maven-web-app
+
+Building remotely on agent02 (terraformNode)
+   in workspace /home/ec2-user/workspace/paypal-wepapp
+
+Jenkins Pipeline projects :
+  Jenkins Pipeline scripts are generally written in groovy 
+  Jenkins Pipelines scripts are called Jenkinsfile 
+ 
+  we have scripted and 
+  declarative Pipeline scripts
+Jenkinsfile = scripted:
+
+Jenkinsfile is a file generally written in the groovy language:
+Jenkinsfile helps to better manage and automate jenkins jobs/tasks  
+Jenkinsfile introduces infrastructure as a code concept with all its 
+benefits 
+what is a groovy language please? 
+
+Ticket0055:
+  Create a tesla-wepapp Jenkins scripted pipeline job:
+
+node{
+  stage('1.CodeClone'){}
+  stage('2MavenBuild'){}
+  stage('3CodeQualityAnalysis'){}
+  stage('4Upload2Nexus'){}
+  stage('5Deploy2UAT'){}
+  stage('6ManualApproval'){}
+  stage('7Deploy2Prod'){}
+  stage('8Notification'){}
+}
+==============================================
+https://github.com/LandmakTechnology/maven-web-application
+https://github.com/LandmakTechnology/maven-web-app = private  Repo
+single line comment in groovy  = //  
+multi-line comment in groovy  =  /*  */
+
+node{
+ stage('1.CodeClone'){
+    sh  "git clone https://github.com/LandmakTechnology/maven-web-application"
+    //bat "git clone https://github.com/LandmakTechnology/maven-web-application"
+  }
+
+}
+----------------
+node{
+ stage('1.CodeClone'){
+git credentialsId: 'gitHubCredentials', url: 'https://github.com/LandmakTechnology/maven-web-app'
+   }
+ stage('2MavenBuild'){
+
+ }
+}
+
+Jenkinsfile-March2023
+=======================
+node{
+  def mavenHome = tool name: 'maven3.9.1'
+ stage('1.CodeClone'){
+    git credentialsId: 'gitHubCredentials', url: 'https://github.com/LandmakTechnology/maven-web-application'
+   }
+ stage('2MavenBuild'){
+   sh "${mavenHome}/bin/mvn package"
+ }
+ stage('3codeQuality'){
+   sh "${mavenHome}/bin/mvn sonar:sonar"
+ }
+  stage('4UploadArtifacts'){
+   sh "${mavenHome}/bin/mvn deploy"
+ }
+   stage('5deploy2UAT'){
+   deploy adapters: [tomcat9(credentialsId: 'tomcat-credentials', path: '', url: 'http://100.26.217.86:8080/')], contextPath: null, war: 'target/*war'
+ }
+ stage('6Manualapproval'){
+    sh "echo 'ready for review' "
+    timeout(time:5, unit:'HOURS') {
+    input message: 'Application ready for deployment, Please review and approve'
+      }
+  }
+    stage('7deploy2Prod'){
+   deploy adapters: [tomcat9(credentialsId: 'tomcat-credentials', path: '', url: 'http://100.26.217.86:8080/')], contextPath: null, war: 'target/*war'
+ }
+  stage('8emailNotify'){
+    emailext body: '''Hello Team,
+
+Build is done.
+
+LANDMARKTECH''', recipientProviders: [developers(), contributor(), upstreamDevelopers()], subject: 'Build Status', to: 'mylandmarktech@gmail.com'
+  }
+
+}
+
+scripted pipeline job using Jenkins:
+==================================
+
+
+http://100.26.217.86:8080/paypal
+
+Discard old builds  
+  Keep 2 builds doe a maximum of 5days  
+
+
+myViews: Filter/classify for projects 
+disable project:
+  Projects are disabled during server maintenance 
+
+his project is currently disabled
+
+
+Continuous Development ---> 
+when developers commit to the master branch.
+   Jenkins triggers a continuous integration job :
+   If the CI job succeeds Jenkins will trigger the continuous Delivery  JOB   
+
+scripted Jenkinsfile:
+node{
+
+}
+
+
+Declarative Jenkinsfile:
+=========================
+pipeline{
+  agent any 
+  tools {}
+  options{}
+  triggers{}
+  stages {}
+  post{}
+}
+Declarative Jenkinsfile:
+=========================
+pipeline{
+  agent {
+    label 'master'
+  } 
+  tools {
+    maven 'maven3.9.1'
+  }
+  //options{}
+  //triggers{}
+  stages {
+    stage('1Clone'){
+      steps{
+        sh "echo 'cloning the latest application version' "
+        git "https://github.com/LandmakTechnology/maven-web-application"
+        sh "echo 'latest application version available for testing and build' "
+      }
+    }
+    stage('2TestBuild'){
+      steps{
+        sh "echo 'running JUnit-test-cases' "
+        sh "echo 'testing must passed to create artifacts ' "
+        sh "mvn clean package" 
+      }
+    }
+   stage('3CodeQualityAnalysis') {
+    steps{
+        sh "echo setup sonarQube authentication"
+        sh "echo 'Perfoming CodeQualityAnalysis' "
+        sh "mvn sonar:sonar"      
+    }
+   }
+   stage('4UploadArtifacts') {
+    steps{
+      sh "echo configure nexus authentication"
+      //sh "mvn deploy"
+      sh "echo artifacts uploaded"
+    }
+   }
+  stage('5deploy') {
+    steps{
+      deploy adapters: [tomcat9(credentialsId: 'tomcat-credentials', path: '', url: 'http://100.26.217.86:8080/')], contextPath: null, war: 'target/*war'
+        }
+   }
+
+  }
+  post{ 
+    always{
+emailext body: '''Great job team.
+
+LandmarkTech ''', recipientProviders: [buildUser(), developers()], subject: 'Build Success', to: 'mylandmarktech@gmail.com'
+
+    }
+    success{
+emailext body: '''Great job team.
+
+LandmarkTech ''', recipientProviders: [buildUser(), developers()], subject: 'Build Success', to: 'mylandmarktech@gmail.com'
+
+    }
+    failure{
+emailext body: '''Please review this job.
+
+LandmarkTech ''', recipientProviders: [buildUser(), developers()], subject: 'Build failed', to: 'mylandmarktech@gmail.com'
+
+    }
+
+}
+
+SMTP:
+
+
+http://100.26.217.86:8080/tesla  
+
+
+http://18.207.215.17:8080/github-webhook/
+http://3.235.166.127:8080/github-webhook/
+
+
+Explain how you have applied Jenkins and resolve byuild failures?? 
+
+In my Environment We use Jenkins to automate tasks and run jobs/workloads:
+   ---  freestyle projects
+   ---- maven projects  
+   ---- Pipeline projects 
+          scripted and  
+          declarative pipeline projects  
+   ---- multi-branch pipeline projects     
+Category of projects managed using Jenkins:
+    --- software/applications [builds and testing and deployment ]  
+    --- systems monitorings  
+    --- database backup
+    --- Infrastructure creation / provisioning
+    --- Infrastructure Configuration mgt
+
+------
+Freestyle projects  vs Pipeline projects
+==================     ==================
+Lacks IaC               introduces IaC (scripts) [Jenkinsfile] 
+has Ltd re-usability    extensive re-usable  
+
+Jenkinsfile = paypal-dev  
+Jenkinsfile = paypal-UAT  
+
+I manage 3 branches in my Environment:
+  commit/push:
+    development        ----> dev Environment
+    stage              ---> UAT/Testing Environment
+    master/MAIN/release --> Production Environment  
+
+https://github.com/LandmakTechnology/maven-web-application/blob/master/Jenkinsfile_March2023
+
+Jenkinsfile_March2023
+
+Jenkins security  
+================
+What is the size of your team??
+  JHD = Jenkins Home Directory  :
+     /var/lib/jenkins
+  Changing Jenkins default settings [ports]:
+    port = 8080  
+         java -jar jenkins.war --httpPort=8081
+         sudo vi /etc/default/jenkins    [ubuntu]
+         sudo vi /etc/sysconfig/jenkins  [redhat]
+         sudo systemctl restart jenkins
+    JHD  = /var/lib/jenkins
+       JENKINS_HOME="/var/lib/jenkins"
+       jobs
+       logs
+       nodes
+       plugins
+          javadoc.jpi
+      secrets
+      tools
+      updates
+     userContent
+     users
+     workspace
+       config.xml
+       credentials.xml
+
+
+    USER = jenkins 
+
+
+  Jenkins user = jenkins   
+
+Jenkins security=
+================
+1. userMgt
+     authentication [username/password]  
+     authorization  [rbac] 
+
+2. 
+
+
+=======================
+SHARED LIBRARIES 
+==========================
+pipeline projects:
+Paypal  
+  dev = Jenkinsfile 
+  uat/testing/staging/ = Jenkinsfile
+  Production = = Jenkinsfile
+TESLA  
+  dev = Jenkinsfile 
+  uat/testing/staging/ = = Jenkinsfile
+  Production = = Jenkinsfile
+BOA  
+  dev = Jenkinsfile 
+  uat/testing/staging/ = = Jenkinsfile
+  Production = = Jenkinsfile
+node{
+  stage('1Clone'){}
+  stage('2Test+build'){}
+  stage('3CodeQualityAnalysis'){}
+  stage('4UploadArtifacts'){}
+  stage('5Deploy2UAT'){}
+}
+
+AWS: 
+
+1 hour video = APM with NewRelic 
+1. Resume Preparation 
+     Build AND Release Engineer   
+     
+  http://100.26.217.86:8080/tesla/  
+http://18.207.215.17:8080/tesla  
+  Monday = 

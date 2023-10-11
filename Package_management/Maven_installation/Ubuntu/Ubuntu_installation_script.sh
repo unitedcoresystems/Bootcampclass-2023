@@ -5,12 +5,13 @@
 ### Authors : Emmanuel Mortoo, Ben Otoo Isaac Ntim and Theophilus Akonnor 
 
 # install Java JDK 11+ as a prerequisit for maven to run.
-sudo hostnamectl set-hostname maven
-cd /opt
+sudo apt update
+sudo hostnamectl set-hostname Maven
 sudo apt install wget vim tree unzip git-all -y
 sudo apt install java-11-openjdk-devel java-1.8.0-openjdk-devel -y
 
 # Download, extract and Install Maven
+cd /opt
 sudo wget https://dlcdn.apache.org/maven/maven-3/3.9.4/binaries/apache-maven-3.9.4-bin.zip
 sudo unzip apache-maven-3.9.4-bin.zip
 sudo rm -rf apache-maven-3.9.4-bin.zip
@@ -28,10 +29,5 @@ echo "# User specific environment and startup programs" >> /home/ec2-user/.bash_
 source ~/.bash_profile
 
 # Verify prerequisit installation and confirm if maven is running
-
-vim --version 
-tree --version
-git --version
-java --version
 mvn --version
 

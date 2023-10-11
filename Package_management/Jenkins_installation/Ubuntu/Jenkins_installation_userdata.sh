@@ -1,4 +1,4 @@
-#update the server and change timezone and hostname 
+#!/bin/bash
 sudo apt update -y
 sudo hostnamectl set-hostname jenkins-server
 sudo timedatectl set-timezone America/New_York

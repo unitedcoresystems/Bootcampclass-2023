@@ -32,10 +32,7 @@ echo  'run_as_user="nexus" ' > /opt/nexus/bin/nexus.rc
 # Create a softlink for nexus 
 sudo ln -s /opt/nexus/bin/nexus /etc/init.d/nexus
 
-
 # Enable and start the nexus services
 sudo systemctl enable nexus
 sudo systemctl start nexus
 sudo systemctl status nexus
-
-echo "end of nexus installation"
