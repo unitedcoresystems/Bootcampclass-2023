@@ -1,5 +1,4 @@
 #!/bin/bash
-sudo yum update -y
 sudo hostnamectl set-hostname jenkins-server
 sudo timedatectl set-timezone America/New_York
 sudo yum install wget git unzip tar -y

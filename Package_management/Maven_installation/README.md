@@ -1,10 +1,9 @@
-#  **<span style="color:blue">United Core Systems, Worcester, Massachusetts.</span>**
-### **<span style="color:blue">Contacts: 774-515-0044, 617-955-5115<br> WebSite : <http://unitedcoresystem.com/></span>**
-### **Email: info@unicoresystem.com**
+# United Core Systems
 
+### Contacts: 774-515-0044, 617-955-5115<br> WebSite : <http://unitedcoresystem.com/><br>Email: info@unicoresystem.com <br>Address: Worcester, (MA)
 
 ## Apache Maven Installation And Setup In AWS EC2 Instance.
-##### Prerequisite
+#### Prerequisite
 + AWS Acccount.
 + Create Security Group and open Required ports.
    + 22 ..etc
@@ -13,8 +12,8 @@
 + Install java openJDK 1.8+
 
 
-## AWS EC2 Instance
-- Luanch an T2.micro server on you AWS console 
+# AWS EC2 Instance 
+- Luanch an [ec2 instance](../EC2_Instances/README.md)
 
 
 ## 1. Install Java JDK 11+ and other prerequisite softwares (GIT, wget, tree and VIM)
@@ -51,4 +50,15 @@ export PATH=$PATH:$M2_HOME/bin
 ```sh
 source ~/.bash_profile
 mvn --version
+```
+### nexus - maven intergration 
+```sh
+# Configure nexus login credentials in settings.xml file in the conf directory in the maven server  
+sudo vi /opt/maven/settings.xml          
+# Edit and add credentials as shown below under server 
+   <server>
+      <id>nexus</id>
+      <username>admin</username>
+      <password>admin@123</password>
+    </server>
 ```

@@ -8,6 +8,9 @@
 + Install java openJDK 1.8+ for SonarQube version 7.8
 +  As a good security practice, SonarQuber Server is not advised to run sonar service as a root user
 
+# AWS EC2 Instance 
+- Luanch an [ec2 instance](../EC2_Instances/README.md)
+
 # Installation 
 
 ## 1. Create sonar user to manage the SonarQube server

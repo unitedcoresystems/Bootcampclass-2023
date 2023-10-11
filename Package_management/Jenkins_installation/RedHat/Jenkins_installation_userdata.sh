@@ -5,7 +5,6 @@
 # Your server must have at least 4GB of RAM
 
 #update the server and change timezone and hostname 
-sudo yum update -y
 sudo hostnamectl set-hostname jenkins-server
 sudo timedatectl set-timezone America/New_York
 
