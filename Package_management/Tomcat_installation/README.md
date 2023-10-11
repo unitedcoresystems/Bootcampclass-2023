@@ -1,15 +1,15 @@
-#  **<span style="color:blue">United Core Systems, Worcester, Massachusetts.</span>**
-### **<span style="color:blue">Contacts: 774-515-0044, 617-955-5115<br> WebSite : <http://unitedcoresystem.com/></span>**
-### **Email: info@unicoresystem.com**
+# United Core Systems
+
+### Contacts: 774-515-0044, 617-955-5115<br> WebSite : <http://unitedcoresystem.com/><br>Email: info@unicoresystem.com <br>Address: Worcester, (MA)
 
 # Apache Tomcat Installation And Setup In AWS EC2 Redhat Instance.
-##### Prerequisite
+#### Prerequisite
 + AWS Acccount.
-+ Create Redhat EC2 T2.micro Instance.
++ Create Redhat EC2 with a minimum T2.micro Instance.
 + Create Security Group and open Tomcat ports or Required ports.
-   + 8080 ..etc
+   + 22, 80, 443, 8080 ..etc
 + Attach Security Group to EC2 Instance.
-+ Install java openJDK 1.8+
++ Install pre-requisit java openJDK 1.8+, wget, unzip and git
 
 # AWS EC2 Instance
 
