@@ -4,15 +4,12 @@
 
 # Apache Tomcat Installation And Setup In AWS EC2 Redhat Instance.
 #### Prerequisite
-+ AWS Acccount.
++ AWS Acccount - Luanch an [ec2 instance](../EC2_Instances/README.md)
 + Create Redhat EC2 with a minimum T2.micro Instance.
 + Create Security Group and open Tomcat ports or Required ports.
-   + 22, 80, 443, 8080 ..etc
+   + 8080 ..etc
 + Attach Security Group to EC2 Instance.
 + Install pre-requisit java openJDK 1.8+, wget, unzip and git
-
-# AWS EC2 Instance 
-- Luanch an [ec2 instance](../EC2_Instances/README.md)
 
 # Installation 
 ```sh

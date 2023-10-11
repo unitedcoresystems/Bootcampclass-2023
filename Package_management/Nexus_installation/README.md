@@ -1,18 +1,14 @@
-#  **<span style="color:blue">United Core Systems, Worcester, Massachusetts.</span>**
-### **<span style="color:blue">Contacts: 774-515-0044, 617-955-5115<br> WebSite : <http://unitedcoresystem.com/></span>**
-### **Email: info@unicoresystem.com**
+# United Core Systems
+### Contacts: 774-515-0044, 617-955-5115<br> WebSite : <http://unitedcoresystem.com/><br>Email: info@unicoresystem.com <br>Address: Worcester, (MA)
 
-## Nexus Installation And Setup In AWS EC2 Redhat Instance.
-#### Pre-requisite
-+ AWS Acccount.
+# Nexus Installation And Setup In AWS EC2 Redhat Instance.
+### Pre-requisite
++ AWS Acccount - Luanch an [ec2 instance](../EC2_Instances/README.md)
 + Create Redhat EC2 t2.medium Instance with 4GB RAM.
 + Create Security Group and open Required ports.
    + 8081 ..etc
 + Attach Security Group to EC2 Instance.
 + Install java openJDK 1.8+ for Nexus version 3.61.0-02
-
-# AWS EC2 Instance 
-- Luanch an [ec2 instance](../EC2_Instances/README.md)
 
 # Installation 
 ```sh
@@ -54,8 +50,7 @@ sudo ln -s /opt/nexus/bin/nexus /etc/init.d/nexus
 sudo systemctl enable nexus
 sudo systemctl start nexus
 sudo systemctl status nexus
-
-#NB: 
+#NB: control C to exit from systemctl 
 ```
 ```sh
 ## 8. Ensure that nexus is running on port 8081 and Access nexus on the browser with public ip address with default Username ans Password
@@ -71,6 +66,7 @@ sudo cat /opt/sonatype-work/nexus3/admin.password
 ```
 # Configuration 
 
+### Nexus - Maven Integration 
 ```sh
 # Edit this in the POM.xml file
 <distributionManagement>
