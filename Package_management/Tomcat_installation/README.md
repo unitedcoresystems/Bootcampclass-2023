@@ -11,6 +11,9 @@
 + Attach Security Group to EC2 Instance.
 + Install pre-requisit java openJDK 1.8+, wget, unzip and git
 
+# AWS EC2 Instance 
+- Luanch an [ec2 instance](EC2/README.md)
+
 # Installation 
 ```sh
 # Update Server and set timezone and hostname
