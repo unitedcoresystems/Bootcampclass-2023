@@ -12,7 +12,7 @@
 + Install pre-requisit java openJDK 1.8+, wget, unzip and git
 
 # AWS EC2 Instance 
-- Luanch an [ec2 instance](Bootcampclass-2023/Package_management/EC2_Instances/README.md)
+- Luanch an [ec2 instance](../EC2_Instances/README.md)
 
 # Installation 
 ```sh
