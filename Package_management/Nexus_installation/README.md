@@ -64,11 +64,11 @@ curl -v localhost:8081
 # nexus password 
 sudo cat /opt/sonatype-work/nexus3/admin.password   
 ```
-# POM.XML Configuration
+# Configuration
 
-### Nexus - Maven Integration 
+## POM.XML 
 
-#### 1. Edit URL in POM.xml file
+#### Edit URL in POM.xml file
 ```sh
 <distributionManagement>
 	    <repository>
@@ -85,7 +85,7 @@ sudo cat /opt/sonatype-work/nexus3/admin.password
 </distributionManagement>
 ```
 
-# Creating repositories
+## Creating repositories
 
 ### Login to Nexus using you public ip of your server as shown below into URL of a web browers:
 http://public-ip-address:8081    
