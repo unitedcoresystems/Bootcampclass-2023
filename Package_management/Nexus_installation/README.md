@@ -59,7 +59,7 @@ curl -v localhost:8081
 ```
 ```sh
 ## 9. Access nexus by entering server ip address with port number and default credentials
-### publicIP:9000
+### publicIP:8081
 ### default USERNAME: admin
 ### nexus password 
 sudo cat /opt/sonatype-work/nexus3/admin.password   

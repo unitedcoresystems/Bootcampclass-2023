@@ -46,7 +46,7 @@ curl -v localhost:8080
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 ```
 
-# Configration 
+# Configuration 
 
 ### Login to Jenkins using you public ip of your server as shown below into URL of a web browers:
 http://public-ip-address:8080    

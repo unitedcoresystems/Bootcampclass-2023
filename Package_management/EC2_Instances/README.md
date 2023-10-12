@@ -2,7 +2,7 @@
 
 ### Contacts: 774-515-0044, 617-955-5115<br> WebSite : <http://unitedcoresystem.com/><br>Email: info@unicoresystem.com <br>Address: Worcester, (MA)
 
-#  How to create a Red Hat EC2 instance on AWS, follow the steps below:
+#  How to create a Red Hat EC2 instance on AWS
 
 ## **Sign in to the AWS Management Console**: 
    #### Navigate to the EC2 dashboard.

@@ -12,68 +12,67 @@
 +  As a good security practice, SonarQuber Server is not advised to run sonar service as a root user
 
 
-# Installation 
+# Installation
 
+#### 1. Create sonar user to manage the SonarQube server, Grand sudo access and set hostname for the sonarqube server
 ```sh
-##  Create sonar user to manage the SonarQube server, Grand sudo access and set hostname for the sonarqube server
 sudo useradd Sonar
-sudo echo "sonar ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/sonar
+sudo sudo echo "sonar ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/sonar
 sudo hostnamectl set-hostname SonarQube-Server 
 sudo su - Sonar
 ```
+#### 2. Enable PasswordAuthentication in the server and install Java JDK 1.8+ required for sonarqube to start
 ```sh
-##  Enable PasswordAuthentication in the server and install Java JDK 1.8+ required for sonarqube to start
 sudo sed -i "/^[^#]*PasswordAuthentication[[:space:]]no/c\PasswordAuthentication yes" /etc/ssh/sshd_config
 sudo service sshd restart
 sudo yum install unzip wget git -y
 sudo yum install  java-11-openjdk-devel -y
 ```
+#### 3. Download and extract the SonarqQube Server software.
 ```sh
-## Download and extract the SonarqQube Server software.
 cd /opt
 sudo wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-7.8.zip
 sudo unzip sonarqube-7.8.zip
 sudo rm -rf sonarqube-7.8.zip
 sudo mv sonarqube-7.8 sonarqube
 ```
+#### 4. Grant file permissions for sonar user to start and manage sonarQube
 ```sh
-## Grant file permissions for sonar user to start and manage sonarQube
 sudo chown -R sonar:sonar /opt/sonarqube/
 sudo chmod -R 775 /opt/sonarqube/
 sh /opt/sonarqube/bin/linux-x86-64/sonar.sh start 
 sh /opt/sonarqube/bin/linux-x86-64/sonar.sh status
 sudo ln /opt/sonarqube/bin/linux-x86-64/sonar.sh /etc/init.d/sonar
 ```
-
+#### 5. Run sonarqube as a service by running theses commands
 ```sh
-## Run sonarqube as a service by running theses commands
-echo "[Unit]" > /etc/systemd/system/sonar.service
-echo "Description=SonarQube service" >> /etc/systemd/system/sonar.service
-echo "After=syslog.target network.target" >> /etc/systemd/system/sonar.service
-echo "[Service]" >> /etc/systemd/system/sonar.service
-echo "Type=forking" >> /etc/systemd/system/sonar.service
-echo "ExecStart=/opt/sonarqube/bin/linux-x86-64/sonar.sh start" >> /etc/systemd/system/sonar.service 
-echo "ExecStop=/opt/sonarqube/bin/linux-x86-64/sonar.sh stop" >> /etc/systemd/system/sonar.service
-echo "User=sonar" >> /etc/systemd/system/sonar.service
-echo "Group=sonar" >> /etc/systemd/system/sonar.service
-echo "Restart=always" >> /etc/systemd/system/sonar.service
-echo "[Install]" >> /etc/systemd/system/sonar.service
-echo "WantedBy=multi-user.target" >> /etc/systemd/system/sonar.service
+sudo echo "[Unit]" > /etc/systemd/system/sonar.service
+sudo echo "Description=SonarQube service" >> /etc/systemd/system/sonar.service
+sudo echo "After=syslog.target network.target" >> /etc/systemd/system/sonar.service
+sudo echo "[Service]" >> /etc/systemd/system/sonar.service
+sudo echo "Type=forking" >> /etc/systemd/system/sonar.service
+sudo echo "ExecStart=/opt/sonarqube/bin/linux-x86-64/sonar.sh start" >> /etc/systemd/system/sonar.service 
+sudo echo "ExecStop=/opt/sonarqube/bin/linux-x86-64/sonar.sh stop" >> /etc/systemd/system/sonar.service
+sudo echo "User=sonar" >> /etc/systemd/system/sonar.service
+sudo echo "Group=sonar" >> /etc/systemd/system/sonar.service
+sudo echo "Restart=always" >> /etc/systemd/system/sonar.service
+sudo echo "[Install]" >> /etc/systemd/system/sonar.service
+sudo echo "WantedBy=multi-user.target" >> /etc/systemd/system/sonar.service
 ```
-
+#### 6. Reload, enable and check sonar service 
 ```sh
-## 9. Reload, enable and check sonar service 
 sudo systemctl daemon-reload
 sudo systemctl enable --now sonar
 sudo systemctl status sonar
-#NB: control C to exit from systemctl 
+# NB: control C to exit from systemctl 
 ```
 
 # Configuration
 
 ### Sonaqube - Maven intergration  
+
+#### Edit properties tag with server PublicIP Username password/token to enable connection in POM.XML file
 ```sh
-# Edit properties tag with server PublicIP Username password/token to enable connection in POM.XML file
 <properties>
 		<jdk.version>1.8</jdk.version>
 		<spring.version>5.1.2.RELEASE</spring.version>
