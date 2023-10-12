@@ -12,32 +12,33 @@
 + Install pre-requisit java openJDK 1.8+, wget, unzip and git
 
 # Installation 
+
+#### Update Server and set timezone and hostname
 ```sh
-# Update Server and set timezone and hostname
 sudo yum update
 sudo hostnamectl set-hostname Maven
 sudo timedatectl set-timezone America/New_York
 ``` 
+#### install Java JDK 11+ as a pre-requisit for maven to run.
 ```sh
-# install Java JDK 11+ as a pre-requisit for maven to run.
 sudo yum install java-1.8.0-openjdk-devel -y
 sudo yum install wget vim tree unzip git-all -y
 ```
+#### Run this commands to Install Maven
 ```sh
-# Run this commands to Install Maven
 cd /opt 
 sudo wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.80/bin/apache-tomcat-9.0.80.tar.gz
 sudo tar -xvf apache-tomcat-9.0.80.tar.gz
 sudo rm apache-tomcat-9.0.80.tar.gz
 sudo mv apache-tomcat-9.0.80 tomcat9
 ```
+#### Ensure that Tomcat is running and accesible using this command
 ```sh
-# Ensure that Tomcat is running and accesible using this command
 sudo chmod 777 -R /opt/tomcat9
 sudo sh /opt/tomcat9/bin/startup.sh
 ```
+#### Create a soft link and start tomcat
 ```sh
-### Create a soft link and start tomcat
 sudo ln -s /opt/tomcat9/bin/startup.sh /usr/bin/starttomcat
 sudo ln -s /opt/tomcat9/bin/shutdown.sh /usr/bin/stoptomcat
 sudo starttomcat
@@ -45,26 +46,25 @@ sudo starttomcat
 # Configurations 
 
 ### IP Configuration - How to allow internet access to tomcat server
+
+#### Run this command to open context.xml 
 ```sh
-## Run this command to open context.xml 
 vi /opt/tomcat9/webapps/manager/META-INF/context.xml
 ```
-
+#### uncomment this section by removing '<!--' and '-->' then save context.xml file
 ```sh
-# uncomment this section by removing '<!--' and '-->' then save context.xml file
   <Valve className="org.apache.catalina.valves.RemoteAddrValve"
          allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" />
 ```
 
 ### User Configuration - How to add Tomcat Admin usersname, password and roles
-  
+
+#### Run this command to open tomcat-users.xml 
 ```sh
-# Run this command to open tomcat-users.xml 
 sudo vi /tomcat9/conf/tomcat-users.xml
 ```
-
+#### Edit and add this code, above the last closing tag `</tomcat-users>`
 ```sh
-# Edit and add this code, above the last closing tag `</tomcat-users>`
 <user username="unitedcore" password="admin123" roles="manager-gui,admin-gui,manager-script"/>
 <user username="isaac" password="admin123" roles="manager-gui,admin-gui,manager-script"/>
 ```

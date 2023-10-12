@@ -10,58 +10,58 @@
 + Attach Security Group to EC2 Instance.
 + Install java openJDK 1.8+ for Nexus version 3.61.0-02
 
-# Installation 
+# Installation
+
+#### 1. Set hostname, Add Nexus as a user and to the Sudors file.
 ```sh
-## 1. Set hostname, Add Nexus as a user and to the Sudors file.
 sudo hostnamectl set-hostname nexus
 sudo useradd nexus
 sudo echo "nexus ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/nexus
 ```
+#### 2. install Java JDK 11+ as a prerequisit for nexus to run.
 ```sh
-## 2. install Java JDK 11+ as a prerequisit for nexus to run.
 sudo yum install wget nano tree unzip git-all -y
 sudo yum install java-11-openjdk-devel java-1.8.0-openjdk-devel -y
 ```
+#### 3. Download, extract and Install Nexus
 ```sh
-## 3. Download, extract and Install Nexus
 cd /opt
 sudo wget http://download.sonatype.com/nexus/3/nexus-3.61.0-02-unix.tar.gz 
 sudo tar -zxvf nexus-3.61.0-02-unix.tar.gz
 sudo mv /opt/nexus-3.61.0-02 /opt/nexus
 sudo rm -rf nexus-3.61.0-02-unix.tar.gz
 ```
+#### 4. Set set ownership permissions to nexus 
 ```sh
-## 4. Set set ownership permissions to nexus 
 sudo chown -R nexus:nexus /opt/nexus
 sudo chown -R nexus:nexus /opt/sonatype-work
 sudo chmod -R 775 /opt/nexus
 sudo chmod -R 775 /opt/sonatype-work
 ```
+#### 5. change from #run_as_user="" to [ run_as_user="nexus" ]
 ```sh
-## 5. change from #run_as_user="" to [ run_as_user="nexus" ]
 sudo echo  'run_as_user="nexus" ' > /opt/nexus/bin/nexus.rc
 ```
+#### 6. Create a softlink for nexus 
 ```sh
-## 6. Create a softlink for nexus 
 sudo ln -s /opt/nexus/bin/nexus /etc/init.d/nexus
 ```
+#### 7. Enable and start the nexus services
 ```sh
-## 7. Enable and start the nexus services
 sudo systemctl enable nexus
 sudo systemctl start nexus
 sudo systemctl status nexus
 #NB: control C to exit from systemctl 
 ```
+#### 8. verify nexus connection by running this command
 ```sh
-## 8. Ensure that nexus is running on port 8081 and Access nexus on the browser with public ip address with default Username ans Password
-# verify nexus connection by running this command
 curl -v localhost:8081
 ```
+#### 9. Access Nexus by entering server ip address with port number and default credentials
 ```sh
-## 9. Access nexus by entering server ip address with port number and default credentials
-### publicIP:8081
-### default USERNAME: admin
-### nexus password 
+# publicIP:8081
+# default USERNAME: admin
+# nexus password 
 sudo cat /opt/sonatype-work/nexus3/admin.password   
 ```
 # Configuration 
@@ -88,23 +88,20 @@ sudo cat /opt/sonatype-work/nexus3/admin.password
 ### Login to Nexus using you public ip of your server as shown below into URL of a web browers:
 http://public-ip-address:8081    
 
-### Copy password and paste into Administrator password on Nexus URL
-      
-<img width="1291" alt="Screenshot 2023-02-01 at 10 56 25 AM" src="https://user-images.githubusercontent.com/43399466/215959008-3ebca431-1f14-4d81-9f12-6bb232bfbee3.png">
+# Create repositories
+#### "Sign in": Enter default username "admin" and password copied from Nexus server 
+#### "Navigate to Settings": click on the "Settings" icon (a gear) on the toolbar, which takes you to the administration section.    
+#### "Navigate to Repository": Click on "Repositories" in the left sidebar.
+#### "Create New Repository": Click on the "Create repository" button.
+#### "Create a Maven Hosted Repository": In the "Select Recipe" page, select "maven2 (hosted)".
 
-### Click on Install suggested plugins
+# Configure the Repository**:
+  #### 1. Fill in the "Name": Give your repository a unique name.
+  #### 2. "Version policy": Choose between "Release", "Snapshot", or "Mixed" depending on your use case.
+  #### 3 "Layout policy": Choose "Strict".
+  #### 4. "Blob store": Leave on default
+ 
 
-<img width="1291" alt="Screenshot 2023-02-01 at 10 58 40 AM" src="https://user-images.githubusercontent.com/43399466/215959294-047eadef-7e64-4795-bd3b-b1efb0375988.png">
-
-### Wait for the Nexus to Install suggested plugins
-
-<img width="1291" alt="Screenshot 2023-02-01 at 10 59 31 AM" src="https://user-images.githubusercontent.com/43399466/215959398-344b5721-28ec-47a5-8908-b698e435608d.png">
-
-### Create First Admin User and add your email address
-
-<img width="990" alt="Screenshot 2023-02-01 at 11 02 09 AM" src="https://user-images.githubusercontent.com/43399466/215959757-403246c8-e739-4103-9265-6bdab418013e.png">
-
-### Nexus Installation is Successful. You can now starting using the Nexus 
-
-<img width="990" alt="Screenshot 2023-02-01 at 11 14 13 AM" src="https://user-images.githubusercontent.com/43399466/215961440-3f13f82b-61a2-4117-88bc-0da265a67fa7.png">
+  #### 5. "Deployment policy": Choose who can deploy artifacts to the repository (e.g., "Allow Redeploy"). 
+  #### 6. "Save": Click on the "Create repository" button at the bottom.
 
