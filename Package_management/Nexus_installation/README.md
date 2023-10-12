@@ -38,7 +38,7 @@ sudo chown -R nexus:nexus /opt/sonatype-work
 sudo chmod -R 775 /opt/nexus
 sudo chmod -R 775 /opt/sonatype-work
 ```
-#### 5. change from #run_as_user="" to [ run_as_user="nexus" ]
+#### 5. Run nexus as a user by modifying #run_as_user="" 
 ```sh
 sudo echo  'run_as_user="nexus" ' > /opt/nexus/bin/nexus.rc
 ```
@@ -53,7 +53,7 @@ sudo systemctl start nexus
 sudo systemctl status nexus
 #NB: control C to exit from systemctl 
 ```
-#### 8. verify nexus connection by running this command
+#### 8. Verify Nexus connection by running this command
 ```sh
 curl -v localhost:8081
 ```
@@ -64,7 +64,7 @@ curl -v localhost:8081
 # nexus password 
 sudo cat /opt/sonatype-work/nexus3/admin.password   
 ```
-# Configuration 
+# POM.XML Configuration
 
 ### Nexus - Maven Integration 
 
@@ -85,23 +85,39 @@ sudo cat /opt/sonatype-work/nexus3/admin.password
 </distributionManagement>
 ```
 
+# Creating repositories
+
 ### Login to Nexus using you public ip of your server as shown below into URL of a web browers:
 http://public-ip-address:8081    
 
-# Create repositories
 #### "Sign in": Enter default username "admin" and password copied from Nexus server 
+![Sign in](https://github.com/unitedcoresystems/Bootcampclass-2023/assets/63193071/ae9faaee-a095-438f-a8f2-45af3747d4f8)
+
 #### "Navigate to Settings": click on the "Settings" icon (a gear) on the toolbar, which takes you to the administration section.    
-#### "Navigate to Repository": Click on "Repositories" in the left sidebar.
+![Navigate to Settings](https://github.com/unitedcoresystems/Bootcampclass-2023/assets/63193071/d42cf86a-604e-4474-b037-877937dcf48d)
+
+#### "Navigate to Repository": Click on "Repositories" in the left sidebar or the main menu.
+![Navigate to Repository](https://github.com/unitedcoresystems/Bootcampclass-2023/assets/63193071/af947112-9f02-4122-a766-87a1bb544dc8)
+
 #### "Create New Repository": Click on the "Create repository" button.
+![Create New Repository](https://github.com/unitedcoresystems/Bootcampclass-2023/assets/63193071/791cb26c-a4d4-4357-9a69-9561b0014cd0)
+
 #### "Create a Maven Hosted Repository": In the "Select Recipe" page, select "maven2 (hosted)".
+![Create a Maven Hosted Repository](https://github.com/unitedcoresystems/Bootcampclass-2023/assets/63193071/165ed860-e7da-4612-8c53-950c0b7acd32)
 
-# Configure the Repository**:
-  #### 1. Fill in the "Name": Give your repository a unique name.
-  #### 2. "Version policy": Choose between "Release", "Snapshot", or "Mixed" depending on your use case.
-  #### 3 "Layout policy": Choose "Strict".
-  #### 4. "Blob store": Leave on default
- 
+# Configuring the Repository:
+1. Fill in the "Name": Give your repository a unique name.
+2. "Version policy": Choose between "Release", "Snapshot", or "Mixed" depending on your use case.
+3. "Layout policy": Choose "Strict".
+4. "Blob store": Leave on default.
+      
+![Configuring the Repository](https://github.com/unitedcoresystems/Bootcampclass-2023/assets/63193071/87b8cf2a-99b3-4374-a231-37c7f0f1c5ba)
 
-  #### 5. "Deployment policy": Choose who can deploy artifacts to the repository (e.g., "Allow Redeploy"). 
-  #### 6. "Save": Click on the "Create repository" button at the bottom.
+5. "Deployment policy": Choose who can deploy artifacts to the repository (e.g., "Allow Redeploy"). 
+6. "Save": Click on the "Create repository" button at the bottom.
+      
+![Configuring the Repository](https://github.com/unitedcoresystems/Bootcampclass-2023/assets/63193071/ec5c6d12-ac0f-402b-a747-432c373444c5)
 
+Retriving Repository url : Click on copy on the same line of your repo and copy url in the popup box
+
+![Retriving Repository url](https://github.com/unitedcoresystems/Bootcampclass-2023/assets/63193071/a3b6353b-3775-48c9-be7d-e0e900d56b3e)
