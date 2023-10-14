@@ -31,18 +31,18 @@ sudo chown -R sonar:sonar /opt/sonarqube/
 sudo chmod -R 775 /opt/sonarqube/
 
 # 6. Create a service for sonarQube server
-echo "[Unit]" > /etc/systemd/system/sonar.service
-echo "Description=SonarQube service" >> /etc/systemd/system/sonar.service
-echo "After=syslog.target network.target" >> /etc/systemd/system/sonar.service
-echo "[Service]" >> /etc/systemd/system/sonar.service
-echo "Type=forking" >> /etc/systemd/system/sonar.service
-echo "ExecStart=/opt/sonarqube/bin/linux-x86-64/sonar.sh start" >> /etc/systemd/system/sonar.service 
-echo "ExecStop=/opt/sonarqube/bin/linux-x86-64/sonar.sh stop" >> /etc/systemd/system/sonar.service
-echo "User=sonar" >> /etc/systemd/system/sonar.service
-echo "Group=sonar" >> /etc/systemd/system/sonar.service
-echo "Restart=always" >> /etc/systemd/system/sonar.service
-echo "[Install]" >> /etc/systemd/system/sonar.service
-echo "WantedBy=multi-user.target" >> /etc/systemd/system/sonar.service
+sudo echo "[Unit]" > /etc/systemd/system/sonar.service
+sudo echo "Description=SonarQube service" >> /etc/systemd/system/sonar.service
+sudo echo "After=syslog.target network.target" >> /etc/systemd/system/sonar.service
+sudo echo "[Service]" >> /etc/systemd/system/sonar.service
+sudo echo "Type=forking" >> /etc/systemd/system/sonar.service
+sudo echo "ExecStart=/opt/sonarqube/bin/linux-x86-64/sonar.sh start" >> /etc/systemd/system/sonar.service 
+sudo echo "ExecStop=/opt/sonarqube/bin/linux-x86-64/sonar.sh stop" >> /etc/systemd/system/sonar.service
+sudo echo "User=sonar" >> /etc/systemd/system/sonar.service
+sudo echo "Group=sonar" >> /etc/systemd/system/sonar.service
+sudo echo "Restart=always" >> /etc/systemd/system/sonar.service
+sudo echo "[Install]" >> /etc/systemd/system/sonar.service
+sudo echo "WantedBy=multi-user.target" >> /etc/systemd/system/sonar.service
 
 # 6. start sonarQube server
 sudo systemctl daemon-reload
