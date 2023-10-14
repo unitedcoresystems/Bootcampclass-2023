@@ -16,10 +16,10 @@
 
 #### 1. Create sonar user to manage the SonarQube server, Grand sudo access and set hostname for the sonarqube server
 ```sh
-sudo useradd Sonar
+sudo useradd sonar
 sudo sudo echo "sonar ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/sonar
-sudo hostnamectl set-hostname SonarQube-Server 
-sudo su - Sonar
+sudo hostnamectl set-hostname sonarqube-server 
+sudo su - sonar
 ```
 #### 2. Enable PasswordAuthentication in the server and install Java JDK 1.8+ required for sonarqube to start
 ```sh
@@ -38,10 +38,8 @@ sudo mv sonarqube-7.8 sonarqube
 ```
 #### 4. Grant file permissions for sonar user to start and manage sonarQube
 ```sh
-sudo chown -R Sonar:Sonar /opt/sonarqube/
+sudo chown -R sonar:sonar /opt/sonarqube/
 sudo chmod -R 775 /opt/sonarqube/
-sh /opt/sonarqube/bin/linux-x86-64/sonar.sh start 
-sh /opt/sonarqube/bin/linux-x86-64/sonar.sh status
 sudo ln /opt/sonarqube/bin/linux-x86-64/sonar.sh /etc/init.d/sonar
 ```
 #### 5. Run sonarqube as a service by running theses commands
