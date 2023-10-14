@@ -44,6 +44,10 @@ sudo ln /opt/sonarqube/bin/linux-x86-64/sonar.sh /etc/init.d/sonar
 ```
 #### 5. Run sonarqube as a service by running theses commands
 ```sh
+sudo su - root
+```
+
+```sh
 sudo echo "[Unit]" > /etc/systemd/system/sonar.service
 sudo echo "Description=SonarQube service" >> /etc/systemd/system/sonar.service
 sudo echo "After=syslog.target network.target" >> /etc/systemd/system/sonar.service
@@ -62,7 +66,11 @@ sudo echo "WantedBy=multi-user.target" >> /etc/systemd/system/sonar.service
 sudo systemctl daemon-reload
 sudo systemctl enable --now sonar
 sudo systemctl status sonar
+exit
 # NB: control C to exit from systemctl 
+```
+```sh
+curl -v localhost:9000
 ```
 
 # Configuration
