@@ -15,16 +15,15 @@
 
 #### Update Server and set timezone and hostname
 ```sh
-sudo yum update
-sudo hostnamectl set-hostname Maven
+sudo hostnamectl set-hostname tomcat
 sudo timedatectl set-timezone America/New_York
 ``` 
-#### install Java JDK 11+ as a pre-requisit for maven to run.
+#### install Java JDK 11+ as a pre-requisit for tomcat to run.
 ```sh
 sudo yum install java-1.8.0-openjdk-devel -y
 sudo yum install wget vim tree unzip git-all -y
 ```
-#### Run this commands to Install Maven
+#### Run this commands to Install Tomcat
 ```sh
 cd /opt 
 sudo wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.80/bin/apache-tomcat-9.0.80.tar.gz
