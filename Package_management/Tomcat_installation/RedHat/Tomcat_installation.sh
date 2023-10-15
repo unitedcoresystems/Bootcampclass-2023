@@ -15,10 +15,10 @@ sudo yum install wget vim tree unzip git-all -y
 
 # Run this commands to Install Maven
 cd /opt 
-sudo wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.80/bin/apache-tomcat-9.0.80.tar.gz
-sudo tar -xvf apache-tomcat-9.0.80.tar.gz
-sudo rm apache-tomcat-9.0.80.tar.gz
-sudo mv apache-tomcat-9.0.80 tomcat9
+sudo wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.82/bin/apache-tomcat-9.0.82.tar.gz
+sudo tar -xvf apache-tomcat-9.0.82.tar.gz
+sudo rm apache-tomcat-9.0.82.tar.gz
+sudo mv apache-tomcat-9.0.82 tomcat9
 
 # Ensure that Tomcat is running and accesible using this command
 sudo chmod 777 -R /opt/tomcat9
