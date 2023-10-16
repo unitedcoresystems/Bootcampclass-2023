@@ -51,7 +51,7 @@ sudo starttomcat
 ```sh
 vi /opt/tomcat9/webapps/manager/META-INF/context.xml
 ```
-#### comment this section by adding '<!--' and '-->' then save context.xml file
+#### comment this section by adding `'<!--' and '-->'` then save context.xml file
 ```sh
 <!--
   <Valve className="org.apache.catalina.valves.RemoteAddrValve"
