@@ -51,10 +51,12 @@ sudo starttomcat
 ```sh
 vi /opt/tomcat9/webapps/manager/META-INF/context.xml
 ```
-#### uncomment this section by removing '<!--' and '-->' then save context.xml file
+#### comment this section by adding '<!--' and '-->' then save context.xml file
 ```sh
+<!--
   <Valve className="org.apache.catalina.valves.RemoteAddrValve"
          allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" />
+-->
 ```
 
 ### User Configuration - How to add Tomcat Admin usersname, password and roles
