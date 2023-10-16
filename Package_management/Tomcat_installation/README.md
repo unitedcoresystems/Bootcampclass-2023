@@ -61,7 +61,7 @@ vi /opt/tomcat9/webapps/manager/META-INF/context.xml
 
 #### Run this command to open tomcat-users.xml 
 ```sh
-sudo vi /tomcat9/conf/tomcat-users.xml
+sudo vi /opt/tomcat9/conf/tomcat-users.xml
 ```
 #### Edit and add this code, above the last closing tag `</tomcat-users>`
 ```sh
