@@ -60,13 +60,13 @@ sudo echo "Group=sonar" >> /etc/systemd/system/sonar.service
 sudo echo "Restart=always" >> /etc/systemd/system/sonar.service
 sudo echo "[Install]" >> /etc/systemd/system/sonar.service
 sudo echo "WantedBy=multi-user.target" >> /etc/systemd/system/sonar.service
+exit
 ```
 #### 6. Reload, enable and check sonar service 
 ```sh
 sudo systemctl daemon-reload
 sudo systemctl enable --now sonar
 sudo systemctl status sonar
-exit
 # NB: control C to exit from systemctl 
 ```
 ```sh
