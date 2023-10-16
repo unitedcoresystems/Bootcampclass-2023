@@ -17,6 +17,7 @@
 ```sh
 sudo hostnamectl set-hostname tomcat
 sudo timedatectl set-timezone America/New_York
+sudo su - ec2-user
 ``` 
 #### install Java JDK 11+ as a pre-requisit for tomcat to run.
 ```sh
