@@ -48,6 +48,26 @@ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 
 # Configuration 
 
+### Jenkins - Nexus intergration 
+
+#### 1. Configure nexus login credentials in settings.xml file in the conf directory in the jenkins server 
+```sh 
+sudo vi /var/lib/jenkins/tools/hudson.tasks.Maven_MavenInstallation/3.9.5/conf/settings.xml         
+```
+
+#### 2. Edit and add credentials as shown below under commentted <server> </server> tag  
+```sh
+   <server>
+      <id>nexus</id>
+      <username>admin</username>
+      <password>password</password>
+    </server>
+```
+#### 3. Save and exit from settings.xml  
+$ esc :wq! 
+or
+$ esc hold "Shift" +  ZZ
+
 ### Login to Jenkins using you public ip of your server as shown below into URL of a web browers:
 http://public-ip-address:8080    
 
