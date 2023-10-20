@@ -17,29 +17,26 @@ https://github.com/unitedcoresystems/maven-web-application.git
 
 Follow the link below to create an AWS ec2 Instance      
 
-- EC2 installation : https://github.com/unitedcoresystems/Bootcampclass-2023/tree/dev/Package_management/EC2_Instances
+1. [EC2 installation](unitedcoresystems/Bootcampclass-2023/Package_management/EC2_Instances)
 
 #### Step 2 — Configure Jenkins, Tomcat, Nexus and sonaqube. 
 
 Use the link to install and configure the following tools 
 
-1. Jenkins ---> https://github.com/unitedcoresystems/Bootcampclass-2023/tree/dev/Package_management/Jenkins_installation
-            
-2. Tomcat ---> https://github.com/unitedcoresystems/Bootcampclass-2023/tree/dev/Package_management/Tomcat_installation
+1. [Jenkins installation & configuration](unitedcoresystems/Bootcampclass-2023/Package_management/Jenkins_installation)
+2. [Tomcat installation & configuration](unitedcoresystems/Bootcampclass-2023/Package_management/Tomcat_installation)
+3. [Sonarqube installation & configuration](unitedcoresystems/Bootcampclass-2023/Package_management/SonarQube_installation)
+4. [Nexus installation & configuration](unitedcoresystems/Bootcampclass-2023/Package_management/Nexus_installation)
 
-3. Sonarqube ---> https://github.com/unitedcoresystems/Bootcampclass-2023/blob/dev/Package_management/SonarQube_installation/README.md
-
-4. Nexus ---> https://github.com/unitedcoresystems/Bootcampclass-2023/blob/dev/Package_management/Nexus_installation/README.md
-
-#### Step 3 — Install Tools and Plugins like maven and 'Deploy to container ear/war'reqired to deploy application .
+#### Step 3 — Install Tools and Plugins like maven and 'Deploy to container ear/war'reqired to deploy application.
 
 ##### Tools (Maven) 
-   - Manage jenkins --> Tools --> Add Maven 
+
+- [install Maven]()
 
 ##### Plugin (Deploy to container ear/war)
-   - Manage jenkins --> Plugins 
-   - Select Avalible plugins and type "Deploy to container" in the searh bar
-   - Click install without restart jenkins 
+
+- [install "Deploy to container ear/war" plugin](unitedcoresystems/Bootcampclass-2023/Jenkins_CI-CD/plugins/deploy2container.md)
 
 #### Step 4 — Create a Project in Jenkins using one of the following 
 
