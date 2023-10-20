@@ -2,12 +2,12 @@
 Running a freestyle project in Jenkins involves creating a job that defines the build steps, triggers, and other configurations. Here's a step-by-step procedure to create and run a freestyle project in jenkins:
 
 ##### Pre-requisite
-+ AWS Acccount - Luanch an [ec2 instance](../../Package_management/EC2_Instances)
++ AWS Acccount - [Luanch an ec2 instance](../../Package_management/EC2_Instances)
 + Create ec2 t2.medium Instance with 4GB RAM.
 + Create Security Group and open Required ports.
    + 8080 ..etc
 + Attach Security Group to EC2 Instance.
-+ Install and configure jenkins. [Jenkins_installation](../../Package_management/Jenkins_installation)
++ [Install and configure jenkins.](../../Package_management/Jenkins_installation)
 
 1. **Access Jenkins**:
    - Open your web browser and navigate to the Jenkins server's URL. Typically, it's http://localhost:8080 or the URL provided by your Jenkins administrator.
@@ -54,7 +54,6 @@ Running a freestyle project in Jenkins involves creating a job that defines the 
    3. deploy --> The term "deploy" in software development usually refers to the process of moving a software application from a development or testing environment to a production environment, making it available for users.
 
     ![build-configuration](https://github.com/unitedcoresystems/Bootcampclass-2023/assets/63193071/6c7202ab-0761-484c-b6d0-ca00292028a8)
-
 
 9. **Post-build Actions**:
    - Install the plugin "Deploy to container" --> (../plugins/deploy2container.md)
