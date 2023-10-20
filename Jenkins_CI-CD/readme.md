@@ -40,9 +40,9 @@ Use the link to install and configure the following tools
 
 #### Step 4 — Create a Project in Jenkins using one of the following 
 
-   - Declarative Pipeline -->
-   - Scripted pipeline --> 
-   - Freestyle --> 
+- Declarative Pipeline -->
+- Scripted pipeline --> 
+- [Freestyle project](./freestyle_project)
 
 #### Step 5 — Access the application on the Browser with Tomcat server url.
 
