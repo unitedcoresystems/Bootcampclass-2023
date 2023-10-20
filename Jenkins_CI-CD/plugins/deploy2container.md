@@ -15,10 +15,16 @@ To use the Deploy to Container Plugin in Jenkins, you'll need to install the plu
 4. In the filter box, type "Deploy to container".
 ![fliterbox](https://github.com/unitedcoresystems/Bootcampclass-2023/assets/63193071/d71a9a6e-30c4-49dd-98c9-4e64ca920b1e)
 
-5. Select the checkbox next to "Deploy to container" and Click "Install without restart" .
+5. Select the checkbox next to "Deploy to container" and Click "Install without restart".
 ![checkbox](https://github.com/unitedcoresystems/Bootcampclass-2023/assets/63193071/dfe4ec06-4cd0-4117-bf7d-c4802495c108)
 
-### Configure Deploy to Container Plugin:
+6. Select "go back to the top page" to return to dashboard .
+![Screenshot 2023-10-19 at 21 24 36](https://github.com/unitedcoresystems/Bootcampclass-2023/assets/63193071/1bc7b434-1023-42fc-871a-af70f1cb60ff)
+
+
+
+
+# Configure Deploy to Container Plugin:
 
 Once the plugin is installed, you can add a post-build step to deploy to a container.
 
