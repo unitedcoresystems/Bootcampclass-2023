@@ -43,12 +43,12 @@ Use the link to install and configure the following tools
 
 #### Step 4 — Create a Project in Jenkins using one of the following 
 
-    - Declarative Pipeline -->
-    - Scripted pipeline --> 
-    - Freestyle --> 
+   - Declarative Pipeline -->
+   - Scripted pipeline --> 
+   - Freestyle --> 
 
 #### Step 5 — Access the application on the Browser with Tomcat server url.
 
-- http://public-ip-address:8080
+- http://tomcat-public-ip-address:8080
 
 #### Step 6 — Terminate all the AWS EC2 Instances.

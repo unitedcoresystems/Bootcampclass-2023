@@ -1,5 +1,5 @@
 # Declarative Pipeline in Jenkins:
-=========================
+
 
 ### Pipeline syntex
 
