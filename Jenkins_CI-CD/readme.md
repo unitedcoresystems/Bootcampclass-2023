@@ -36,7 +36,7 @@ Use the link to install and configure the following tools
 
 ##### Plugin (Deploy to container ear/war)
 
-- [install "Deploy to container ear/war" plugin(./plugins/deploy2container.md)
+- [install "Deploy to container ear/war" plugin](./plugins/deploy2container.md)
 
 #### Step 4 — Create a Project in Jenkins using one of the following 
 
