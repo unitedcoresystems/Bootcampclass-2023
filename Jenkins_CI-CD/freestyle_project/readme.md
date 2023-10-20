@@ -2,7 +2,7 @@
 Running a freestyle project in Jenkins involves creating a job that defines the build steps, triggers, and other configurations. Here's a step-by-step procedure to create and run a freestyle project in jenkins:
 
 ##### Pre-requisite
-+ AWS Acccount - Luanch an [ec2 instance](../../Package_managment/EC2_Instances/README.md)
++ AWS Acccount - Luanch an [ec2 instance](../../Package_managment/EC2_Instances)
 + Create ec2 t2.medium Instance with 4GB RAM.
 + Create Security Group and open Required ports.
    + 8080 ..etc
