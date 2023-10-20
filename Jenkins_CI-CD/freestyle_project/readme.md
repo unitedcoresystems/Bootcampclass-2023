@@ -7,7 +7,7 @@ Running a freestyle project in Jenkins involves creating a job that defines the 
 + Create Security Group and open Required ports.
    + 8080 ..etc
 + Attach Security Group to EC2 Instance.
-+ Install and configure jenkins. (../../Package_management/Jenkins_installation/README.md)
++ Install and configure jenkins. [Jenkins_installation](../../Package_management/Jenkins_installation)
 
 1. **Access Jenkins**:
    - Open your web browser and navigate to the Jenkins server's URL. Typically, it's http://localhost:8080 or the URL provided by your Jenkins administrator.
