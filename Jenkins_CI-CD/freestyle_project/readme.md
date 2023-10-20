@@ -7,7 +7,7 @@ Running a freestyle project in Jenkins involves creating a job that defines the 
 + Create Security Group and open Required ports.
    + 8080 ..etc
 + Attach Security Group to EC2 Instance.
-+ Install and configure jenkins. (../Package_managment/Jenkins_installation/)
++ Install and configure jenkins. (../Package_managment/Jenkins_installation/README.md)
 
 1. **Access Jenkins**:
    - Open your web browser and navigate to the Jenkins server's URL. Typically, it's http://localhost:8080 or the URL provided by your Jenkins administrator.
@@ -57,15 +57,10 @@ Running a freestyle project in Jenkins involves creating a job that defines the 
 
 
 9. **Post-build Actions**:
-   - Install the plugin "Deploy to container" --> (../plugins/deploy2container)
+   - Install the plugin "Deploy to container" --> (../plugins/deploy2container.md)
+   - Configure deploy to container plugin --> (../plugins/deploy2container.md)
    - After the build, configure post-build actions "deploy to container".
    ![add-post-build](https://github.com/unitedcoresystems/Bootcampclass-2023/assets/63193071/7d7db221-2d23-4dd9-acfe-342d6b2f5cd2)
-
-   - Add Tomcat Credentials to jenkins 
-   ![Post-build](https://github.com/unitedcoresystems/Bootcampclass-2023/assets/63193071/bd276d37-4cb8-46c2-8060-5cdccbd5296b)
-
-   - Enter username and password into the Jenkins Credentials Provider
-   ![jenkins-credentials](https://github.com/unitedcoresystems/Bootcampclass-2023/assets/63193071/5907f924-6569-48ee-aaeb-6cb648240b9d)
 
 10. **Save the Project Configuration**:
     - Scroll to the bottom of the configuration page and click on "Save" to save your project's configuration.
