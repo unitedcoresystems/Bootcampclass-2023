@@ -12,7 +12,7 @@
 
 
 #### Copy this script and run in all master and worker nodes
-common.sh
+[common.sh](./common.sh)
 
 #### 1) Switch to root user [ sudo -i or sudo su - ] and run the following command to change the host name of the server
 ```sh
