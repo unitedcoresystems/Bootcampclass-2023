@@ -8,7 +8,6 @@ sudo hostnamectl set-hostname  node1
 swapoff -a
 sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
 
-
 #3) Add  kernel settings & Enable IP tables(CNI Prerequisites)
 
 cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
@@ -96,5 +95,7 @@ systemctl daemon-reload
 systemctl start kubelet
 systemctl enable kubelet.service
 
-sudo kubeadm join 10.0.0.6:6443 --token xmzufh.e0nu3kb5ohijfxyh \
+# replace token with yours 
+<!--sudo kubeadm join 10.0.0.6:6443 --token xmzufh.e0nu3kb5ohijfxyh \
         --discovery-token-ca-cert-hash sha256:579b6a53bd00c8483f5150b9fb521b6431fc38b1ac716b8b9a5f668928a93771
+--> 
