@@ -1,0 +1,1417 @@
+DevOps/Cloud/ Engineering
+==========================
+Roles and responsility 
+  - Managing Platform
+  - Administering Kubernetes
+  - Deploying Applications
+  - Building cloud infrastructure
+  - Test Application
+  - Automating processes,worksloads, Jobs and tasks
+
+Tools required:             
+=============================================================
+1. Computer ( Laptop/ Destop/ Server)
+- Windows
+- MacOS
+- Linux
+
+2. Sowftware Application
+-  Command Line Interface (CLI) or Shell  (sh, bash, zsh, tcsh, ksh ) 
+-  Text Editors (Sublime text,  mobaXterm , gitbash VSCode )
+-  Communication (Telegram, Zoom, Slack, Jira, Whatsapp, Teams, Webex )
+
+Examples of Tasks to be performed:
+  - fileMGT 
+  - userMGT 
+  - packageMGT
+  - securityMGT 
+  - systemMGT 
+
+Workload management on Computer systems [LINUX OS] :
+    GUI: = Graphical user interface  -- 10 %
+    CLI: = command line interface    -- 30 %
+    Scripting: Running Multipl commands -- 60 %
+
+
+What is Bash shell scripting?
+=======================================================================
+Script: script is a file containing series of commands 
+
+Example: hello.sh
+         echo "Good morning"
+         whoami
+         echo "Welcome to United Core Systems"
+         echo "Today is"
+         date
+
+Shell: A shell is an interpreter that interpretes commands to the OS.
+
+        Example: Bash / sh  ----> LinuxOS
+                 powershell ----> WindowsOS                
+                 zshell    -----> MacOS  
+
+ Other shells command interpreters include :
+  csh, ksh tcsh, zsh, fishsh                 
+
+Bash : Bourne Again shells
+Shell: Bourne Shell
+
+Demo : echo $SHELL: List your current shell
+ubuntu@ip-172-31-45-218:~$ echo $SHELL
+/bin/bash
+
+Demo2: cat /etc/shells
+Results:
+  ubuntu@ip-172-31-45-218:~$ cat /etc/shells
+# /etc/shells: valid login shells
+/bin/sh
+/bin/bash
+/usr/bin/bash
+/bin/rbash
+/usr/bin/rbash
+/usr/bin/sh
+/bin/dash
+/usr/bin/dash
+/usr/bin/tmux
+/usr/bin/screen
+
+Demo3: bash -c ls
+ubuntu@ip-172-31-45-218:~$ bash -c ls
+apache-httpd  jacoco.sh
+
+Demo4: sh -c ls
+apache-httpd  jacoco.sh
+
+
+sudo yum install zsh ksh tcsh -y
+sudo apt install zsh ksh tcsh mks -y
+
+ubuntu@ip-172-31-45-218:~$ zsh -c ls
+apache-httpd  jacoco.sh
+
+
+check : $ cat /etc/shells
+Result:  Lists all shells including the newly downloaded 
+/bin/sh
+/bin/bash
+/usr/bin/bash
+/bin/rbash
+/usr/bin/rbash
+/usr/bin/sh
+/bin/dash
+/usr/bin/dash
+/usr/bin/tmux
+/usr/bin/screen
+/bin/ksh93
+/usr/bin/ksh93
+/bin/rksh93
+/usr/bin/rksh93
+/bin/zsh
+/usr/bin/zsh
+/bin/tcsh
+/usr/bin/tcsh
+
+Bash shell Scripting:
+==============================================================
+Naming convention:
+
+  deploy.sh  = Shell-script [*.sh] / app.sc     = Shell-script [*.sc]
+  test.txt   = text file    [*.txt]
+  app.java   = java code    [*.java] 
+  monitor.py = python code/script [*.py] 
+  app.yaml   = playbook or manifest file [*.yml] 
+  main.tf    = terraform scripts/codes [*.tf]
+
+
+ File Name:     hello.sh
+                #!/bin/bash    = Shebeng
+                echo "Good morning"
+                whoami
+                echo "Welcome to United Core Systems"
+                echo "Today is"
+                date
+
+
+exampls: update.sh 
+        touch / vi a filename
+
+
+
+You have been task to update the portal
+
+#!/bin/bash
+
+# this script is to update the website 
+
+#1. Delete all existing  files from source directory 
+sudo rm -rf apache-httpd
+
+#2. Clone the updated file from the github repository 
+git clone https://github.com/emortoo/apache-httpd.git
+
+#3. Move all files from apache httpd to the var/www/html directory 
+sudo cp -r apache-httpd/* /var/www/html/
+
+#4. Change ownership of the /var/www/html director 
+sudo chown -R www-data:www-data /var/www/html
+
+#5. Send a message to confirm changes has been made
+echo "Bash script has been executed sucessfully" 
+
+ubuntu@ip-172-31-45-218:~$ chmod 744 update.sh
+- rwx r-- r-- 1 ubuntu ubuntu  555 Sep  5 01:50 update.sh*
+    7  4   4  =744
+
+For a script to run it should be assigned:
+executable permissions:  
+chmod +x  fileName  
+chmod 744 fileName 
+chmod 744 update.sh   
+
+
+
+ubuntu@ip-172-31-45-218:~$ sh update.sh
+
+Cloning into 'apache-httpd'...
+remote: Enumerating objects: 94, done.
+remote: Counting objects: 100% (94/94), done.
+remote: Compressing objects: 100% (62/62), done.
+remote: Total 94 (delta 35), reused 89 (delta 30), pack-reused 0
+Receiving objects: 100% (94/94), 7.71 MiB | 25.55 MiB/s, done.
+Resolving deltas: 100% (35/35), done.
+Bash script has been executed sucessfully
+
+
+Scripting
+
+6 September 2023:
+==================
+./scriptname
+script name= hello.sh 
+
+./hello.sh
+#!/bin/bash
+echo "Good morning"
+whoami
+echo "Welcome to United Core Systems"
+echo "Today is"
+date
+
+
+Assigning executable Permission:
+  chmod +x fileName  or ; 
+  chmod 775 fileName
+
+-- For a script to run it should be assigned executable permissions  
+
+chmod +x  fileName  
+#!/bin/bash
+echo "Good morning Millionaire"
+whoami
+echo "Welcome to United Core systems"
+echo "Today is"
+date only the owner
+chmod 77 4 fileName only the owner + Group
+- rwx r-- r--. 1 isaac isaac 98 Sep  6 23:30 hello.sh
+
+
+
+ /bin/sh
+/bin/bash
+/usr/bin/bash
+
+
+  another Example:
+    **Create a user called michael **  
+    
+    vi united.sh 
+#!/bin/bash
+echo "Good morning Millionaire"
+whoami
+echo "Welcome to United Core systems"
+echo "Today is"
+date
+
+ chmod 744 united.sh
+ [michael@ip-172-31-43-228 ~]$  chmod 744 united.sh
+[michael@ip-172-31-43-228 ~]$ ll
+total 4
+-rwxr--r--. 1 michael michael 110 Sep  6 23:51 united.sh
+
+
+example of Scripting or automation langauges :
+
+  1. Bash Shell Scripting
+  2. Python 
+  3. Groovy  (Jenkins)
+  3. Ruby
+  4. Yaml  
+      (k8s, Ansible, CloudFormation)
+  5. JSon 
+  6. HCL - Terraform  
+  7. XML = 
+  8. html 
+  9. go/golang 
+  10. powershell 
+
+Real world example, Tasks:
+
+Updating a web server 
+1. Remove all exiting files   
+2. Clone a repository from github 
+3. Copy creating index.html file  
+3. assign read Permission to index.html file
+4. changing ownership of index.html file 
+5. copy the file to the app directory
+
+
+update.sh = file fileNameame 
+
+#! bin/bash
+# this script is to update the website 
+#1. Delete all existing  files from source directory 
+sudo rm -rf apache-httpd
+#2. Clone the updated file from the github repository 
+git clone https://github.com/emortoo/apache-httpd.git
+#3. Move all files from apache httpd to the var/www/html directory 
+sudo cp -r apache-httpd/* /var/www/html/
+#4. Change ownership of the /var/www/html director 
+sudo chown -R apache:apache /var/www/html/
+#5. Send a message to confirm changes has been made
+echo "Bash script has been executed sucessfully" 
+
+another example:  
+
+deploy.sh
+#!/bin/bash
+sudo echo "michael ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/michael
+echo "Tesla project is ready for the market"
+echo "Deployment started"
+mkdir deployment
+touch deployment/app.java
+chmod 744 deployment/app.java
+sudo chown michael:tesla deployment/app.java
+mkdir ben 
+cp deployment/app.java ben
+echo "Deployment successful"
+whoami
+echo "Congratulations you are deployed."
+echo "You shall succeed in Jesus name." 
+
+
+How to make your codes/scripts:
+  easily readable/understandable 
+  ================================================
+
+  1. by adding notes/comments/explanations.
+
+hello.sh  
+#!/bin/bash
+echo "Good morning Millionaire"
+whoami
+echo "Welcome to United Core systems"
+echo "Today is"
+date
+
+
+single line comments:
+
+vi comment.sh  
+#!/bin/bash
+echo 'single line comment starts'
+# This script welcome Engineers to United Core.
+# Only run this script on Linux systems
+# Author: Isaac Ntim
+# Copyright United Core System
+date
+echo 'single line comment ends'
+
+
+Multi-line comments:
+
+  vi comment2.sh
+
+#!/bin/bash  
+echo 'Multi-line comment starts'
+  
+<<comment
+
+This script welcome Engineers to United Core.
+Only run this script on Linux systems
+Author: Isaac Ntim
+Copyright United Core System
+  
+  comment
+
+echo "Multi-line comment ends"  
+date 
+pwd
+whoami
+
+Use cases for comments  
+ Multi-line     single-line
+      5%            95% 
+
+single line comments = 99% 
+multi line comments  = 1%  
+
+
+yntax:  Multi-line 
+<<comment
+statement
+comments
+
+Why do we use comment ?
+  1. It make your script/code to be understood by you and others over time. 
+  2. It make your script/code easily reusable in the future
+  3. Facilitate/ease troubleshooting and debugging
+  4. comments are Good for teams: Team of 14 
+        6 developers writing codes/scripts 
+        1 Scrum master 
+        3 DevOps Engineers 
+        1 DevOps Security Engineer 
+
+
+  Making your script portable. 
+========================================================= 
+1. Hard coding 
+2. soft coding
+
+
+using variables in scripting:
+  ===========================
+
+  name=Isaacntim
+  org=unitedcore
+
+  how to call variables in bash shell scripting:
+==========================================
+  $variableName 
+  ${variableName} 
+
+vi variable.sh
+
+#!/bin/bash
+name=IsaacNtim
+org=UnitedCore
+echo "Good morning $name"
+echo "Welcome to $org""
+
+variables:
+variables are defined by the either the user or the system 
+we can refer/call a variable with $variable 
+
+
+User defined variables   = UDV  : 
+ Are defined/created by some admins  
+ 
+ vi udv.sh
+ #!/bin/bash
+ name=Isaac_Ntim
+ org=United_Core  
+ city=Boston
+ state=MA
+ country=Unite_States_of_America  
+ echo $name works for $org located in $city $state in the $country  
+
+ [michael@ip-172-31-43-228 ~]$ vi udv.sh
+[michael@ip-172-31-43-228 ~]$ sh udv.sh
+Isaac_Ntim works for United_Core located in Boston MA in the Unite_States_of_America
+[michael@ip-172-31-43-228 ~]$ 
+
+system defined variables   = SDV  : 
+  SDV are variables that comes with the OS  
+  Such variables are in uppercase  
+  SHELL=bin/bash
+  echo $SHELL  = /bin/bash
+  env = List all system defined variables  
+
+  LESSOPEN=||/usr/bin/lesspipe.sh %s
+USER=michael
+SHLVL=1
+which_declare=declare -f
+PATH=/home/michael/.local/bin:/home/michael/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin
+MAIL=/var/spool/mail/michael
+BASH_FUNC_which%%=() {  ( alias;
+
+Example:
+  vi sdv.sh
+  #!/bin/bash 
+echo sdv starts  
+   echo $HISTSIZE  
+   echo $USER 
+   echo $HOME  
+   echo $PATH  
+   echo $LOGNAME
+   echo $SHELL 
+echo sdv ends   
+
+
+9 September 2023 :
+=============================
+
+deploy.sh
+#!/bin/bash
+echo "Tesla project is ready for the market"
+echo "Deployment started"
+mkdir deployment
+touch deployment/app.java
+chmod 744 deployment/app.java
+sudo chown michael:tesla deployment/app.java
+mkdir ben 
+cp deployment/app.java ben
+echo "Deployment successful"
+whoami
+echo "Congratulations you are deployed."
+echo "You shall succeed in Jesus name." 
+
+Step by step instructions 
+=============================
+
+1. Create a new user called Michael 
+$ sudo useradd Michael 
+
+2. Check if the user has been created 
+$ sudo tail -2 /etc/passwd
+
+3. create a group called Tesla 
+$ sudo groupadd Tesla 
+
+4. Check if the group has been created 
+$ sudo cat /etc/group
+
+5. Add user to the tesla group 
+$ sudo usermod -aG Tesla Michael 
+
+6. Add Michael to the sudoers group 
+$ sudo echo "michael ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/Michael
+
+7. Create a file
+$ vi / touch deploy.sh 
+
+Convert the above instructions to a script :
+====================================
+
+Hard Coding 
+------------------
+user.sh 
+#!/bin/bash
+sudo useradd Michelle 
+sudo groupadd Ford
+sudo usermod -aG Ford Michelle
+sudo echo "Michelle ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/Michelle
+id Michelle 
+
+Dynamic Coding 
+----------------
+user1.sh 
+#!/bin/bash
+user=Eric
+group=BMW
+sudo useradd $user 
+sudo groupadd $group
+sudo usermod -aG $group $user
+sudo echo "$user ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/$user
+id $user
+
+History Size 
+====================
+
+How to Check the HISTSIZE 
+----------------------------
+echo $HISTSIZE
+1000
+echo $HISTSIZE  = 1000  
+By default HISTSIZE = 1000
+
+How to Change the HISTSIZE 
+----------------------
+export HISTSIZE=2000  
+echo $HISTSIZE
+2000
+
+User Sessions 
+-------------------------
+When a user connect to the server a New session starts.  
+whoami  = ec2-user    
+sudo su - Michael  
+sudo su - ec2-user:
+
+echo $HISTSIZE
+1000
+
+$ ls -la (Home)
+
+vi .bashrc
+
+export HISTSIZE=2000
+
+reset the bash.rc 
+---------------------
+source .bashrc
+
+vi sdv.sh
+========
+  #!/bin/bash 
+echo sdv starts  
+   echo $HISTSIZE  
+   echo $USER 
+   echo $HOME  
+   echo $PATH  
+   echo $LOGNAME
+   echo $SHELL 
+echo sdv ends 
+
+
+user2.sh 
+#!/bin/bash  
+# This script requires root/sudo access
+#1. Create a new user  
+echo "Please enter your name" 
+read name
+#Add new user  
+sudo useradd $name
+#2. create a group  
+echo "Please enter your group name" 
+read group
+#Add new group 
+sudo groupadd $group
+#3. Add user to the tesla group 
+sudo usermod -aG $group $name
+#4. Add user to the sudoers group 
+sudo echo "$name ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/$name
+#5 check if user and group has been created
+id $name
+
+Another Example 
+
+write a script to authenticate bank users:
+-------------------------------------
+echo "Good morning"
+echo "Please enter your name"
+read name   
+echo "$name, Welcome to Bank of America"  
+
+bank.sh  
+#!/bin/bash
+# This script will authenticate bank users
+# Author: Emmanuel
+echo "Good morning"
+echo "Please enter your name"
+read name
+echo "$name, Welcome to Bank of America"
+echo "Please enter your card"
+sleep 10
+echo "Please enter your pin"
+read pin
+echo "You are authenticated."
+echo Thanks for banking with Bank of America
+  
+
+$ cat  bank.sh
+#!/bin/bash
+echo "Please enter your name"
+read name
+echo "$name, welcome to Bank of America Bank"
+echo "Please enter your pin"
+read -s pin  # -s pass a secret variable
+echo "$name you entered an invalid pin"
+
+Calculator script
+----------------------------------------------------------------------------------
+#!/bin/bash
+# how to use calculator script
+# sh calculator.sh add 5 3
+# sh calculator.sh subtract 10 2
+# sh calculator.sh multiply 4 7
+# sh calculator.sh divide 8 2
+
+# Check if the number of arguments is correct
+if [ "$#" -ne 3 ]; then
+    echo "Usage: $0 <operation> <num1> <num2>"
+    echo "Example: $0 add 5 3"
+    exit 1
+fi
+
+operation=$1
+num1=$2
+num2=$3
+
+case $operation in
+    add)
+        echo "$num1 + $num2 = $(($num1 + $num2))"
+        ;;
+    subtract)
+    echo "$num1 - $num2 = $(($num1 - $num2))"
+        ;;
+    multiply)
+        echo "$num1 * $num2 = $(($num1 * $num2))"
+        ;;
+    divide)
+        # Check for division by zero
+        if [ $num2 -eq 0 ]; then
+            echo "Error: Division by zero is not allowed!"
+            exit 1
+        fi
+        echo "$num1 / $num2 = $(($num1 / $num2))"
+        ;;
+    *)
+        echo "Error: Unknown operation. Supported operations: add, subtract, multiply, divide"
+        exit 1
+        ;;
+esac
+
+--------------------------------------------------------------------------------------
+
+Command Line Arguments = CLAs :  
+===============================
+# how to use calculator script
+sh calculator.sh add 5 3
+sh calculator.sh subtract 10 2
+sh calculator.sh multiply 4 7
+
+sh calculator.sh divide 2 8 
+       $0          $1  $2 $3 
+
+echo "The 1st argument is $1"
+echo "The 2nd argument is $2"
+echo "The 10th argument is ${10}"
+echo The number argument is $#
+echo The list  argument are $@
+echo The list  argument are $*
+The status of the last run command is = $?  
+The process id is = $$
+
+sh calculator.sh divide 2 8 
+echo "The 1st argument is $1"      = divide 
+echo "The 2nd argument is $2"      = 2
+echo "The 3rd argument is $3"      = 8  
+echo "The 10th argument is ${10}"  = 
+echo The number argument is $#     = 3
+echo The list  argument are $@     = [divide, 2, 8]
+echo The list  argument are $*     = [divide, 2, 8]
+The status of the last run command is = $? = 0 / 1-127  
+The process id is = $$
+
+What is the importance of $? in shell scripting??
+
+An argument, also called command line argument, 
+can be defined as input given to a command line 
+to process that input with the help of given command. 
+Argument can be in the form of a file or directory. 
+Arguments are entered in the terminal or console after entering command.
+
+Inequality signs :
+=================
+
+Equality and inequality:
+  -eq  or  == represent equals to  
+          (( 1234 == y )) or [ x -eq y ]
+
+  -ne  or  != represent not equals to 
+              (( x != y)) [ x -ne y ]
+
+  -gt  or  >  represent greater than     
+              (x>y or  x -gt y)
+
+  -lt  or  <  less than    
+              ( x<y or x -lt y )
+
+  -ge  or >=  greater than or equals to
+
+  -le  or <=   less than  or equals to 
+
+
+conditions :
+if statement  
+Syntax:
+if (( conditions ))
+then 
+commands 
+else  
+commands  
+fi
+
+$0 - Name of the Script
+------------------------------
+   echo $0 - It gives the name of the script itself.   
+
+   If you run a script named `myscript.sh`, it will output: `./myscript.sh`
+
+$# - Number of Arguments**
+   echo $# - This variable provides the count of total arguments passed to the script.
+   
+   If you run: `./myscript.sh arg1 arg2 arg3`, it will output: `3`
+
+$* and $@ - All Arguments**
+   - Both `$*` and `$@` give all the arguments passed to the script, but they behave differently when quoted.
+   
+   If you run: `./myscript.sh arg1 arg2 arg3`
+   
+   - For `$*`, it will output: `arg1 arg2 arg3`
+   
+   - For `$@`, it will output each argument as a separate word:  
+     arg1
+     arg2
+     arg3
+     
+$? - Exit Status
+
+   echo $? - This variable provides the exit status of the last command executed. An exit status of `0` usually indicates success, while any other value indicates an error.
+   
+   If you execute a successful command before this, it will output: `0`
+
+echo "Name of the script: $0"
+# Print the total number of arguments
+echo "Total number of arguments: $#"
+# Print all arguments using $* and $@
+echo "All arguments using \$*: $*"
+echo "All arguments using \$@:"
+for arg in "$@"; do
+    echo "$arg"
+done
+# Execute a command to demonstrate $?
+ls /nonexistentfolder 2>/dev/null  # This command will fail, producing a non-zero exit status
+echo "Exit status of the last command (ls /nonexistentfolder): $?"
+# Now let's execute a successful command
+ls . >/dev/null
+echo "Exit status of the last command (ls .): $?"
+
+if Statments 
+========================================
+if statements:
+Syntax:  
+  if [ conditions ]  or (( conditions ))
+  then 
+  commands 
+  fi 
+
+#!/bin/bash
+echo "Please enter your name"
+read name
+echo "$name, welcome to Bank of America Bank"
+echo "Please enter your pin"
+read -s pin  # -s pass a secret variable
+if (( $pin == 1234 ))
+  then
+  echo "Access granted"  
+  fi
+
+if else statements :
+Syntax:  
+  if [ conditions ]  or (( conditions ))
+  then 
+  commands 
+  else
+  commands
+  fi 
+
+if else elif statements :
+example 1:
+=========
+ if [ conditions ]  or (( conditions ))
+  then 
+  commands 
+  else
+  commands
+  elif [ conditions ]  or (( conditions ))
+  then 
+  Command
+  fi 
+
+#!/bin/bash 
+# This script determines if you are eligible to be admitted 
+echo "How much did you pay"
+read price
+if [ $price -ge 1200 ]
+then
+echo "you are admitted"
+elif [ $price -lt 1200 ]
+then
+echo " you have a balance of $((1200 - $price)) "
+echo "Request for an invoice to settle your balance "
+fi
+
+bid.sh 
+   
+#!/bin/bash
+# realtor selling a property
+echo "How much is customer1 offering?"
+read offer1
+echo "How much is customer2 offering?"
+read offer2
+if [ $offer1 -gt $offer2 ]
+then
+echo "Customer1 has a better offer"
+echo "Sell to Customer1"
+
+elif [ $offer1 -lt $offer2 ]
+then
+echo "Customer2 offer is better"
+echo "Sell to Customer2"
+
+else
+echo "We have a tie of $offer1"
+echo "Request for an increase and choose the best possible offer"
+fi
+
+
+user.sh 
+
+#!/bin/bash  
+# This script requires root/sudo access
+#1. Create a new user  
+echo "Please enter your name" 
+read name
+#Add new user  
+sudo useradd $name
+#2. create a group  
+echo "Please enter your group name" 
+read group
+#Add new group 
+sudo groupadd $group
+#3. Add user to the tesla group 
+sudo usermod -aG $group $name
+#4. Add user to the sudoers group 
+sudo echo "$name ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/$name
+#5 check if user and group has been created
+id $name
+
+
+------------------ Modified version of user.sh ----------------------
+
+#!/bin/bash  
+# This script requires root/sudo access
+if [ "$#" -ne 3 ]; then
+    echo "Usage: $0 <name> <group> <sudo: yes or no>"
+    echo "Example: $0 Mike Tesla yes"
+    exit 1
+fi
+
+name=$1
+group=$2
+sudo_access=$3
+
+#1. Create a new user  
+
+#Add new user  
+sudo useradd $name
+if [ "$?" -ne 0 ];then
+    echo "Error creating user $name."
+    echo "this user already exist"
+    exit 1
+fi
+
+
+#2. create a group  
+
+#Add new group 
+sudo groupadd $group
+
+#check if the group creation was successful 
+if [ "$?" -ne 0 ]; then
+    echo "Sorry, the group $group already exists."
+    echo "Do you want to continue? (yes/no)"
+    read response
+    if [ "$response" != "yes" ]; then
+        exit 1
+    fi
+fi
+
+#3. Add user to the tesla group 
+echo " adding$name to $group"
+sudo usermod -aG $group $name
+
+#4. Add user to the sudoers group 
+if [ uid == 0 ]
+then
+sudo echo "$name ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/$name
+echo "$name has been added to the sudoers group"
+else
+echo "sorry only the root can add users to the sudoers group"
+fi
+
+#5 check if user and group has been created
+echo "$name has been created sucessfully"
+id $name
+
+
+Loops 
+
+Loops:
+for  loop  
+=========
+Loops: condition with multiple iterations 
+
+Syntax:
+for (( condition )) 
+do
+execute all command/script until the condition is longer met/satisfied. 
+(And repeat all statement between do and done)
+done
+
+
+for (( initiallation;conditions;inc/dec ))
+{
+  write statements/commands
+}
+
+eg. 
+forloop.sh   
+=========
+#!/bin/bash
+echo "forloop starts"
+for (( i=1;i<6;i++ ))
+do  
+echo $a  
+done  
+echo "forloop ends"
+
+#!/bin/bash
+echo "forloop starts"
+for (( i=10;i<1;i-- ))
+do  
+echo $i  
+done  
+echo "forloop ends"
+
+Expected output:
+================
+a = 1 
+a = 1 + 1 = 2 
+a = 2 + 1 = 3
+a = 3 + 1 = 4 
+a = 4 + 1 = 5
+a = 5 + 1 = 6 
+a = 6 + 1 = 7 
+a = 7 + 1 = 8
+a = 8 + 1 = 9 
+a = 9 + 1 = 10
+loop breaks here 
+a = 10 + 1 = 11 
+
+while loop: ===
+Syntax:
+initiallation 
+while [ condition ]
+do 
+commands/statements
+done
+----
+
+whileloop.sh   
+=========
+#!/bin/bash
+echo "whileloop starts"
+i=1
+while [ $i -le 5 ] 
+do  
+echo "running number test"
+echo $i 
+i=`expr $i + 1` or (($i + 1))
+done  
+echo "whileloop ends"
+
+another example : 
+-------------------
+i
+echo "while loop starts"
+echo "performing load testing for tesla"
+l=10000
+while [ $l -le 90000 ]
+do
+echo "Carrying load of "
+echo $l
+l=`expr $l + 10000 `
+done
+echo "while loop ends"
+
+
+systemctl start|status|restart|stop|enable 
+yum install/remove/updates/upgrade
+
+tomat: 
+
+   catalina.sh | status | restart | stop | start | version
+   catalina.sh start tomcat 
+   catalina.sh stop  tomcat   
+   catalina.sh restart  tomcat
+
+catalina.sh start tomcat
+   $0         $1   $2
+
+
+switch-case Loops 
+--------------------------------
+Syntax for switch case:
+case $1 in  
+    option1)
+      Commands;;
+    option2)
+      Commands;;
+    option3)
+      Commands;;
+    *)
+      Commands;;
+esac
+
+sonar.sh start sonarqube
+#!/bin/bash
+echo " Switch case starts"
+case $1 in
+        start)
+        echo "sonarQube server starting"
+        echo "sonarQube server started" ;;
+        stop)
+        echo "sonarQube server stopping"
+        echo "sonarQube server stopped" ;;
+        restart)
+        echo "sonarQube server restarting"
+        echo "sonarQube server restarted" ;;
+        *)
+        echo "you entered an invalid option"
+        echo "Please enter start, stop or restart option" ;;
+esac
+echo " switch case ends"
+
+functions 
+
+functions :
+  Functions:   
+ A function is a piece of code that perfoms
+ a specific task and avoids repetition/duplication.
+
+ Syntax for switch case:
+usermgt(){}
+filemgt(){}
+packagemgt(){}
+db_backup(){}
+monitoring(){}
+
+usermgt(){
+  echo "Enter the username of the new user"
+  read name
+  sudo useradd
+   $name
+  echo $name account is created successfully
+  tail -1 /etc/passwd
+  grep $name /etc/passwd
+}
+
+filemgt(){
+  if [ -e /etc/passwd ]
+  then
+   echo "File management"
+   echo "The file exist. Please proceed ..."
+   grep $user /etc/passwd
+   touch test.java /home/$user/
+  else
+    echo "It doesn't exist"
+  fi
+}
+
+packagemgt(){
+  sudo yum update -y
+  sudo yum install tree nano vim unzip -y
+}
+db_backup(){
+  cp -r * /tmp/backup/
+}
+monitoring(){
+  df -h
+  free -m
+  top
+}
+usermgt
+filemgt
+
+functions help prevent code duplications 
+-------------------------------------------------
+#!/bin/bash
+# this is a simple function example 
+
+echo " Starting the function definition ..."
+
+funcExample () { 
+echo "We are now INSIDE the function ..."
+}
+funcExample
+
+Debugging : 
+------------------------------
+Debugging problems in scripting  
+===============================
+How do you troubleshoot issues in scripting ?
+run the script in debugging mode  
+$ sh -x scriptName
+
+vi debug.sh   
+==========
+whoami    
+Pwd 
+echo $?   
+whatis ls  
+echo $?  
+echo $$ 
+
+Input output redirection  
+=============================
+redirection: 
+=====================================
+Display the content of /etc/passwd 
+$ tail -5 /etc/passwd 
+
+ec2-user:x:1000:1000:Cloud User:/home/ec2-user:/bin/bash
+Michael:x:1001:1001::/home/Michael:/bin/bash
+Ben:x:1002:1002::/home/Ben:/bin/bash
+Theo:x:1003:1003::/home/Theo:/bin/bash
+Isaac:x:1004:1004::/home/Isaac:/bin/bash
+
+example: 
+--------
+$ tail -5 /etc/passwd  > users.txt
+
+
+example: 
+--------
+$ tail -5 /etc/passwd  >> users2.txt
+
+Lets see what append will do 
+ec2-user:x:1000:1000:Cloud User:/home/ec2-user:/bin/bash
+Michael:x:1001:1001::/home/Michael:/bin/bash
+Ben:x:1002:1002::/home/Ben:/bin/bash
+Theo:x:1003:1003::/home/Theo:/bin/bash
+Isaac:x:1004:1004::/home/Isaac:/bin/bash
+
+Standard output & errors: 
+================================================
+sh debug.sh 
+
+ec2-user
+debug.sh: line 3: Date: command not found
+debug.sh: line 4: Pwd: command not found
+127
+ls: nothing appropriate.
+16
+4272
+
+- Redirect Standard output --   : This will display error messages 
+on the bash terminal and redirect results into log.txt file   
+  
+  sh debug 1> log
+
+[ec2-user@ip-172-31-52-135 ~]$ sh debug.sh 1> log
+debug.sh: line 3: Date: command not found
+debug.sh: line 4: Pwd: command not found
+ls: nothing appropriate.
+[ec2-user@ip-172-31-52-135 ~]$ cat log
+ec2-user
+127
+16
+4287
+
+- Redirect Standard errors --   : This will display standard out messages on the bash terminal and redirect errors into error.txt file   
+  sh debug 2> error.txt   
+  
+check / confirm by displaying error.txt file with this command 
+$ cat error.txt
+
+- Redirect Standard output & errors --  : this will redirect both standard out and errors into the log&error.txt file 
+
+$ sh debug.sh > logerror.txt  2>&1 
+
+[ec2-user@ip-172-31-52-135 ~]$ sh debug.sh > logerror.txt  2>&1
+[ec2-user@ip-172-31-52-135 ~]$ cat logerror.txt 
+ec2-user
+debug.sh: line 3: Date: command not found
+debug.sh: line 4: Pwd: command not found
+127
+ls: nothing appropriate.
+16
+4345
+
+Summary 
+--------------------------
+redirect >
+append >> 
+standard output  1>
+standard errors 2> 
+both standard output and error 2>&1
+
+
+Secure copy (SCP)
+===============================
+
+scp command:
+  It is use to transfer files from one server to another and vice-versa
+  It is good for data migration, application deployment, etc. 
+  scp tranfer files and directory securely using the ssh protocol 
+
+Password for authentication:
+
+scp filename Ben@52.201.217.3 
+scp filename username@ipaddress   
+
+scp -r direname Ben@52.201.217.3 
+scp -r direname username@ipaddress 
+
+ssh-key for authentication:
+
+  scp -i key.pem app.war  ubuntu@3.141.6.6:/home/ubuntu
+
+  scp -i key.pem filename username@ipaddress   
+  scp -i key.pem -r direname ec2-user@52.201.217.3 
+  scp -i key.pem -r direname username@ipaddress 
+
+
+Path to files and directories: 
+=============================
+  Relative path: start From pwd    
+  Absolute path: start From / (root)
+
+
+cronJobs:
+==========
+Scheduling Tasks/Workloads for automation.
+Assignment/Ticket:
+  1. Write a script that monitors servers every minutes 
+     This script should alert management of anomalies 
+  2. Write a script that backup dbServers every midnight
+
+Execution:
+1. We shall use cronJobs and create cron tables to achieve this 
+   Automation and Schedule the tasks to run as expected. 
+
+   cron table   = contains scheduled tasks   
+   crontab -e   = To edit the cron table 
+   crontab -l   = List the cron table
+
+crontab generator online: 
+https://crontab-generator.org/
+
+
+   How to retrict crontab access : 
+sudo vi /etc/cron.allow
+
+or 
+
+sudo vi /etc/cron.deny 
+
+monitor_server.sh
+date
+df -h 
+free -m 
+whoami 
+
+Create Schedule a task to be executed every minute  
+   /home/ec2-user/monitor_server.sh
+   monitor_server.sh
+
+* * * * * /home/ec2-user/monitor_server.sh >/dev/null 2>&1  
+
+0 * * * * /home/ec2-user/monitor_server.sh >/tmp/mylog 2>&1
+
+0 0 0 * * /home/ec2-user/deploy.sh >/dev/null 2>&1
+
+*  = every minute 
+*  = every hour
+*  = every day 
+*  = every week
+*  = every Month 
+==============
+
+
+
+Team:
+Project 1
+========
+ 
+**Team Project: Bash Script for System Management**
+
+**Objective**: Collaborate with your team members to create a comprehensive Bash script that 
+includes functions for User Management, File Management, Package Management, and Service Management.
+
+---
+
+**1. Script Requirements**:
+
+*User Management Functions*:
+1. `add_user [username]`: Adds a new user.
+2. `delete_user [username]`: Deletes an existing user.
+3. `list_users`: List  a minimum of 6 users.
+
+*File Management Functions*:
+1. `create_file [filename]`: Creates a new file.
+2. `delete_file [filename]`: Deletes an existing file.
+3. `list_files [directory]`: Lists all files in a directory.
+
+*Package Management Functions*:
+1. `install_package [package_name]`: Installs a package.
+2. `uninstall_package [package_name]`: Uninstalls a package.
+3. `list_installed_packages`: Lists all installed packages.
+
+*Service Management Functions*:
+1. `start_service [service_name]`: Starts a service.
+2. `stop_service [service_name]`: Stops a service.
+3. `service_status [service_name]`: Checks the status of a service.
+
+---
+
+**2. Script Execution Guide**:
+
+1. Give execute permissions to the script:
+
+   ```bash
+   chmod +x your_script_name.sh
+   ```
+
+2. To run a function from the script:
+
+   ```bash
+   ./your_script_name.sh function_name arguments
+   ```
+
+   For example, to add a user named "john":
+   ```bash
+   ./your_script_name.sh add_user john
+   ```
+
+---
+
+**3. Evaluation Criteria**:
+
+1. **Functionality**:
+   - Each function should work as described without errors. (3 pts each )
+   - The script should handle potential errors gracefully (e.g., trying to delete a non-existent user). (5 pts)
+
+2. **Readability**:
+   - Code should be well-commented, explaining what each function does. (5 pts)
+   - Use meaningful variable names. (2 pts)
+   - Follow a consistent coding style. (5 pts)
+
+3. **Usability**:
+   - The script should provide feedback to the user about what it's doing (e.g., "Adding user...", "User added successfully"). (5pts)
+   - Any potential dangerous operations, like deleting a user, should ask for user confirmation. (5 pts)
+
+
+**4. Deliverables**:
+
+1. The Bash script file (`united_core.sh`). (5 pts)
+2. A documentation file explaining:
+   - How to use the script. (10 pts)
+   - A brief overview of how each function was implemented. (10 pts)
+
+---
+
+**5. Tips**:
+
+- Before making changes to the system, always check if the script is running with root privileges.
+- Make use of commands like `useradd`, `userdel`, `touch`, `rm`, `apt-get`, and `systemctl` to manage users, files, packages, and services respectively.
+- Always test each function thoroughly after implementation to ensure it works as expected.
+
+---
+
+**Good luck and happy scripting!**
+
+
+

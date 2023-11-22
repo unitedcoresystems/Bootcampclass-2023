@@ -1,0 +1,409 @@
+Jenkins: 
+====================================================
+
+DevOps is all about automation   
+7Cs:
+   CD---> Continuous Development [Git/GitHub/IDEs /GitBranch/gitTag]
+   CI --> Continuous Integration [Git/GitHub/Jenkins/maven/sonarqube/nexus] [Build and Release Engineering]
+   CD --> Continuous Delivery [build=packages/artifacts-->testing/UAT--manualApproval--- prod]
+   CD --> Continuous Deployment [build=packages/artifacts-->testing/UAT--auto--- prod]
+   CM --> Continuous Monitoring
+   CS --> Continuous security
+   CT --> Continuous Testing 
+
+
+What is Jenkins ? :
+Jenkins is open source automation server for continuous integration (CI) 
+and continuoues delivery (CD).It provides hundreds of plugins to support building, testing, 
+deploying and automating any project.
+
+How do you use Jenkins for CI/CD automation ?
+In Unitedcore, we manage federated JAVA based web & enterprise applications (web.ear) 
+for Finacial Technology (Fintech) Clients.
+
+Note: over 90% of companies uses FinTech today.
+
+Examples of Companies:
+  Banks : Bank of America, DCU, Chase, Capital One
+  Insurance : Gico, Progressive, MetLife  
+  Payment Gateways: Zelle, paypal, visa, master, interac, pushpay, cashapp, zelle, mobileMoney  
+  E-commerce : amazon, ebay, alibaba, 
+  Telecoms  :  Verizon, T-mobile, at&t, Sprint, MTN, Vadafone, 
+  Health care : NIS, NIH, 
+  Retail : Walmart, Cotsco, BJ's 
+  Airlines : AA, UA, BA, KLM, Spirit, Delta
+  Sports : FIFA, UEFA, CAF, NBA, UFC, 
+  Governments : DOD, IRS, CRA
+  Betting : 1XBET,DraftKing, Betway, Sporty Bet
+  Oil & Gas : Shell, Exxon, Total, BP,  
+  Crypto : Coinbase, FTX
+  Taxi :  Uber, Lyft 
+  Food chain : Grubhub, Ubereats, 
+  IT Companies : AWS, AZURE, GCP  
+  Automotive : Tesla, Toyota, Mercedes, BMW, Honda, GMC, 
+
+
+
+Jenkins is also a cross platform application meaning it can be installed on Multiple Platforms like :  
+  Linux 
+  Windows 
+  macOS 
+  Solaris 
+
+  IQ: Explain you EXPERIENCE in applying Jenkins?
+
+  1. I have installed and configure Multiple Jenkins servers 
+
+  Installation Resources:  
+==============================================================
+Jenkins installation:
+Which edition of jenkins have you used in Production??
+ Installation of Jenkins:  Community Edition (CE)
+     Jenkins CE  
+     Jenkins EE - CloudBase Jenkins  
+
+How to install Jenkins:  
+https://github.com/unitedcoresystems/Bootcampclass-2023/tree/dev/Package_management/Jenkins_installation
+https://www.jenkins.io/doc/book/installing/
+www.jenkins.io
+
+http://13.58.77.16:8080/
+
+Managing Jenkins : 
+
+   ec2-user:x:1000:1000:Cloud User:/home/ec2-user:/bin/bash
+   jenkins:x:987:987:Jenkins Automation Server:/var/lib/jenkins:/bin/false
+
+   Sudo Vi /etc/passwd  ------- change jenkins tage to bash
+
+   Customize Jenkins:
+=======================================================================
+
+Jenkins Project 
+==================================================================
+Zelle Client:
+
+
+Java Web Application.
+
+1. We have created and shared the project GitHub repo  with developers: 
+
+https://github.com/unitedcoresystems/maven-web-application.git
+
+
+2. Jenkins GitHub Integration:
+
+
+  Demo: Uninstall git on the server to demonstrate git intergration
+
+   - install git Plugin in Jenkins / Install git in your jenkins server    
+       sudo yum -y install git
+   - authenticate Jenkins to pull code from GitHub using credential MGT  
+       UserName / Token 
+       private repo:
+       AUTHENTICATION: 
+          username: tiffy2009
+          password: admin123 
+          token: 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 
+  
+       Credentials: 
+
+3. Jenkins maven Integration:  
+
+Jenkins-Dashboard--manage Jenkins ---  Global Tool configuration --maven   
+  project -- java-web-app
+  Building war: /var/lib/jenkins/workspace/webapp/target/myapps.war   
+
+mvn clean package 
+
+4.Jenkins SonarQube Integration:  mvn sonar:sonar:
+
+
+pom.xml
+<properties>
+      <jdk.version>1.8</jdk.version>
+      <spring.version>5.1.2.RELEASE</spring.version>
+      <junit.version>4.11</junit.version>
+      <log4j.version>1.2.17</log4j.version>
+      <sonar.host.url>http://3.140.249.165:9000/</sonar.host.url>
+      <sonar.login>admin</sonar.login>
+      <sonar.password>admin</sonar.password> 
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+      <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+   </properties>
+
+Open required ports in SonarQube server to allow traffic from jenkins server
+         port 9000 should be open in the firewall/security group
+
+
+5. Jenkins Nexus Integration:  mvn deploy:
+   Upload build artifacts:
+
+   http://3.16.23.13:8081/repository/zelle-releases/    
+
+   http://3.16.23.13:8081/repository/zelle-snapshot/
+
+1. Create repos in nexus-UI to upload artifacts
+      http://3.84.49.142:8081/repository/unitedcore-snapshots/ 
+      http://3.84.49.142:8081/repository/unitedcore-releases/    
+
+2. modify 'distributionManagement' tag with nexus repos details  in  pom.xml
+        vi pom.xml
+        distributionManagement>
+
+   <distributionManagement>
+      <repository>
+        <id>nexus</id>
+        <name>Unitedcore Releases Nexus Repository</name>
+        <url>http://3.16.23.13:8081/repository/zelle-releases/</url>
+      </repository>
+      
+      <snapshotRepository>
+        <id>nexus</id>
+        <name>Unitedcore Snapshot Nexus Repository </name>
+        <url>http://3.16.23.13:8081/repository/zelle-snapshot/</url>
+      </snapshotRepository>
+      
+  </distributionManagement>
+  
+  <build>
+    <finalName>Zelle</finalName>
+
+3. modify /maven/conf/setting.xml in maven JENKINS-server with login credentials  
+=# vi /nexus/conf/setting.xml
+sudo vi  /var/lib/jenkins/tools/hudson.tasks.Maven_MavenInstallation/maven3.8.6/conf/settings.xml
+sudo vi  tools/hudson.tasks.Maven_MavenInstallation/maven3.8.6/conf/settings.xml
+vi /var/lib/jenkins/tools/hudson.tasks.Maven_MavenInstallation/maven3.9.1/conf/settings.xml
+sudo vi /var/lib/jenkins/tools/hudson.tasks.Maven_MavenInstallation/maven3.9.1/conf/settings.xml
+
+            <server>
+                <id>nexus</id>
+                <username>admin</username>
+                <password>admin123</password>
+            </server> 
+
+status code: 401, reason phrase: Unauthorized (401) -> [Help 1]
+            
+    4. Open required ports[8081] in Nexus server to allow traffic from jenkins server
+
+
+JENKINS-TOMCAT INTEGRATION:
+
+============================= 
+1. INSTALL 'Deploy to container' Plugin on Jenkins UI
+   This plugin allows you to deploy a war to a container after a successful build. 
+
+      100.26.217.86:8080
+      172.31.50.230:8080 
+      curl 100.26.217.86:8080
+      http://100.26.217.86:8080/
+
+add Tomcat plugins
+
+target/*.war
+
+add url of tomcat server
+
+
+2. ADD A TOMCAT USER in /tomcat9/conf/tomcat-users.xml 
+   sudo vi /tomcat9/conf/tomcat-users.xml
+   <user username="jonas" password="admin123" roles="manager-gui,admin-gui,manager-script"/>
+   <user username="isaac" password="admin123" roles="manager-gui,admin-gui,manager-script"/>
+
+   Server returned HTTP response code: 403 for URL:
+
+    External Access:
+
+3.  vi /opt/tomcat9/webapps/manager/META-INF/context.xml
+  
+     http://100.26.217.86:8080/paypal  
+
+<!-- <Valve className="org.apache.catalina.valves.RemoteAddrValve"
+         allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" />  -->
+
+===============================================================================
+11 October 2023:
+====================
+Zelle-webapp =  
+Onboard a new project for Zelle  web-app =  
+Create a Jenkins job to test, build and deploy the application to a tomcat server
+Requirements:
+  1. Create Team in our GitHub company a/c add and and assign member's roles and tasks
+  2. Create a github repository for the  project  
+  3. share the repository details for Team members and developers  
+  4. Install and configure:
+      jenkins and setup for ci/cd
+      setup jenkins-maven integration for builds   
+      jenkins-SonarQube integration for CodeQualityAnalysis  
+      jenkins-nexus integration for artifactory   
+      jenkins-tomcat integration as appSever Deployment
+      nginx as web server
+  6. Create a Jenkins job for the project  
+  7. configure Jenkins:
+        maven Integration  
+        SonarQube Integration  
+        nexus integration  
+        tomcat integration  
+        git Integration
+        GitHub  Integration
+        notification [slack, email]
+
+  git clone https://github.com/unitedcoresystems/maven-web-application.git   = privateRepo 
+   
+  git clone https://github.com/unitedcoresystems/maven-web-application.git  = publicRepo
+
+1. Clone, Import or fork the project repo:  
+    https://github.com/unitedcoresystems/maven-web-application.git 
+
+   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 
+
+   [ERROR] Failed to execute goal org.sonarsource.scanner.maven:sonar-
+   maven-plugin:3.9.1.2184:sonar (default-cli) on project maven-web-application: 
+    Not authorized. Please check the properties sonar.login and sonar.password. -> [Help 1]
+[ERROR] 
+
+
+   http://3.16.23.13:8081/repository/zelle-releases/    
+
+   http://3.16.23.13:8081/repository/zelle-snapshot/
+
+
+    http://44.204.71.5:8177/Zelle  
+
+========================
+How do you automate builds in Jenkins?   
+======================================
+Build Now:  is a limited measure of automation  
+
+Automate builds using build triggers.
+===================================== 
+1. build periodically = Timer [cronjob ] =   :
+     run this job every mid night [database backup]  
+     run this job every 2am       [database backup] 
+     run this job every minute * * * * *    min--hr--day--wk--month
+     run this job every HOUR H * * * * 
+   Started by timer:
+     database backup
+     system Monitoring   
+     system update   
+     application performance Monitoring
+        minutes =    1  2  3      ... 100
+        jobs    =    j1 j2 j3         j100 
+
+2. poll SCM - Timer + Changes in SCM via   :
+     * * * * * Every minute Jenkins will check for changes in the src to trigger a build  
+     H * * * * Every hour Jenkins will check for changes in the src to trigger a build
+     Software builds 
+     application build and Deployment
+     Started by an SCM change:
+ demo: please change the SRC on git 
+
+
+Started by user: unitedcore
+Started by timer: 
+
+3. GitHub-webhook :
+    GitHub will notify Jenkins to trigger a build once there is a change in the scm [src]  
+     
+    Jenkins Server url =  http://13.58.77.16:8080/
+    GitHub-webhook     =  http://13.58.77.16:8080/github-webhook/   
+
+     Software builds 
+     application build and Deployment
+     Started by GitHub push by tiffy2009 
+
+    Started by GitHub push by tiffy2009
+
+ As soo as a code is commited in Git and  API-CALLS to jenkins is made 
+
+1:00PM ----   
+1:05PM ---- 
+2:00PM ----  
+
+4. Build other projects:  
+5. Build after other projects:  
+     Upstrean project  
+       1. app-Test   
+       2. app-Build+Release
+       3. app-deployment-UAT/QA  
+       4. app_deployment-Production   
+       5. app_apm  ( appliction Performance monitoring)
+       6. app-logMGT  
+       7. app-discovery[webSevers/Services]       
+
+
+Started by upstream project "Zelle-dev" build number 12
+originally caused by:
+ Started by user United Core Systems
+
+       Downstream project 
+             deploy2Tomcat
+
+Started by user United Core Systems
+  Project Zelle-uat
+  Upstream Projects
+    Zelle-dev
+Downstream Projects
+    Zelle-prod
+
+  Zelle-dev---->Zelle-uat---->Zelle-prod  
+=====================================
+Types of Jenkins jobs:
+======================
+- Freestyle  project  ===   :
+     Software build
+     application deployment     
+     server Monitoring / apm    
+ clone--mvn package sonar:sonar deploy  40mins
+
+- Maven project  :
+    - reduces the configurations to build with Maven    
+          mvn package  [ pom.xml, src]   
+          apple [ apple.xml, src]      
+    - clean package 
+   clone--mvn package sonar:sonar deploy  25mins
+  install Maven integration plugin to run jobs using maven project: in plugins
+
+ look for  maven Integration
+  
+Run only if build succeed
+- Pipeline projects  :
+
+- Mulit-Branch Pipeline projects  :
+
+Jenkins options:
+  1. Discard Old Build
+     Building in workspace /var/lib/jenkins/workspace/Zelle-app
+
+  2. Disable this project = Zelle-app: maven / sonarqube / nexus / tomcat  
+          This project is currently disabled 
+      schedule Maintainance of servers 
+         Jenkins--Git/GitHub--Maven--sonarqube--nexus---tomcat 
+            H * * * * 
+      database backup 
+
+  3. Delete workspace before build starts 
+
+  4. Add timestamps to the Console Output 
+      sudo timedatectl set-timezone America/New_York
+
+  5. build with parameters  :
+
+Building in workspace /var/lib/jenkins/workspace/Zelle-app
+
+Jenkins Home Directory = /var/lib/jenkins/
+Jenkins User = jenkins  
+su - jenkins  = run as a normal user  
+sudo su - jenkins  = run as the root user      
+
+mavenHomeDir = /opt/maven   
+JHD = /var/lib/jenkins/:
+   workspace/Zelle-app/src pom.xml    
+   jobs/Zelle-app/1 2 3 4 5 6 7 8 
+   users/users.xml     
+   plugins/deploy.jpi 
+   credentials.xml
+   config.xml 
+      <useSecurity>true</useSecurity>
+      <useSecurity>false</useSecurity>
