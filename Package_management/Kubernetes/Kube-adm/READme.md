@@ -17,14 +17,15 @@
 #### 1) Steps Only For Kubernetes Master
 
 ####  copy and run this script in master and worker nodes
-- [master node for Kubernetes ](./master-k8s.sh)
-- [worker nodes for Kubernetes ](./worker-k8s.sh)
+[master node for kubernetes ](./master-k8s.sh)
+[worker nodes for kubernetes ](./worker-k8s.sh)
 
 #### 2) Follow this step to setup Kubernetes Master
 
-- [How to setup Kubernetes master ](./master-setup.md)
+[How to setup kubernetes master ](./master-setup.md)
 
-#### 3) Follow these steps to add the Worker Machines to Kubernetes Master
+#### 3) Follow this steps to add the Worker Machines to Kubernates Master
+=========================================
 
 Copy kubeadm join token from and execute in Worker Nodes to join to cluster
 
