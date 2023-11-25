@@ -13,7 +13,7 @@
 
 #### Select the type of application to install and configure kubenetes
 
-[Kube ADM](./Kube-adm)
-[KOPS](./KOPS)
-[AWS EKS](./EKS)
+- [Kube ADM](./Kube-adm)
+- [KOPS](./KOPS)
+- [AWS EKS](./EKS)
 
