@@ -17,40 +17,19 @@
 #### 1) Steps Only For Kubernetes Master
 
 ####  copy and run this script in master and worker nodes
-[master node for kubernetes ](./master-k8s.sh)
-[worker nodes for kubernetes ](./worker-k8s.sh)
+- [master node for Kubernetes ](./master-k8s.sh)
+- [worker nodes for Kubernetes ](./worker-k8s.sh)
 
 #### 2) Follow this step to setup Kubernetes Master
 
-[How to setup kubernetes master ](./master-setup.md)
+- [How to setup Kubernetes master ](./master-setup.md)
 
-#### 3) Follow this steps to add the Worker Machines to Kubernates Master
-=========================================
+#### 3) Follow these steps to add the Worker Machines to Kubernetes Master
 
-Copy kubeadm join token from and execute in Worker Nodes to join to cluster
+Copy kubeadm join token from master and execute in Worker Nodes to join to cluster
 
 **Example**
 ```sh
 sudo kubeadm join 10.0.0.6:6443 --token xmzufh.e0nu3kb5ohijfxyh \
         --discovery-token-ca-cert-hash sha256:579b6a53bd00c8483f5150b9fb521b6431fc38b1ac716b8b9a5f668928a93771
 ```
-
-#### 4) How to deploy Sample Application into Kubenetes cluster
-
-**Deploy Nginx Application**
-
-```sh
-kubectl run nginx-demo --image=nginx --port=80 
-kubectl expose pod nginx-demo --port=80 --target-port=80 --type=NodePort
-```
-
-**Get Node Port details**
-
-```sh
-kubectl get services
-```
-
-
-
-
-
