@@ -1,5 +1,6 @@
 #!/bin/bash
-#i1) Switch to root user [ sudo -i]
+
+#1) Switch to root user [ sudo -i]
 
 sudo hostnamectl set-hostname  master
 
@@ -75,7 +76,7 @@ apt-get install -y apt-transport-https ca-certificates curl
 
 # Download the Google Cloud public signing key:
 
-curl -fsSLo /etc/apt/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
+curl -fsSL https://dl.k8s.io/apt/doc/apt-key.gpg | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-archive-keyring.gpg
 
 # Add the Kubernetes apt repository:
 
@@ -95,9 +96,3 @@ apt-mark hold kubelet kubeadm kubectl
 systemctl daemon-reload
 systemctl start kubelet
 systemctl enable kubelet.service
-
-# initialise the control plane
-kubeadm init 
-
-su - ubuntu
-

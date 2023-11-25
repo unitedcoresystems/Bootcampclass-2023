@@ -14,93 +14,30 @@
 - Attach Security Group to EC2 Instance/nodes.
 - Assign hostname & login as ‘root’ user because the following set of commands need to be executed with ‘sudo’ permissions.
 
+#### 1) Steps Only For Kubernetes Master
 
-#### Copy this script and run in master and worker nodes
+####  copy and run this script in master and worker nodes
 [master node for kubernetes ](./master-k8s.sh)
 [worker nodes for kubernetes ](./worker-k8s.sh)
 
-#### 1) Steps Only For Kubernetes Master
+#### 2) Follow this step to setup Kubernetes Master
 
-**Switch to the root user.**
-```sh
-sudo su -
-```
+[How to setup kubernetes master ](./master-setup.md)
 
-**Initialize Kubernates master by executing below commond.**
-```sh
-kubeadm init
-```
-
-**If you want to initialize kubernetes on Public EndPoint(Not recommended in real time). You can use below option Replace PUBLIC_IP with actual public ip of your kubernetes master node (Recommended to use Elastic(Create and assign elastic IP to master node and use that Elastic IP below)).Replace PORT with 6443 (API Server Port).**
-
-```sh
-kubeadm init --control-plane-endpoint "PUBLIC_IP:PORT"
-```
-```sh
-# IF Error
-sudo kubeadm init --cri-socket /run/containerd/containerd.sock
-```
-
-**Configure kubectl exit as root user & exeucte as normal ubuntu user**
-
-```sh
-exit
-```
-
-```sh
-# run as a standard user 
-mkdir -p $HOME/.kube
-sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-sudo chown $(id -u):$(id -g) $HOME/.kube/config
-```
-
-**To verify, if kubectl is working or not, run the following command.**
-
-```sh
-kubectl get pods -o wide -n kube-system
-```
-
-**You will notice from the previous command, that all the pods are running except one: ‘core-dns’. For resolving this we will install a # pod network addon like Calico or Weavenet ..etc.** 
-
-
-Note: Install any one network addon don't install both. Install either weave net or calico.
-
-To install Weaven net run the following command.
-
-```sh
-kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml
-```
-
-Or To install the calico network addon, run the following command:
-
-```sh
-kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml 
-```
-
-```sh
-kubectl get nodes
-kubectl get pods 
-kubectl get pods --all-namespaces
-```
-
-**Get token**
-```sh
-kubeadm token create --print-join-command
-```
-
-## Adding Worker Machines to Kubernates Master
+#### 3) Follow this steps to add the Worker Machines to Kubernates Master
 =========================================
 
 Copy kubeadm join token from and execute in Worker Nodes to join to cluster
 
-
-**Check Nodes**
+**Example**
 ```sh
-# kubectl commonds has to be executed in master machine.
-kubectl get nodes
+sudo kubeadm join 10.0.0.6:6443 --token xmzufh.e0nu3kb5ohijfxyh \
+        --discovery-token-ca-cert-hash sha256:579b6a53bd00c8483f5150b9fb521b6431fc38b1ac716b8b9a5f668928a93771
 ```
 
-**Deploy Sample Application**
+#### 4) How to deploy Sample Application into kubenetes cluster
+
+**Deploy Nginx Application**
 
 ```sh
 kubectl run nginx-demo --image=nginx --port=80 
@@ -113,9 +50,6 @@ kubectl expose pod nginx-demo --port=80 --target-port=80 --type=NodePort
 kubectl get services
 ```
 
-## install Kubectl
-
-install [kubectl.sh](./install-kubectl.sh)
 
 
 
