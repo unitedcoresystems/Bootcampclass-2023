@@ -1,12 +1,14 @@
 #!/bin/bash
-#i1) Switch to root user [ sudo -i]
 
-sudo hostnamectl set-hostname  node1/master
+#1) Switch to root user [ sudo -i]
+
+sudo hostnamectl set-hostname  node2
 
 #2) Disable swap & add kernel settings
 
 swapoff -a
 sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
+
 
 #3) Add  kernel settings & Enable IP tables(CNI Prerequisites)
 
@@ -65,7 +67,7 @@ sed -i 's/SystemdCgroup \= false/SystemdCgroup \= true/g' /etc/containerd/config
 systemctl restart containerd
 systemctl enable containerd
 
-5) Installing kubeadm, kubelet and kubectl
+#5) Installing kubeadm, kubelet and kubectl
 
 # Update the apt package index and install packages needed to use the Kubernetes apt repository:
 
@@ -74,7 +76,7 @@ apt-get install -y apt-transport-https ca-certificates curl
 
 # Download the Google Cloud public signing key:
 
-curl -fsSLo /etc/apt/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
+curl -fsSL https://dl.k8s.io/apt/doc/apt-key.gpg | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-archive-keyring.gpg
 
 # Add the Kubernetes apt repository:
 
@@ -94,8 +96,3 @@ apt-mark hold kubelet kubeadm kubectl
 systemctl daemon-reload
 systemctl start kubelet
 systemctl enable kubelet.service
-
-# replace token with yours 
-<!--sudo kubeadm join 10.0.0.6:6443 --token xmzufh.e0nu3kb5ohijfxyh \
-        --discovery-token-ca-cert-hash sha256:579b6a53bd00c8483f5150b9fb521b6431fc38b1ac716b8b9a5f668928a93771
---> 
