@@ -18,7 +18,9 @@
 
 ####  copy and run this script in master and worker nodes
 - [master node for Kubernetes ](./master-k8s.sh)
-- [worker nodes for Kubernetes ](./worker-k8s.sh)
+- [worker node 1 for Kubernetes ](./node1.sh)
+- [worker node 2 for Kubernetes ](./node2.sh)
+
 
 #### 2) Follow this step to setup Kubernetes Master
 
