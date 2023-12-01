@@ -31,6 +31,7 @@
  ```
  ##  2a) install AWSCLI using the apt package manager
   ```sh
+ sudo apt update -y
  sudo apt install awscli -y 
  ```
  ## or 2b) install AWSCLI using the script below
