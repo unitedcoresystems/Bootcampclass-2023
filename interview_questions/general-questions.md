@@ -58,11 +58,11 @@ ANSWER:
 ANSWER:
 - **Question 29: What was the toughest challenge you've ever faced?**
 ANSWER:
-- **Question 30: What are your goals?**
+- **Question 30: Where do you see yourself in 5 years?**
 ANSWER:
 - **Question 31: What was the toughest part of your last job?**
 ANSWER:
-- **Question 32: Looking back on your last position, have you done your best work?**
+- **Question 32: Looking back on your last position, what are some of your best experience?**
 ANSWER:
 - **Question 33: How do you define success...and how do you measure up to your own
 definition?**
