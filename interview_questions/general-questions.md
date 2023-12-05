@@ -1,3 +1,5 @@
+# 35 General nterview Questions 
+
 - **Question 1: Tell me about yourself?**
 ANSWER:
 - **Question 2: What are your greatest strengths?** 
