@@ -14,6 +14,8 @@ kubeadm init
 ### 3. Configure kubectl exit as root user & exeucte as normal ubuntu user
 ```sh
 exit
+``` 
+```sh
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
