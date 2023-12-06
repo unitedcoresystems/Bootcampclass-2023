@@ -12,7 +12,7 @@ kubeadm init
 ```
 
 ### 3. Configure kubectl exit as root user & exeucte as normal ubuntu user
-**Note**run this command to exit from root 
+**Note** Run this command to exit from root 
 ```sh
 exit
 ``` 
