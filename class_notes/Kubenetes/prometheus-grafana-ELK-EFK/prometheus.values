@@ -1129,11 +1129,11 @@ alertmanagerFiles:
     receivers:
       - name: 'gmail-notifications'
         email_configs:
-        - to: legah2000@gmail.com
-          from: mylandmarktech@gmail.com
+        - to: Issacntim@gmail.com
+          from: unitedcoresystems@gmail.com
           smarthost: smtp.gmail.com:587
-          auth_username: mylandmarktech@gmail.com
-          auth_identity: mylandmarktech@gmail.com
+          auth_username: unitedcoresystems@gmail.com
+          auth_identity: unitedcoresystems@gmail.com
           auth_password: Mercy@2012
           send_resolved: true
           headers:

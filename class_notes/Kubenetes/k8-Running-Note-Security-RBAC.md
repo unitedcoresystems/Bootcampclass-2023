@@ -573,7 +573,7 @@ subjects:
 - kind: User
   name: Bode
 - kind: User
-  name: Simon
+  name: Issac
  # Map with username
   apiGroup: rbac.authorization.k8s.io
 roleRef:
