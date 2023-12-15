@@ -197,27 +197,27 @@ spec:
 
 ### Generate self signed certificates
 ```
-$ openssl req -x509 -nodes -days 365 -newkey rsa:2048 -out mithun-ingress-tls.crt -keyout mithun-ingress-tls.key -subj "/CN=javawebapp.mithuntechdevops.co.in/O=mithun-ingress-tls"
+$ openssl req -x509 -nodes -days 365 -newkey rsa:2048 -out united-ingress-tls.crt -keyout united-ingress-tls.key -subj "/CN=javawebapp.unitedcoresystems.comtechdevops.co.in/O=united-ingress-tls"
 
 # Create secret for with your certificate .key & .crt file
 
-$ kubectl create secret tls mithun-ingress-tls --namespace default --key mithun-ingress-tls.key --cert mithun-ingress-tls.crt
+$ kubectl create secret tls united-ingress-tls --namespace default --key united-ingress-tls.key --cert united-ingress-tls.crt
 ```
 ### Mention tls/ssl(certificate) details in ingress
 ```
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: mithuntechappingressrule
+  name: unitedcoreappingressrule
   namespace: test-ns
 spec:
   ingressClassName: nginx
   tls:
   - hosts:
-      - mithuntechdevops.co.in
-    secretName: mithun-ingress-tls
+      - unitedcoresystems.comtechdevops.co.in
+    secretName: united-ingress-tls
   rules:
-  - host: mithuntechdevops.co.in
+  - host: unitedcoresystems.comtechdevops.co.in
     http:
       paths:
       - pathType: Prefix
