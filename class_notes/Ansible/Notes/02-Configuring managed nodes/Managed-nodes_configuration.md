@@ -5,7 +5,7 @@
 - Make sure that you change the key permissions to 400
 ```
    $ chmod 400 ansible-key.pem
-   $ ssh -i "ansible-key.pem" ubuntu@ec2-54-151-14-195.us-west-1.compute.amazonaws.com
+   $ ssh -i "ansible-key.pem" ubuntu@ec2-54-151-14-195.us-east-1.compute.amazonaws.com
    $ sudo su - ansible
    $ ansible
 ```

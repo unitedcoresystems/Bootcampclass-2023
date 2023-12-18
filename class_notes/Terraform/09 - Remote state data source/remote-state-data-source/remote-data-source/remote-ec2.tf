@@ -18,7 +18,7 @@ data "terraform_remote_state" "network" {
   config = {
     bucket = "my-terraformstate-Unitedcore-2023-buc"
     key    = "terraform/terraform.tfstate"
-    region = "us-west-1"
+    region = "us-east-1"
   }
 }
 

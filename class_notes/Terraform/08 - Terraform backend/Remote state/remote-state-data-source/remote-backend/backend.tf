@@ -12,7 +12,7 @@ terraform {
     bucket = "my-terraformstate-Unitedcore-2023-buc"
     key = "terraform/terraform.tfstate"
     dynamodb_table = "terraform-lock"
-    region = "us-west-1"
+    region = "us-east-1"
 
  }
 }
@@ -52,6 +52,6 @@ resource "aws_dynamodb_table" "tf_lock" {
 
  # Provider Block
 provider "aws" {
-   region  = "us-west-1"
+   region  = "us-east-1"
    profile = "Unitedcore"
  }

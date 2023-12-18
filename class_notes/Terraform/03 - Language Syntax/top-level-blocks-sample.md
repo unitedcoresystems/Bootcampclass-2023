@@ -14,7 +14,7 @@ terraform {
   backend "s3" {
     bucket = "terraform-Unitedcore-2023"
     key    = "prod/terraform.tfstate"
-    region = "us-west-2"
+    region = "us-east-1"
     # For State Locking
     dynamodb_table = "terraform-lock"
   }
@@ -38,7 +38,7 @@ resource "aws_dynamodb_table" “tf_lock" {
 # Block-2: **Provider Block**
 provider "aws" {
   profile = "default" # AWS Credentials Profile configured on your local desktop terminal  $HOME/.aws/credentials
-  region  = "us-west-2"
+  region  = "us-east-1"
 }
 
 # Block-3: **Resource Block**

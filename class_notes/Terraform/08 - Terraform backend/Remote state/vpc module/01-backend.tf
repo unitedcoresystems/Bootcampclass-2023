@@ -13,7 +13,7 @@ terraform {
     key = "terraform/terraform.tfstate"
     dynamodb_table = "terraform-lock"
 
-    region = "us-west-1"
+    region = "us-east-1"
 
  }
 }
@@ -48,6 +48,6 @@ resource "aws_dynamodb_table" "tf_lock" {
 
  # Provider Block
 provider "aws" {
-   region  = "us-west-1"
+   region  = "us-east-1"
    profile = "Isaac"
  }

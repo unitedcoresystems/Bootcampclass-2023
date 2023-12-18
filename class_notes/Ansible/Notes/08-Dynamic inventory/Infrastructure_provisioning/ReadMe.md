@@ -84,7 +84,7 @@ sudo apt-get install -y python3-boto3
 # Configure the ansible.cfg file to read the inventory from the aws_ec2.yaml file
 plugin: aws_ec2
 regions:
-  - us-west-2
+  - us-east-1
 keyed_groups:
   - key: hostname
     prefix: ip-address
