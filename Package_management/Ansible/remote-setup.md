@@ -1,23 +1,27 @@
 **Setting up remote ansible server**
 1. Configure remote ssh on vscode with user as ubuntu
 2. Log into the remote server as ubuntu and switch user to ansible
-
-        $ sudo su - ansible
+```
+         sudo su - ansible
+```
 3. Create .ssh directory in the home of ansible
-   
-        $ sudo mkdir .ssh
-        $ sudo chown -R ansible:ansible .ssh
+```   
+         sudo mkdir .ssh
+         sudo chown -R ansible:ansible .ssh
+```
 4. Copy the authorized keys from the home of ubuntu to the home of ansible
   - cd into the .ssh directory and run the command below.
-
-        $ sudo cp /home/ubuntu/.ssh/authorized_keys .
-
+```
+         sudo cp /home/ubuntu/.ssh/authorized_keys .
+```
   - Change ownership of the key to ansible
-
-         $ sudo chown ansible:ansible authorized_keys
+```
+          sudo chown ansible:ansible authorized_keys
+```
 5. Also change the ownership of /etc/ansible from root to ansible
-
-        $ sudo chown -R ansible:ansible /etc/ansible
+```
+         sudo chown -R ansible:ansible /etc/ansible
+```
 6. Now change the default user in the vscode config to log in as ansible
 ```
 Host Ansible
