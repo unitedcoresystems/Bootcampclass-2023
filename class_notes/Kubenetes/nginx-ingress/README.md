@@ -23,7 +23,7 @@ In the case of NGINX, the Ingress controller is deployed in a pod along with the
 ```
 $ git clone https://github.com/unitedcoresystems/Bootcampclass-2023.git
 
-$ cd class_notes/Kubenetes/nginx-ingress/deployments
+$ cd Bootcampclass-2023/class_notes/Kubenetes/nginx-ingress/deployments
 ```
 ## 2. Create a Namespace And SA
 
