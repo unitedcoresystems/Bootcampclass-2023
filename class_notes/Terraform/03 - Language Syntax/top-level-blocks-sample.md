@@ -12,7 +12,7 @@ terraform {
   
   # Adding Backend as S3 for Remote State Storage with State Locking
   backend "s3" {
-    bucket = "terraform-mylandmark"
+    bucket = "terraform-Unitedcore-2023"
     key    = "prod/terraform.tfstate"
     region = "us-west-2"
     # For State Locking

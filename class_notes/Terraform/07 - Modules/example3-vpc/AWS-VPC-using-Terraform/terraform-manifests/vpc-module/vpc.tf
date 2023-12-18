@@ -33,7 +33,7 @@ module "vpc" {
     }
 
   tags = {
-    Owner = "Landmark"
+    Owner = "Unitedcore"
     Environment = "dev"
   }
   vpc_tags = {
