@@ -13,12 +13,28 @@ have python2 or python3 installed on them.
     https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html
 
 **Installing Ansible on Ubuntu**
+
+Create a new user - ansible 
 ```
    sudo adduser ansible 
+   sudo hostname ansible 
+```
+Add user - ansible to sudoers file and swtich to ansible user 
+```
    echo "ansible ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/ansible 
    sudo su - ansible 
+```
+Add repository
+```
    sudo apt-add-repository ppa:ansible/ansible 
+```
+Install Ansible 
+```
    sudo apt install ansible -y
+```
+Change ownership of Ansible home directory 
+```
+sudo chown ansible:ansible -R /etc/ansible 
 ```
 **Ansible installation on REDHAT EC2**
 
