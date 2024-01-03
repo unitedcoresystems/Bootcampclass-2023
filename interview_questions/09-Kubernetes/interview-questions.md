@@ -1,6 +1,7 @@
 Interview: Kubernetes for DevOps – 12 Common Questions
 
 Question 1. What is Kubernetes?
+
 ➢ Kubernetes is an open-source container orchestration platform originally
 developed by Google. It automates the deployment, scaling, and management
 of containerized applications. Containers allow developers to package an
