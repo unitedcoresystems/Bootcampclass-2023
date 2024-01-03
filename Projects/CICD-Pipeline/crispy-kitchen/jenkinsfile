@@ -1,0 +1,53 @@
+pipeline{
+  agent any
+  tools {
+    maven 'maven3.9.5'
+
+  }
+  
+  //options{}
+  //triggers{}
+  
+
+  stages {
+        stage('1Clone'){
+          steps{
+            sh "echo 'cloning the latest application version' "
+            git branch: 'main', changelog: false, credentialsId: 'Git-token', poll: false, url: 'https://github.com/unitedcoresystems/maven-web-application.git'
+            sh "echo 'latest application version available for testing and build' "
+          }
+        }
+
+  stage('2TestBuild'){
+      steps{
+        sh "echo 'running JUnit-test-cases' "
+        sh "echo 'testing must passed to create artifacts ' "
+        sh "mvn clean package" 
+      }
+    }
+
+    stage('3CodeQualityAnalysis') {
+    steps{
+        sh "echo setup sonarQube authentication"
+        sh "echo 'Perfoming CodeQualityAnalysis' "
+        sh "mvn sonar:sonar"      
+    }
+   }
+
+   stage('4UploadArtifacts') {
+    steps{
+      sh "echo configure nexus authentication"
+      sh "mvn deploy"
+      sh "echo artifacts uploaded"
+    }
+   }
+  stage('5deploy') {
+    steps{
+deploy adapters: [tomcat9(credentialsId: 'tomcat-cre', path: '', url: 'http://18.116.240.90:8080/')], contextPath: null, onFailure: false, war: 'target/*.war'
+
+    }
+}
+
+ // post{}
+  }
+}
