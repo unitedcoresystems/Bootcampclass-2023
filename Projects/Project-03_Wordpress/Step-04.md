@@ -3,9 +3,9 @@
 To configure WordPress, we need to create MySQL database. Let’s do it!
 
 ```
-$ sudo mysql -u root
+$ sudo mysql -p
 ```
-PROMPT 
+Outcome:
 ```
 Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 7
@@ -24,7 +24,7 @@ NEXT, Create a database with mysql command
 ```sql
 CREATE DATABASE wordpress;
 ```
-Prompt 
+Outcome:
 ```
 Query OK, 1 row affected (0,00 sec)
 ```
@@ -33,7 +33,7 @@ NEXT, Create a user and asign a password, replace <your-password> with your pass
 ```sql
 CREATE USER wordpress@localhost IDENTIFIED BY '<your-password>';
 ```
-Prompt
+Outcome:
 ```
 Query OK, 1 row affected (0,00 sec)
 ```
@@ -45,15 +45,18 @@ Query OK, 1 row affected (0,00 sec)
 ```sq
 FLUSH PRIVILEGES;
 ```
-prompt
+Outcome:
 ```
 Query OK, 1 row affected (0,00 sec)
 ```
 ```sql
 quit;
 ```
-prompt 
+Outcome:
 ```
 Bye
 ```
-Enable MySQL with sudo service mysql start.
+Enable MySQL service 
+```
+sudo service mysql start
+```

@@ -42,17 +42,17 @@ mysql>
 
 It’s recommended that you run a security script that comes pre-installed with MySQL. This script will remove some insecure default 
 settings and lock down access to your database system. Before running the script you will set a password for the root user, using 
-mysql_native_password as default authentication method. We’re defining this user’s password as PassWord.1.
+mysql_native_password as default authentication method. We’re defining this user’s password as Admin@123.
 
 
 ```
-ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'PassWord.1';
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Admin@123';
 ```
 
 Exit the MySQL shell with:
 
 ```
-mysql> exit
+exit
 ```
 
 
@@ -114,6 +114,13 @@ Estimated strength of the password: 100
 Do you wish to continue with the password provided?(Press y|Y for Yes, any other key for No) : y
 ```
 
+or 
+
+```
+Estimated strength of the password: 100
+Change the password for root ? ((Press y|Y for Yes, any other key for No) : N
+```
+
 
 For the rest of the questions, press Y and hit the ENTER key at each prompt. This will prompt you to change the root password, 
 remove some anonymous users and the test database, disable remote root logins, and load these new rules so that MySQL immediately
@@ -122,8 +129,8 @@ respects the changes you have made.
 When you’re finished, test if you’re able to log in to the MySQL console by typing:
 
 
-```
-$ sudo mysql -p
+```sh
+sudo mysql -p
 ```
 
 
@@ -131,8 +138,8 @@ Notice the -p flag in this command, which will prompt you for the password used 
 
 To exit the MySQL console, type:
 
-```
-mysql> exit
+```sql
+exit
 ```
 
 Notice that you need to provide a password to connect as the root user.

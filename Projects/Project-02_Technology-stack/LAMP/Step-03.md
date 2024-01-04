@@ -8,7 +8,7 @@ Core PHP packages will automatically be installed as dependencies.
 To install these 3 packages at once, run:
 
 ```
-sudo apt install php libapache2-mod-php php-mysql
+sudo apt install php libapache2-mod-php php-mysql -y
 ```
 
 Once the installation is finished, you can run the following command to confirm your PHP version:
@@ -17,6 +17,7 @@ Once the installation is finished, you can run the following command to confirm 
 php -v
 ```
 
+Prompt
 ```
 PHP 7.4.3 (cli) (built: Oct  6 2020 15:47:56) ( NTS )
 Copyright (c) The PHP Group

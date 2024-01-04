@@ -17,5 +17,5 @@ sudo apt install apache2 \
                  php-mbstring \
                  php-mysql \
                  php-xml \
-                 php-zip
+                 php-zip -y
 ```

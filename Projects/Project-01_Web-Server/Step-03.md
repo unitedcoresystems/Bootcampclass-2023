@@ -5,7 +5,7 @@
 Install prerequisites 
 
 ```
-yum install wget unzip vim -y
+sudo apt install wget unzip vim -y
 ```
 
 Install Apache using Ubuntu’s package manager ‘apt’:
@@ -14,8 +14,8 @@ Install Apache using Ubuntu’s package manager ‘apt’:
 # update a list of packages in package manager
 sudo apt update
 
-#run apache2 package installation
-sudo apt install apache2
+# run apache2 package installation
+sudo apt install apache2 -y
 ```
 
 ## To verify that apache2 is running as a Service in our OS, use following command
@@ -31,6 +31,7 @@ curl http://localhost:80
 ``` 
 
 or
+
 ```
  curl http://127.0.0.1:80
 ```
@@ -56,11 +57,7 @@ http://<Public-IP-Address>:80
 Another way to retrieve your Public IP address, other than to check it in AWS Web console, is to use following command:
 
 ```
-curl -v ifconfig.me
-```
-
-```
-curl -s http://169.254.169.254/latest/meta-data/public-ipv4
+curl ifconfig.me
 ```
 
 The URL in browser shall also work if you do not specify port number since all web browsers use port 80 by default.

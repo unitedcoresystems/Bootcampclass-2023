@@ -3,7 +3,7 @@
 Create Apache site for WordPress. Create /etc/apache2/sites-available/wordpress.conf with following lines:
 
 ```
-vi /etc/apache2/sites-available/wordpress.conf 
+sudo vi /etc/apache2/sites-available/wordpress.conf 
 ```
 next, copy the following content into the above file 
 

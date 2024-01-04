@@ -1,5 +1,6 @@
 # DevOps Project:
 
+## 3-Tier-Architecture
 - Project-01 : Deploy Finance website on a web server
 - Project-02 : Deploy Technology web stack (LAMP, LEMP, MERN and MEAN)
 - Project-03 : Deploy Wordpress on LAMP stack

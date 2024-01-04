@@ -13,21 +13,21 @@ Next, change director to tmp/finance directory
 ```
 cd /tmp/finance
 ```
-Next, download a the finance template file from tooplate website  
+Next, download  the finance template file from tooplate website  
 
 ```
-wget https://www.tooplate.com/zip-templates/2135_mini_finance.zip
+sudo wget https://www.tooplate.com/zip-templates/2135_mini_finance.zip
 ```
 Next, unzip the finance template 
 
 ```
-unzip -o 2135_mini_finance.zip
+sudo unzip -o 2135_mini_finance.zip
 ```
 
 Next, copy all the content of the the finance template to /var/www/html/
 
 ```
-cp -r 2135_mini_finance/* /var/www/html/
+sudo cp -r 2135_mini_finance/* /var/www/html/
 ``` 
 
 Next, assign ownership of the directory with your current system user:
