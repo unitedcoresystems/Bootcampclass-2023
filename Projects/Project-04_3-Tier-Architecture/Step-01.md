@@ -23,55 +23,34 @@ names will likely be xvdf, xvdh, xvdg.
 ![5024](https://user-images.githubusercontent.com/85270361/210137484-e3928617-0f73-42c1-bc76-bf9d86d60710.PNG)
 
 
-5. Use df -h command to see all mounts and free space on your server
+5. To create partitions Use gdisk utility to create a single partition on each of the 3 disks
 
-```
-df -h
-```
-
-6. Use gdisk utility to create a single partition on each of the 3 disks
+After launching gdisk, you can use the 'n' command to create a new partition and follow the prompts to set the partition size, type, etc. After defining your partitions, don't forget to use the 'w' command to write the changes to the disk.
 
 ```
 sudo gdisk /dev/xvdf
 ```
-
-Output: 
-
+Example: 
 ```
- GPT fdisk (gdisk) version 1.0.3
-
-Partition table scan:
-  MBR: not present
-  BSD: not present
-  APM: not present
-  GPT: not present
-
-Creating new GPT entries.
-
-Command (? for help branch segun-edits: p
-Disk /dev/xvdf: 20971520 sectors, 10.0 GiB
-Sector size (logical/physical): 512/512 bytes
-Disk identifier (GUID): D936A35E-CE80-41A1-B87E-54D2044D160B
-Partition table holds up to 128 entries
-Main partition table begins at sector 2 and ends at sector 33
-First usable sector is 34, last usable sector is 20971486
-Partitions will be aligned on 2048-sector boundaries
-Total free space is 2014 sectors (1007.0 KiB)
-
-Number  Start (sector)    End (sector)  Size       Code  Name
-   1            2048        20971486   10.0 GiB    8E00  Linux LVM
+Command (? for help): n
+Partition number (1-128, default 1): 1
+First sector (34-20971486, default = 2048): [press Enter]
+Last sector (2048-20971486, default = 20971486): [press Enter]
+Hex code or GUID (L to show codes, Enter = 8300): [press Enter]
 
 Command (? for help): w
-
-Final checks complete. About to write GPT data. THIS WILL OVERWRITE EXISTING
-PARTITIONS!!
-
-Do you want to proceed? (Y/N): yes
-OK; writing new GUID partition table (GPT) to /dev/xvdf.
-The operation has completed successfully.
-Now,  your changes has been configured succesfuly, exit out of the gdisk console and do the same for the remaining disks.
 ```
 
+This will create a new partition on /dev/xvdf. After this, you can format the partition and mount it as needed.
+Now,  your changes has been configured succesfuly, exit out of the gdisk console and do the same for the remaining disks /dev/xvdh and /dev/xvdg.
+
+```
+sudo gdisk /dev/xvdh
+```
+
+```
+sudo gdisk /dev/xvdg
+```
 
 7. Use lsblk utility to view the newly configured partition on each of the 3 disks.
 
@@ -81,7 +60,7 @@ Now,  your changes has been configured succesfuly, exit out of the gdisk console
 8. Install lvm2 package. 
 
 ```
-sudo yum install lvm2
+sudo yum install lvm2 -y 
 ```
 9. Run sudo lvmdiskscan command to check for available partitions.
 
