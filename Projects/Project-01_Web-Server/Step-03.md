@@ -1,14 +1,19 @@
-# Configure EC2 insatnce to serve as a Web Server
+# How to configure EC2 insatnce as an Apache HTTP Web Server
 
-## STEP 2 — Install Apache httpd web server  
+## 1. Install Apache http web server  
 
-Install prerequisites 
+#### Prerequisite
++ wget
++ unzip 
++ vim
+
+Install prerequisites using Ubuntu’s package manager ‘apt’:
 
 ```
 sudo apt install wget unzip vim -y
 ```
 
-Install Apache using Ubuntu’s package manager ‘apt’:
+Install Apache HTTP web server
 
 ```
 # update a list of packages in package manager
@@ -18,7 +23,7 @@ sudo apt update
 sudo apt install apache2 -y
 ```
 
-## To verify that apache2 is running as a Service in our OS, use following command
+## 2. To verify that apache2 is running as a Service in our OS, use following command
 
 ```
 sudo systemctl status apache2

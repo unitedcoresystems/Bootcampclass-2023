@@ -1,4 +1,4 @@
-# Step 2 - Connecting to EC2 terminal
+# Connecting to EC2 terminal
 
 ## Using the terminal on MAC/Linux
 

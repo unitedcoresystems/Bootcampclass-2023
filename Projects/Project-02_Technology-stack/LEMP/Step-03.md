@@ -12,8 +12,5 @@ PHP to communicate with MySQL-based databases. Core PHP packages will automatica
 To install these 2 packages at once, run:
 
 ```
-sudo apt install php-fpm php-mysql
+sudo apt install php-fpm php-mysql -y
 ```
-
-When prompted, type Y and press ENTER to confirm installation.
-

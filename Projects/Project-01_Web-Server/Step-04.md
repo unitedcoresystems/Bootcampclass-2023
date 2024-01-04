@@ -1,6 +1,6 @@
-# Host your website on web server 
+# How to host your website on web server 
 
-## STEP 3 — Download and deploy finance web template
+## 1. Download and deploy finance web template
 
 Create the directory name finance in the /tmp directory using ‘mkdir’ command as follows:
 

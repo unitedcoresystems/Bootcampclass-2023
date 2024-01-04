@@ -1,4 +1,7 @@
-# STEP 2 — INSTALLING MYSQL
+# How to install MYSQL Database Server
+
+
+## 1. Installing MYSQL
 
 Now that you have a web server up and running, you need to install a Database Management System (DBMS) to be able to store and manage
 data for your site in a relational database. MySQL is a popular relational database management system used within PHP environments, 
@@ -7,10 +10,10 @@ so we will use it in our project.
 Again, use ‘apt’ to acquire and install this software:
 
 ```
-sudo apt install mysql-server
+sudo apt install mysql-server -y
 ```
 
-When prompted, confirm installation by typing Y, and then ENTER.
+-y option confirms installation automatically.
 
 When the installation is finished, log in to the MySQL console by typing:
 

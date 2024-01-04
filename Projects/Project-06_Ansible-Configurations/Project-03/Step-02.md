@@ -1,4 +1,4 @@
-# Install Apache HTTPD and Download Wordpress
+# Install Apache HTTP and Download Wordpress
 
 
 ## Step 1 — Install WordPress on your EC2 Web Server

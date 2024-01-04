@@ -1,13 +1,6 @@
-# Step 01: How to Launch an Ubuntu(22.04) T2 Medium Instance 
+# How to Launch an Ubuntu(22.04) T2 Medium Instance on AWS
 
 - To launch an Ubuntu 22.04 T2 Large instance on AWS, follow these step-by-step instructions:
-
-#### Prerequisite
-+ Server Name: Web-Server
-+ AMI:  Ubuntu 22.04 
-+ Instance type:  T2.Large  8GB of RAM.
-+ Security Group: 22, and 80 
-+ Storage : 10 gb
 
 1. **Log in to AWS Management Console**:
     - Go to https://aws.amazon.com/ and sign in to your account.
