@@ -1,15 +1,3 @@
-# DevOps Project:
-
-## 3-Tier-Architecture
-- Project-01 : Deploy Finance website on a web server
-- Project-02 : Deploy Technology web stack (LAMP, LEMP, MERN and MEAN)
-- Project-03 : Deploy Wordpress on LAMP stack
-- Project-04 : Deploy a Three-tier Architecture
-- Project-05 : Deploy NFS Server in a three-tier Architecture
-- Project-06 : Deploy Load Balancer in a three-tier Architecture
-
-
-
 # United Core Bootcamp PRojects 
 
 Welcome to your very first Bootcamp Project,you must be really excited to start getting your hands dirty. There is a lot of projects ahead, so without any delay, lets get started.
