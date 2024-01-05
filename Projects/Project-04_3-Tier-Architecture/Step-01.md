@@ -168,11 +168,11 @@ sudo vgdisplay -v #view complete setup - VG, PV, and LV
 sudo lsblk 
 ```
 
-17. Use mkfs.ext4 to format the logical volumes with ext4 filesystem
+17. Use mkfs.xfs to format the logical volumes with xfs filesystem
 
 ```
-sudo mkfs -t ext4 /dev/webdata-vg/apps-lv
-sudo mkfs -t ext4 /dev/webdata-vg/logs-lv
+sudo mkfs -t xfs /dev/webdata-vg/apps-lv
+sudo mkfs -t xfs /dev/webdata-vg/logs-lv
 ```
 
 18. Create /var/www/html directory to store website files
