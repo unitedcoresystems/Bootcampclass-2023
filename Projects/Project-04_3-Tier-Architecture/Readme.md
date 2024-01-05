@@ -17,3 +17,14 @@ Three-tier Architecture is a client-server software architecture pattern that co
 
 [Database](https://www.computerhope.com/jargon/d/database-server.htm) Server or File System Server such as [FTP](https://titanftp.com/2022/07/05/what-is-an-ftp-server/) server, or [NFS](https://www.techtarget.com/searchenterprisedesktop/definition/Network-File-System) Server
 
+On the diagram below you can see a common pattern where several stateless Web Servers share a common database and also access 
+the same files using Network File Sytem (NFS) as a shared file storage. Even though the NFS server might be located on a completely 
+separate hardware – for Web Servers it look like a local file system from where they can serve the same files.
+
+
+![6000](https://user-images.githubusercontent.com/85270361/210138947-340454da-2ca8-4041-84e7-324d685612a4.PNG)
+
+
+It is important to know what storage solution is suitable for what use cases, for this – you need to answer following questions: what 
+data will be stored, in what format, how this data will be accessed, by whom, from where, how frequently, etc. Base on this you will
+be able to choose the right storage system for your solution.

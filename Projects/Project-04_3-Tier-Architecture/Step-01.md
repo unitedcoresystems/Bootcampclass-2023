@@ -1,14 +1,14 @@
-# LAUNCH AN EC2 INSTANCE THAT WILL SERVE AS “WEB SERVER”.
+# LAUNCH AN EC2 INSTANCE THAT WILL SERVE AS “NFS SERVER”.
 
-Step 1 — Prepare a Web Server
+Step 1 — Prepare a NFS Server
 
-1. Launch an EC2 instance that will serve as "Web Server". Create 3 volumes in the same AZ as your Web Server EC2, each of 10 GiB.
+1. Launch an EC2 instance that will serve as "NFS Server". Create 3 volumes in the same AZ as your Web Server EC2, each of 10 GiB.
 Learn How to Add EBS Volume to an EC2 instance here
 
 ![5022](https://user-images.githubusercontent.com/85270361/210136900-8369cbb5-47fc-4ea1-a8a0-4746881fab44.PNG)
 
 
-2. Attach all three volumes one by one to your Web Server EC2 instance
+2. Attach all three volumes one by one to your NFS Server EC2 instance
 
 ![5023](https://user-images.githubusercontent.com/85270361/210136972-6c812c34-9dfa-4605-92ec-afb0d7881bbb.PNG)
 
@@ -148,8 +148,9 @@ outcome
  the PV size. NOTE: apps-lv will be used to store data for the Website while, logs-lv will be used to store data for logs.
  
 ```
-sudo lvcreate -n apps-lv -L 14G webdata-vg
-sudo lvcreate -n logs-lv -L 14G webdata-vg
+sudo lvcreate -n lv-apps -L 9G webdata-vg
+sudo lvcreate -n lv-logs -L 9G webdata-vg
+sudo lvcreate -n lv-opt -L 9G webdata-vg
 ```
 
 15. Verify that your Logical Volume has been created successfully by running 
@@ -171,59 +172,51 @@ sudo lsblk
 17. Use mkfs.xfs to format the logical volumes with xfs filesystem
 
 ```
-sudo mkfs -t xfs /dev/webdata-vg/apps-lv
-sudo mkfs -t xfs /dev/webdata-vg/logs-lv
-```
-
-18. Create /var/www/html directory to store website files
+sudo mkfs -t xfs /dev/webdata-vg/lv-apps
+sudo mkfs -t xfs /dev/webdata-vg/lv-logs
+sudo mkfs -t xfs /dev/webdata-vg/lv-opt
 
 ```
-sudo mkdir -p /var/www/html
-```
 
-19. Create /home/recovery/logs to store backup of log data
+18. - Create mount points on /mnt directory for the logical volumes as follow:
 
-```
-sudo mkdir -p /home/recovery/logs
-```
-
-20. Mount /var/www/html on apps-lv logical volume
+Mount lv-apps on /mnt/apps – To be used by webservers
+Mount lv-logs on /mnt/logs – To be used by webserver logs
+Mount lv-opt on /mnt/opt – To be used by Jenkins server in the next Project
 
 ```
-sudo mount /dev/webdata-vg/apps-lv /var/www/html/
+sudo mkdir /mnt/apps 
+sudo mkdir /mnt/logs 
+sudo mkdir /mnt/opt
 ```
 
-21. Use rsync utility to backup all the files in the log directory /var/log into /home/recovery/logs (This is required before 
-mounting the file system)
+19. Mount lv-apps on /mnt/apps – To be used by webservers
+
 
 ```
-sudo rsync -av /var/log/. /home/recovery/logs/
+sudo mount /dev/webdata-vg/lv-apps /mnt/apps 
 ```
 
-
-22. Mount /var/log on logs-lv logical volume. (Note that all the existing data on /var/log will be deleted. That is why step 15 above 
-is very important)
+20. Mount lv-logs on /mnt/logs – To be used by webserver logs
 
 ```
-sudo mount /dev/webdata-vg/logs-lv /var/log
+sudo mount /dev/webdata-vg/lv-logs /mnt/logs
 ```
 
-23. Restore log files back into /var/log directory
+21. Mount lv-opt on /mnt/opt – To be used by webserver logs
 
 ```
-sudo rsync -av /home/recovery/logs/. /var/log
+sudo mount /dev/webdata-vg/lv-opt /mnt/opt
 ```
 
-24. Update /etc/fstab file so that the mount configuration will persist after restart of the server.
-Click on the next Step To update the /etc/fstab file
+22. Update /etc/fstab file so that the mount configuration will persist after restart of the server.
 
-
-25.  The UUID of the device will be used to update the /etc/fstab file;
+-  The UUID of the device will be used to update the /etc/fstab file;
 
 ```
 sudo blkid
 ```
-
+Outcome:
 ```
 [ec2-user@ip-172-31-59-58 ~]$ sudo blkid
 /dev/xvda4: LABEL="root" UUID="2cfdcca4-d3e3-40cb-b58e-0bed76bdceec" /TYPE="xfs" PARTUUID="6264d520-3fb9-423f-8ab8-7a0a8e3d3562" /
@@ -236,26 +229,35 @@ sudo blkid
 
 /dev/xvdg1: UUID="IKgMpe-tdgd-Nghl-LzxM-IHRU-ipwp-XzMFoG" TYPE="LVM2_member" PARTLABEL="Linux filesystem" PARTUUID="ad9b4189-f2d7-4f6f-acc1-db7afe92a96c"
 ```
+Copy the the UUID from the following and add to /etc/fstab file
+/dev/mapper/webdata--vg-logs--lv: UUID="f3aeed0e-1f5b-4994-9c17-a95ae7984404" 
+/dev/mapper/webdata--vg-apps--lv: UUID="a8a79107-1ae6-4c20-bb5b-5e9db101b724" 
+/dev/mapper/webdata--vg-opt--lv: UUID="a9u7050n-1ar5-4887-dd9a-5e6264d520" 
 
 
 ```
 sudo vi /etc/fstab
 ```
+Example 
+```
+# worpress 
+UUID=f3aeed0e-1f5b-4994-9c17-a95ae7984404  /mnt/logs  default 0 0
+UUID=a8a79107-1ae6-4c20-bb5b-5e9db101b724  /mnt/apps  default 0 0
+UUID=a9u7050n-1ar5-4887-dd9a-5e6264d520    /mnt/opt   default 0 0
+```
 
-Update /etc/fstab in this format using your own UUID and rememeber to remove the leading and ending quotes.
-
-![5031](https://user-images.githubusercontent.com/85270361/210138190-36d404db-1ad5-4dbb-ad02-c1adfa865e0a.PNG)
+Note: Update /etc/fstab in this format using your own UUID and rememeber to remove the leading and ending quotes.
 
 
-26. Test the configuration and reload the daemon
+23. Test the configuration and reload the daemon
 
 ```
 sudo mount -a
 sudo systemctl daemon-reload
 ```
 
-27. Verify your setup by running df -h, output must look like this:
+24. Verify your setup by running df -h, output must look like this:
 
-![5032](https://user-images.githubusercontent.com/85270361/210138253-28ab8647-88be-4b59-9bad-c981014cdc4b.PNG)
+
 
 

@@ -1,67 +1,35 @@
-# Install PHP and WordPress
+# HOw to Install MySQL on your EC2 DB Server 
 
-Step 3 — Install WordPress on your Web Server EC2
-
-
-1. Update the repository
+1 — Install MySQL 
 
 ```
-sudo yum -y update
+sudo yum update
+sudo yum install mysql-server -y
 ```
 
-
-2. Install wget, Apache and it’s dependencies
-
-```
-sudo yum -y install wget httpd php php-mysqlnd php-fpm php-json
-```
-
-
-3. Start Apache
+Verify that the service is up and running by using sudo systemctl status mysqld, if it is not running, restart the service and 
+enable it so it will be running even after reboot:
 
 ```
-sudo systemctl enable httpd
-sudo systemctl start httpd
+sudo systemctl restart mysqld
+sudo systemctl enable mysqld
 ```
 
-
-4. To install PHP and it’s depemdencies
-
-```
-sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
-sudo yum install yum-utils http://rpms.remirepo.net/enterprise/remi-release-8.rpm
-sudo yum module list php
-sudo yum module reset php
-sudo yum module enable php:remi-7.4
-sudo yum install php php-opcache php-gd php-curl php-mysqlnd
-sudo systemctl start php-fpm
-sudo systemctl enable php-fpm
-sudo setsebool -P httpd_execmem 1
-```
-
-5. Restart Apache
+2. Configure DB to work with WordPress
 
 ```
-sudo systemctl restart httpd
+sudo mysql
+CREATE DATABASE wordpress;
+CREATE USER `myuser`@`<Web-Server-Private-IP-Address>` IDENTIFIED BY 'mypass';
+GRANT ALL ON wordpress.* TO 'myuser'@'<Web-Server-Private-IP-Address>';
+FLUSH PRIVILEGES;
+SHOW DATABASES;
+exit
 ```
 
-6. Download wordpress and copy wordpress to var/www/html
+3. Configure WordPress to connect to remote database.
+Hint: Do not forget to open MySQL port 3306 on DB Server EC2. For extra security, you shall allow access to the DB server ONLY 
+from your Web Server’s IP address, so in the Inbound Rule configuration specify source as /32
 
-```
-  mkdir wordpress
-  cd   wordpress
-  sudo wget http://wordpress.org/latest.tar.gz
-  sudo tar xzvf latest.tar.gz
-  sudo rm -rf latest.tar.gz
-  sudo cp wordpress/wp-config-sample.php wordpress/wp-config.php
-  sudo cp -R wordpress /var/www/html/
-```
-
-7. Configure SELinux Policies
-
-```
-sudo chown -R apache:apache /var/www/html/wordpress
-sudo chcon -t httpd_sys_rw_content_t /var/www/html/wordpress -R
-sudo setsebool -P httpd_can_network_connect=1
-```
+![5034](https://user-images.githubusercontent.com/85270361/210138507-0b3b6372-958b-406a-9672-82f729d26b85.PNG)
 
