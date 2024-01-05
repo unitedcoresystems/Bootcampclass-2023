@@ -19,8 +19,24 @@ Learn How to Add EBS Volume to an EC2 instance here
 in Linux reside in /dev/ directory. Inspect it with ls /dev/ and make sure you see all 3 newly created block devices there – their 
 names will likely be xvdf, xvdh, xvdg.
 
+```
+lsblk
+```
 
-![5024](https://user-images.githubusercontent.com/85270361/210137484-e3928617-0f73-42c1-bc76-bf9d86d60710.PNG)
+Outcome 
+```
+[ec2-user@ip-172-31-59-249 ~]$ lsblk
+NAME    MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
+xvda    202:0    0   10G  0 disk
+├─xvda1 202:1    0    1M  0 part
+├─xvda2 202:2    0  200M  0 part /boot/efi
+├─xvda3 202:3    0  600M  0 part /boot
+└─xvda4 202:4    0  9.2G  0 part /
+xvdf    202:80   0   10G  0 disk
+xvdg    202:96   0   10G  0 disk
+xvdh    202:112  0   10G  0 disk
+```
+
 
 
 5. To create partitions Use gdisk utility to create a single partition on each of the 3 disks
@@ -42,7 +58,9 @@ Command (? for help): w
 ```
 
 This will create a new partition on /dev/xvdf. After this, you can format the partition and mount it as needed.
-Now,  your changes has been configured succesfuly, exit out of the gdisk console and do the same for the remaining disks /dev/xvdh and /dev/xvdg.
+Now,  your changes has been configured succesfuly, exit out of the gdisk console.
+
+6. Create partitions for other disks /dev/xvdh and /dev/xvdg.
 
 ```
 sudo gdisk /dev/xvdh
@@ -54,8 +72,26 @@ sudo gdisk /dev/xvdg
 
 7. Use lsblk utility to view the newly configured partition on each of the 3 disks.
 
-![5025](https://user-images.githubusercontent.com/85270361/210137616-558c1857-6fca-40e4-a833-f4605fcd46ca.PNG)
+```
+lsblk
+```
 
+Outcome 
+```
+[ec2-user@ip-172-31-59-249 ~]$ lsblk
+NAME    MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
+xvda    202:0    0   10G  0 disk
+├─xvda1 202:1    0    1M  0 part
+├─xvda2 202:2    0  200M  0 part /boot/efi
+├─xvda3 202:3    0  600M  0 part /boot
+└─xvda4 202:4    0  9.2G  0 part /
+xvdf    202:80   0   10G  0 disk
+└─xvdf1 202:81   0   10G  0 part
+xvdg    202:96   0   10G  0 disk
+└─xvdg1 202:97   0   10G  0 part
+xvdh    202:112  0   10G  0 disk
+└─xvdh1 202:113  0   10G  0 part
+```
 
 8. Install lvm2 package. 
 
@@ -76,10 +112,19 @@ sudo pvcreate /dev/xvdg1
 sudo pvcreate /dev/xvdh1
 ```
 
-11. Verify that your Physical volume has been created successfully by running sudo pvs
+11. Verify that your Physical volume has been created successfully
 
-![5026](https://user-images.githubusercontent.com/85270361/210137702-7d0c0151-0cf8-4d61-a1af-a146afc9e26a.PNG)
-
+```
+ sudo pvs
+```
+Outcome
+```
+[ec2-user@ip-172-31-59-249 ~]$ sudo pvs
+  PV         VG Fmt  Attr PSize   PFree
+  /dev/xvdf1    lvm2 ---  <10.00g <10.00g
+  /dev/xvdg1    lvm2 ---  <10.00g <10.00g
+  /dev/xvdh1    lvm2 ---  <10.00g <10.00g
+```
 
 12. Use vgcreate utility to add all 3 PVs to a volume group (VG). Name the VG webdata-vg
 
@@ -92,9 +137,12 @@ sudo vgcreate webdata-vg /dev/xvdh1 /dev/xvdg1 /dev/xvdf1
 ```
 sudo vgs
 ```
-
-![5027](https://user-images.githubusercontent.com/85270361/210137794-23e31c97-1f34-469b-b7da-3456fb4e4dcd.PNG)
-
+outcome
+```
+[ec2-user@ip-172-31-59-249 ~]$ sudo vgs
+  VG         #PV #LV #SN Attr   VSize   VFree
+  webdata-vg   3   0   0 wz--n- <29.99g <29.99g
+```
 
 14. Use lvcreate utility to create 2 logical volumes. apps-lv (Use half of the PV size), and logs-lv Use the remaining space of
  the PV size. NOTE: apps-lv will be used to store data for the Website while, logs-lv will be used to store data for logs.
@@ -104,7 +152,7 @@ sudo lvcreate -n apps-lv -L 14G webdata-vg
 sudo lvcreate -n logs-lv -L 14G webdata-vg
 ```
 
-13. Verify that your Logical Volume has been created successfully by running 
+15. Verify that your Logical Volume has been created successfully by running 
 
 ```
 sudo lvs
@@ -113,39 +161,39 @@ sudo lvs
 ![5029](https://user-images.githubusercontent.com/85270361/210137927-8aef5842-f176-45a4-bf5c-817fc1eeb1fb.PNG)
 
 
-14. Verify the entire setup
+16. Verify the entire setup
 
 ```
 sudo vgdisplay -v #view complete setup - VG, PV, and LV
 sudo lsblk 
 ```
 
-15. Use mkfs.ext4 to format the logical volumes with ext4 filesystem
+17. Use mkfs.ext4 to format the logical volumes with ext4 filesystem
 
 ```
 sudo mkfs -t ext4 /dev/webdata-vg/apps-lv
 sudo mkfs -t ext4 /dev/webdata-vg/logs-lv
 ```
 
-16. Create /var/www/html directory to store website files
+18. Create /var/www/html directory to store website files
 
 ```
 sudo mkdir -p /var/www/html
 ```
 
-17. Create /home/recovery/logs to store backup of log data
+19. Create /home/recovery/logs to store backup of log data
 
 ```
 sudo mkdir -p /home/recovery/logs
 ```
 
-18. Mount /var/www/html on apps-lv logical volume
+20. Mount /var/www/html on apps-lv logical volume
 
 ```
 sudo mount /dev/webdata-vg/apps-lv /var/www/html/
 ```
 
-19. Use rsync utility to backup all the files in the log directory /var/log into /home/recovery/logs (This is required before 
+21. Use rsync utility to backup all the files in the log directory /var/log into /home/recovery/logs (This is required before 
 mounting the file system)
 
 ```
@@ -153,20 +201,20 @@ sudo rsync -av /var/log/. /home/recovery/logs/
 ```
 
 
-20. Mount /var/log on logs-lv logical volume. (Note that all the existing data on /var/log will be deleted. That is why step 15 above 
+22. Mount /var/log on logs-lv logical volume. (Note that all the existing data on /var/log will be deleted. That is why step 15 above 
 is very important)
 
 ```
 sudo mount /dev/webdata-vg/logs-lv /var/log
 ```
 
-21. Restore log files back into /var/log directory
+23. Restore log files back into /var/log directory
 
 ```
 sudo rsync -av /home/recovery/logs/. /var/log
 ```
 
-22. Update /etc/fstab file so that the mount configuration will persist after restart of the server.
+24. Update /etc/fstab file so that the mount configuration will persist after restart of the server.
 Click on the next Step To update the /etc/fstab file
 
 
