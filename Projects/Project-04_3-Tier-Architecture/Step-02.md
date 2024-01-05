@@ -1,5 +1,4 @@
-# UPDATE THE `/ETC/FSTAB` FILE
-
+# Install PHP and WordPress
 
 Step 3 — Install WordPress on your Web Server EC2
 
@@ -37,7 +36,7 @@ sudo yum module enable php:remi-7.4
 sudo yum install php php-opcache php-gd php-curl php-mysqlnd
 sudo systemctl start php-fpm
 sudo systemctl enable php-fpm
-setsebool -P httpd_execmem 1
+sudo setsebool -P httpd_execmem 1
 ```
 
 5. Restart Apache
@@ -54,10 +53,9 @@ sudo systemctl restart httpd
   sudo wget http://wordpress.org/latest.tar.gz
   sudo tar xzvf latest.tar.gz
   sudo rm -rf latest.tar.gz
-  cp wordpress/wp-config-sample.php wordpress/wp-config.php
-  cp -R wordpress /var/www/html/
+  sudo cp wordpress/wp-config-sample.php wordpress/wp-config.php
+  sudo cp -R wordpress /var/www/html/
 ```
-
 
 7. Configure SELinux Policies
 

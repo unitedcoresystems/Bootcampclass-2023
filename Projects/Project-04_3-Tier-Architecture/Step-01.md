@@ -224,7 +224,19 @@ Click on the next Step To update the /etc/fstab file
 sudo blkid
 ```
 
-![5030](https://user-images.githubusercontent.com/85270361/210138145-4da8745a-86be-4110-8abd-ee7d6363ba33.PNG)
+```
+[ec2-user@ip-172-31-59-58 ~]$ sudo blkid
+/dev/xvda4: LABEL="root" UUID="2cfdcca4-d3e3-40cb-b58e-0bed76bdceec" /TYPE="xfs" PARTUUID="6264d520-3fb9-423f-8ab8-7a0a8e3d3562" /
+/dev/mapper/webdata--vg-logs--lv: UUID="f3aeed0e-1f5b-4994-9c17-a95ae7984404" /
+
+/dev/xvdh1: UUID="nOMyfQ-GL3z-O2Ky-O9FJ-KyC6-SX0I-jCnYEi" TYPE="LVM2_member" PARTLABEL="Linux filesystem" PARTUUID="cfa16d1a-aba0-4958-9db5-148a87c9a830"
+
+/dev/xvdf1: UUID="Ut3SFy-M05A-fK0Y-m3HJ-hcXG-l6Ow-4nJUkz" TYPE="LVM2_member" PARTLABEL="Linux filesystem" PARTUUID="461cfe09-28f4-49d5-b670-b3eb568dcafe"
+/dev/mapper/webdata--vg-apps--lv: UUID="a8a79107-1ae6-4c20-bb5b-5e9db101b724" TYPE="xfs"
+
+/dev/xvdg1: UUID="IKgMpe-tdgd-Nghl-LzxM-IHRU-ipwp-XzMFoG" TYPE="LVM2_member" PARTLABEL="Linux filesystem" PARTUUID="ad9b4189-f2d7-4f6f-acc1-db7afe92a96c"
+```
+
 
 ```
 sudo vi /etc/fstab
