@@ -218,3 +218,32 @@ sudo rsync -av /home/recovery/logs/. /var/log
 Click on the next Step To update the /etc/fstab file
 
 
+25.  The UUID of the device will be used to update the /etc/fstab file;
+
+```
+sudo blkid
+```
+
+![5030](https://user-images.githubusercontent.com/85270361/210138145-4da8745a-86be-4110-8abd-ee7d6363ba33.PNG)
+
+```
+sudo vi /etc/fstab
+```
+
+Update /etc/fstab in this format using your own UUID and rememeber to remove the leading and ending quotes.
+
+![5031](https://user-images.githubusercontent.com/85270361/210138190-36d404db-1ad5-4dbb-ad02-c1adfa865e0a.PNG)
+
+
+26. Test the configuration and reload the daemon
+
+```
+sudo mount -a
+sudo systemctl daemon-reload
+```
+
+27. Verify your setup by running df -h, output must look like this:
+
+![5032](https://user-images.githubusercontent.com/85270361/210138253-28ab8647-88be-4b59-9bad-c981014cdc4b.PNG)
+
+
