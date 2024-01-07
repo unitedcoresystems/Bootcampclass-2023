@@ -1,6 +1,7 @@
 # Project 4 : Deploying a Three-tier Architecture
 
 As a DevOps engineer, your deep understanding of core components of web solutions and ability to troubleshoot them will play essential role in your further progress and development.
+A three-tier architecture comprises three layers, namely the presentation tier, the application tier (Bussiness layer), and the data tier. The presentation tier serves as the front-end, hosting the user interface, such as the website that users or clients interact with. The application tier, commonly referred to as the back-end, processes the data. Finally, the data tier is responsible for data storage and management it will further be explained below.
 
 # Three-tier Architecture
 Generally, web, or mobile solutions are implemented based on what is called the Three-tier Architecture.
