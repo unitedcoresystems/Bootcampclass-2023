@@ -1,4 +1,11 @@
-# HOw to Install MySQL on your EC2 DB Server 
+# How to Install MySQL and configure the database server 
+
+1. Install MySQL on your database server 
+
+- Install MySQL server
+- Create a database and name it project4
+- Create a database user and name it webaccess
+- Grant permission to webaccess user on project4 database to do anything only from the webservers subnet cidr
 
 1 — Install MySQL 
 
@@ -15,13 +22,13 @@ sudo systemctl restart mysqld
 sudo systemctl enable mysqld
 ```
 
-2. Configure DB to work with WordPress
+2. Create a database and database user and grant permission 
 
 ```
 sudo mysql
 CREATE DATABASE wordpress;
-CREATE USER `myuser`@`<Web-Server-Private-IP-Address>` IDENTIFIED BY 'mypass';
-GRANT ALL ON wordpress.* TO 'myuser'@'<Web-Server-Private-IP-Address>';
+CREATE USER `webaccess`@`<Web-Server-Private-IP-Address>` IDENTIFIED BY 'web@123';
+GRANT ALL ON wordpress.* TO 'webaccess'@'<Web-Server-Private-IP-Address>';
 FLUSH PRIVILEGES;
 SHOW DATABASES;
 exit
