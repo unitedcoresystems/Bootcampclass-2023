@@ -17,6 +17,12 @@ This approach will make our Web Servers stateless, which means we will be able t
 
 1. Configure MySQL client
 
+- Set hostname
+
+```
+sudo hostnamectl set-hostname web-server 
+```
+
 - Install MySQL client and test that you can connect from your Web Server to your DB server by using mysql-client
 
 ```
@@ -43,9 +49,7 @@ sudo yum install nfs-utils nfs4-acl-tools -y
 sudo mkdir /var/www
 sudo mount -t nfs -o rw,nosuid <NFS-Server-Private-IP-Address>:/mnt/apps /var/www
 ```
-- Backup and Mount /var/log 
-
-Create /home/recovery/logs to store backup of log data
+- Backup and Mount /var/log by Creating /home/recovery/logs to store backup of log data
 
 ```
 sudo mkdir -p /home/recovery/logs
@@ -96,12 +100,15 @@ sudo systemctl daemon-reload
 
 ```
 sudo yum install httpd -y
-sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm -y
 sudo dnf install dnf-utils http://rpms.remirepo.net/enterprise/remi-release-8.rpm
 sudo dnf module reset php
 sudo dnf module enable php:remi-7.4
-sudo dnf install php php-opcache php-gd php-curl php-mysqlnd
+sudo dnf install php php-opcache php-gd php-curl php-mysqlnd -y
 sudo systemctl start php-fpm
 sudo systemctl enable php-fpm
 sudo setsebool -P httpd_execmem 1
 ```
+**Important Notice** 
+Verify that Apache files and directories are available on the Web Server in /var/www and also on the NFS server in /mnt/apps. 
+If you see the same files – it means NFS is mounted correctly. You can try to create a new file touch test.txt from one server and check if the same file is accessible from other Web Servers.

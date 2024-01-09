@@ -1,9 +1,8 @@
 # LAUNCH AN EC2 INSTANCE THAT WILL SERVE AS “NFS SERVER”.
 
-Step 1 — Prepare a NFS Server
+Step 1 — Prepare a NFS Server Volumes 
 
 1. Launch an EC2 instance that will serve as "NFS Server". Create 3 volumes in the same AZ as your Web Server EC2, each of 10 GiB.
-Learn How to Add EBS Volume to an EC2 instance here
 
 ![5022](https://user-images.githubusercontent.com/85270361/210136900-8369cbb5-47fc-4ea1-a8a0-4746881fab44.PNG)
 
@@ -55,6 +54,11 @@ Last sector (2048-20971486, default = 20971486): [press Enter]
 Hex code or GUID (L to show codes, Enter = 8300): [press Enter]
 
 Command (? for help): w
+
+Final checks complete. About to write GPT data. THIS WILL OVERWRITE EXISTING
+PARTITIONS!!
+
+Do you want to proceed? (Y/N): y
 ```
 
 This will create a new partition on /dev/xvdf. After this, you can format the partition and mount it as needed.
@@ -159,7 +163,12 @@ sudo lvcreate -n lv-opt -L 9G webdata-vg
 sudo lvs
 ```
 
-![5029](https://user-images.githubusercontent.com/85270361/210137927-8aef5842-f176-45a4-bf5c-817fc1eeb1fb.PNG)
+```
+  LV      VG         Attr       LSize Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
+  lv-apps webdata-vg -wi-a----- 9.00g                                                    
+  lv-logs webdata-vg -wi-a----- 9.00g                                                    
+  lv-opt  webdata-vg -wi-a----- 9.00g 
+```
 
 
 16. Verify the entire setup
@@ -258,8 +267,12 @@ sudo systemctl daemon-reload
 
 24. Verify your setup by running df -h, output must look like this:
 
+```
+df -h
+```
 
-2.  Install NFS 
+
+2.  Install NFS server 
 
 
 - Install NFS server, configure it to start on reboot and make sure it is up and running
@@ -272,7 +285,7 @@ sudo systemctl enable nfs-server.service
 sudo systemctl status nfs-server.service
 ```
 
-5. Export the mounts for webservers’ subnet cidr to connect as clients. For simplicity, you will install your all three Web Servers 
+- Export the mounts for webservers’ subnet cidr to connect as clients. For simplicity, you will install your all three Web Servers 
 inside the same subnet, but in production set up you would probably want to separate each tier inside its own subnet for higher 
 level of security.
 To check your subnet cidr – open your EC2 details in AWS web console and locate ‘Networking’ tab and open a Subnet link:
@@ -287,12 +300,27 @@ Make sure we set up permission that will allow our Web servers to read, write an
 sudo chown -R nobody: /mnt/apps
 sudo chown -R nobody: /mnt/logs
 sudo chown -R nobody: /mnt/opt
+```
 
+```
 sudo chmod -R 777 /mnt/apps
 sudo chmod -R 777 /mnt/logs
 sudo chmod -R 777 /mnt/opt
-
+```
+```
 sudo systemctl restart nfs-server.service
+```
+
+verify 
+```
+ll /mnt
+```
+Outcome 
+```
+total 0
+drwxr-xr-x. 2 nobody nobody 6 Jan  8 02:37 apps
+drwxr-xr-x. 2 nobody nobody 6 Jan  8 02:37 logs
+drwxr-xr-x. 2 nobody nobody 6 Jan  8 02:37 opt
 ```
 
 Configure access to NFS for clients within the same subnet (example of Subnet CIDR – 172.31.32.0/20 ):
@@ -315,15 +343,17 @@ sudo exportfs -arv
 ```
 rpcinfo -p | grep nfs
 ```
+Outcome
 
-
-![6002](https://user-images.githubusercontent.com/85270361/210139194-8b530ac6-c9c3-496a-b4c2-7502fcb25186.PNG)
+    100003    3   tcp   2049  nfs
+    100003    4   tcp   2049  nfs
+    100227    3   tcp   2049  nfs_acl
 
 
 Important note: In order for NFS server to be accessible from your client, you must also open following ports: TCP 111, UDP 111, UDP 2049
 
 
-![6003](https://user-images.githubusercontent.com/85270361/210139251-c4cc5219-a207-40ba-9dec-f38a9b0d2424.PNG)
+<img width="1404" alt="Screenshot 2024-01-07 at 23 14 10" src="https://github.com/unitedcoresystems/Bootcampclass-2023/assets/63193071/d569d677-3ad4-4da7-bfaf-9a42ef041479">
 
 
 

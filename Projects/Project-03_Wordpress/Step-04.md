@@ -3,7 +3,7 @@
 To configure WordPress, we need to create MySQL database. Let’s do it!
 
 ```
-$ sudo mysql -p
+ sudo mysql -p
 ```
 Outcome:
 ```

@@ -7,6 +7,15 @@
 + unzip 
 + vim
 
+- Change hostname 
+```
+sudo hostnamectl set-hostname project1-web-server
+```
+Exit and log back in 
+``` 
+exit
+```
+
 Install prerequisites using Ubuntu’s package manager ‘apt’:
 
 ```

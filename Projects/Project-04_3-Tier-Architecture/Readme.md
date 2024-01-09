@@ -29,3 +29,4 @@ separate hardware – for Web Servers it look like a local file system from wher
 It is important to know what storage solution is suitable for what use cases, for this – you need to answer following questions: what 
 data will be stored, in what format, how this data will be accessed, by whom, from where, how frequently, etc. Base on this you will
 be able to choose the right storage system for your solution.
+
