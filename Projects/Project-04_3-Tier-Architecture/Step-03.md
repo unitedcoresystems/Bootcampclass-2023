@@ -27,7 +27,7 @@ sudo hostnamectl set-hostname web-server
 
 ```
 sudo yum install mysql
-sudo mysql -u admin -p -h <DB-Server-Private-IP-address>
+sudo mysql -u webaccess -p -h <DB-Server-Private-IP-address>
 ```
 
 - Verify if you can successfully execute SHOW DATABASES; command and see a list of existing databases.

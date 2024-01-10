@@ -4,12 +4,12 @@ Step 1 — Prepare a NFS Server Volumes
 
 1. Launch an EC2 instance that will serve as "NFS Server". Create 3 volumes in the same AZ as your Web Server EC2, each of 10 GiB.
 
-![5022](https://user-images.githubusercontent.com/85270361/210136900-8369cbb5-47fc-4ea1-a8a0-4746881fab44.PNG)
+![attachv](https://github.com/emortoo-projects/crispy-kitchen/assets/63193071/bb2ce532-bce7-4093-a72f-4754b7cfd9fe)
 
 
 2. Attach all three volumes one by one to your NFS Server EC2 instance
 
-![5023](https://user-images.githubusercontent.com/85270361/210136972-6c812c34-9dfa-4605-92ec-afb0d7881bbb.PNG)
+<img width="1750" alt="Screenshot 2024-01-10 at 15 03 28" src="https://github.com/emortoo-projects/crispy-kitchen/assets/63193071/ea118212-e8d8-455b-9a65-e167826e4b0c">
 
 
 3. Open up the Linux terminal to begin configuration
