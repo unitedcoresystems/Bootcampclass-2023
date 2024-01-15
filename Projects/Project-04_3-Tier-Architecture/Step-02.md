@@ -14,8 +14,7 @@ sudo apt update
 sudo apt install mysql-server -y
 ```
 
-Verify that the service is up and running by using sudo systemctl status mysqld, if it is not running, restart the service and 
-enable it so it will be running even after reboot:
+Verify that the service is up and running by using sudo systemctl status mysqld, if it is not running, restart the service and enable it so it will be running even after reboot:
 
 ```
 sudo systemctl restart mysql
@@ -32,10 +31,12 @@ Enter this command in mysql >
 ```sql
 CREATE DATABASE wordpress;
 CREATE USER `webaccess`@`<Web-Server-private-ip>` IDENTIFIED BY 'web@123';
-GRANT ALL ON wordpress.* TO 'webaccess'@'<Web-Server-private-ip>';
+CREATE USER `webaccess`@`<Web-Server-private-ip>` IDENTIFIED BY 'web@123';
+GRANT ALL PRIVILEGES ON wordpress.* TO 'webaccess'@'<Web-Server-private-ip>';
+GRANT ALL PRIVILEGES ON wordpress.* TO 'webaccess'@'<Web-Server-private-ip>';
 FLUSH PRIVILEGES;
 SHOW DATABASES;
-
+```
 ```sql
 exit
 ```
@@ -48,14 +49,14 @@ sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf
 
 Replace ‘127.0.0.1’ to ‘0.0.0.0’ like this:
 
-![5018](https://user-images.githubusercontent.com/85270361/210136418-f4832b77-89d4-4e65-8287-6e73a338a65a.PNG)
+<img width="1232" alt="Screenshot 2024-01-10 at 16 16 24" src="https://github.com/emortoo-projects/crispy-kitchen/assets/63193071/0969cbd6-9a5c-4495-8d9e-e8722d0ac400">
 
+4. Restart MySQL service 
 
-4. From mysql client Linux Server connect remotely to mysql server Database Engine without using SSH. You must use the mysql utility to perform this action.
-
-5. Check that you have successfully connected to a remote MySQL server and can perform SQL queries:
-
+```sql
+sudo systemctl restart mysql
 ```
-Show databases;
-```
+**Note:**  From mysql client Linux Server connect remotely to mysql server Database Engine without using SSH. You must use the mysql utility to perform this action.
+
+
 
