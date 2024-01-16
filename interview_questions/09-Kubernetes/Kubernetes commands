@@ -95,3 +95,83 @@
 
 32. kubectl label pod <pod_name> <label_key>=<label_value>:
   - Add a label to a pod.
+
+
+33. kubectl apply -f https://url-to-yaml-file 
+o Apply a configuration file directly from a URL. 
+kubectl apply -f https://raw.githubusercontent.com/example/myconfig.yaml 
+
+34. kubectl get pods --selector=[label_key]=[label_value] 
+o List pods with a specific label. 
+kubectl get pods --selector=app=myapp 
+
+35. kubectl get pods --field-selector=status.phase!=Running 
+o List pods that are not in the Running phase. 
+kubectl get pods --field-selector=status.phase!=Running 
+
+36. kubectl rollout undo deployment [deployment_name] 
+o Rollback a deployment to the previous version. 
+kubectl rollout undo deployment myapp 
+
+37. kubectl label pod [pod_name] [label_key]=[label_value] 
+o Add a label to a specific pod. 
+kubectl label pod mypod environment=production 
+
+38. kubectl get componentstatuses 
+o List the health of different cluster components. 
+kubectl get componentstatuses 
+
+39. kubectl describe node [node_name] 
+Display detailed information about a specific node.  
+kubectl describe node mynode  
+
+40. kubectl rollout history deployment [deployment_name] 
+o View the rollout history of a deployment. 
+kubectl rollout history deployment myapp 
+
+41. kubectl delete pod --selector=[label_key]=[label_value] 
+o Delete pods with a specific label. 
+kubectl delete pod --selector=app=myapp 
+
+42. kubectl top nodes 
+o Display resource usage (CPU and memory) of nodes. 
+kubectl top nodes 
+
+43. kubectl get pods --watch 
+o Watch for changes to pods in real-time. 
+kubectl get pods –watch 
+
+44. kubectl rollout pause deployment [deployment_name] 
+o Pause a deployment to prevent further rollouts. 
+kubectl rollout pause deployment myapp 
+
+45. kubectl rollout resume deployment [deployment_name] 
+o Resume a paused deployment. 
+kubectl rollout resume deployment myapp 
+
+46. kubectl explain [resource] 
+o Get information about a Kubernetes resource. 
+kubectl explain pod 
+
+47. kubectl get pods -o jsonpath='{.items[*].metadata.name}' 
+o Extract specific information using JSONPath. 
+kubectl get pods -o jsonpath='{.items[*].metadata.name}' 
+
+48. kubectl apply --dry-run=client -f [file] 
+o Dry run to validate a configuration file without applying it. 
+kubectl apply --dry-run=client -f myconfig.yaml 
+
+49. kubectl exec -it [pod_name] -- /bin/sh -c 'command' 
+o Execute a command in a specific pod. 
+kubectl exec -it mypod -- /bin/sh -c 'ls /app' 
+
+50. kubectl get events --sort-by=.metadata.creationTimestamp -n 
+[namespace] 
+o List events sorted by creation timestamp in a specific namespace. 
+kubectl get events --sort-by=.metadata.creationTimestamp -n mynamespace 
+
+
+These commands cover a broad range of Kubernetes operations and are useful for 
+managing and troubleshooting applications in a Kubernetes cluster. Note that some 
+commands may require specific roles or permissions depending on your Kubernetes 
+environment. 
