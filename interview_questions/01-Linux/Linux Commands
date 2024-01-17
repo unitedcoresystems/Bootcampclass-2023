@@ -253,8 +253,10 @@ if you run ls -l, it will show the permissions, owner, size, and last modified d
 
 Mostly used modes in VIM:
 Normal mode: This is the default mode in which vim starts. In normal mode, you can use various commands to navigate and edit the text.
-Insert mode: In insert mode, you can type text into the file. To enter insert mode, press the "i" key. To exit insert mode and return to normal mode, press the "Esc" key.
-Command mode: In command mode, you can enter commands to perform various actions, such as saving the file or quitting vim. To enter command mode, press the ":" key.
+Insert mode: In insert mode, you can type text into the file. To enter insert mode, press the "i" key. To exit insert mode and return to normal mode,
+press the "Esc" key.
+Command mode: In command mode, you can enter commands to perform various actions, such as saving the file or quitting vim. 
+To enter command mode, press the ":" key.
 
 6. Grep: This command searches for a particular string/ word in a text file. This is similar to “Ctrl+F” but executed via a CLI.
 
@@ -305,7 +307,8 @@ It stands for "stream editor" and is a powerful tool for editing text files or s
  19. Find: This is used to find files and directories and perform subsequent operations on them. 
 In the below command, It will search in the present working directory and its subdirectories, and print the name of the file that have “.txt” file extension.
  
-20. Free: This command displays the total amount of free space available along with the amount of memory used and swap memory in the system, and also the buffers used by the kernel.
+20. Free: This command displays the total amount of free space available along with the amount of memory used and swap memory in the system,
+and also the buffers used by the kernel.
 
  21. ssh user@host – connect to the host as a user.
 
@@ -313,7 +316,9 @@ In the below command, It will search in the present working directory and its su
 This process of authentication allows the user to connect remote server without providing a password.
 (This authentication method we will use to authenticate the server with Jenkins while deploying CI/CD pipelines).
 
- 23. Nslookup: This stands for “Name server Lookup”. This is a tool for checking DNS hostname to Ip or Ip to Hostname. This is very helpful while troubleshooting.
+ 23. Nslookup: This stands for “Name server Lookup”. This is a tool for checking DNS hostname to Ip or Ip to Hostname. 
+This is very helpful while troubleshooting.
+
 
 24. Curl: Curl is a tool used for transferring data to or from a server, using various protocols, such as HTTP, HTTPS, FTP, and more. Basic example:
 Syntax: curl <url>
@@ -325,8 +330,10 @@ Syntax: curl <url>
 
 26. Apt-get: This command is used to install, update, and remove packages, as well as to manage the package repository sources.
 Here are some common apt-get commands:
-apt-get update: This updates the package index files from the package repositories listed in the /etc/apt/sources.list file. This is usually the first command you should run after adding a new repository or package to your system.
-apt-get upgrade: This installs newer versions of packages that are already installed on the system. It will also remove any packages that are no longer required.
+apt-get update: This updates the package index files from the package repositories listed in the /etc/apt/sources.list file. 
+This is usually the first command you should run after adding a new repository or package to your system.
+apt-get upgrade: This installs newer versions of packages that are already installed on the system.
+It will also remove any packages that are no longer required.
 apt-get install: This installs one or more packages. For example, to install the nano text editor, you would run apt-get install nano.
 apt-get remove: This removes one or more packages, but it does not remove the configuration files for the package.
 apt-get purge: This removes one or more packages and their configuration files.
