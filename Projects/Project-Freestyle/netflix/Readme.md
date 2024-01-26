@@ -3,7 +3,8 @@
 
  In this project, we aim to deploy a replica of the Netflix application. Our deployment process will involve utilizing Jenkins as a Continuous Integration/Continuous Deployment (CI/CD) tool. The application will be deployed within a Docker container and onto a Kubernetes Cluster. To ensure effective monitoring, we will employ Grafana, Prometheus, and Node Exporter to track metrics related to Jenkins and Kubernetes.
 
-CLICK HERE FOR GITHUB REPOSITORY
+# CLICK ON THE REPO IN GIT
+https://github.com/bentusus/Netflix-clone-2.git
 
 Steps:-
 
