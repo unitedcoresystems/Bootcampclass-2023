@@ -43,7 +43,6 @@ Examine the code above and try to make sense out of it. This playbook is divided
 perform the same task: install wireshark utility (or make sure it is updated to the latest version) on your RHEL 8 and Ubuntu 
 servers. It uses root user to perform this task and respective package manager: yum for RHEL 8 and apt for Ubuntu.
 
-Feel free to update this playbook with following tasks:
 
 Feel free to update this playbook with following tasks:
 
@@ -52,8 +51,6 @@ Feel free to update this playbook with following tasks:
 - Run some shell script
 
 
-For a better understanding of Ansible playbooks – watch this video from RedHat ( https://youtu.be/ZAdJ7CdN7DY ) and read this article
-( https://www.redhat.com/en/topics/automation/what-is-an-ansible-playbook ).
 
 Step 6 – Update GIT with the latest code
 Now all of your directories and files live on your machine and you need to push changes made locally to GitHub.
