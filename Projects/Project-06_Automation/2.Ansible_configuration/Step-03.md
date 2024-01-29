@@ -68,9 +68,7 @@ Commit your code into GitHub:
 
 ```
 git status
-
 git add <selected files>
-
 git commit -m "commit message"
 ```
 
