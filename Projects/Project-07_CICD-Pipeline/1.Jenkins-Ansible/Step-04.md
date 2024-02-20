@@ -1,42 +1,13 @@
-# CREATE A COMMON PLAYBOOK
+# CREATE A PLAYBOOK FOR TOMCAT, SONARQUBE AND NEXUS 
 
-Step 5 – Create a Common Playbook
-It is time to start giving Ansible the instructions on what you needs to be performed on all servers listed in inventory/dev.
+Creating an Ansible playbook involves defining a set of tasks to be executed in an orderly fashion on your target machines. Below is a simple example of an Ansible playbook that sets up a testing and deployment environment. 
 
-In common.yml playbook you will write configuration for repeatable, re-usable, and multi-machine tasks that is common to systems 
-within the infrastructure.
+Step 1. – Create a Tomcat, Nexus and Sonarqube Playbook
+It is time to start giving Ansible the instructions on what you needs to be performed on all servers listed in inventory/pipeline.
 
-Update your playbooks/common.yml file with following code:
+In .yml playbook you will write configuration for repeatable, re-usable, and multi-machine tasks that is common to systems within the infrastructure.
 
-```
----
-- name: update web, nfs and db servers
-  hosts: webservers, nfs, db
-  remote_user: ec2-user
-  become: yes
-  become_user: root
-  tasks:
-    - name: ensure wireshark is at the latest version
-      yum:
-        name: wireshark
-        state: latest
-
-- name: update LB server
-  hosts: lb
-  remote_user: ubuntu
-  become: yes
-  become_user: root
-  tasks:
-    - name: Update apt repo
-      apt: 
-        update_cache: yes
-
-    - name: ensure wireshark is at the latest version
-      apt:
-        name: wireshark
-        state: latest
-```
-
+(install-tomcat)[./Playbook/]
 
 
 Examine the code above and try to make sense out of it. This playbook is divided into two parts, each of them is intended to 

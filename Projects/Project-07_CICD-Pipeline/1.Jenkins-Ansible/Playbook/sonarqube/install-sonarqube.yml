@@ -1,0 +1,109 @@
+---
+- name: Install SonarQube
+  hosts: webservers
+  become: true
+  vars:
+    sonarqube_version: "8.9.0.43852"
+    sonarqube_download_url: "https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-{{ sonarqube_version }}.zip"
+    sonarqube_install_directory: "/opt/sonarqube"
+    sonarqube_temp_directory: "/opt/sonarqube_temp"
+    sonarqube_user: "sonarqube"
+    sonarqube_group: "sonarqube"
+
+  tasks:
+    - name: Install Java 11 OpenJDK Development Kit
+      yum:
+        name: java-11-openjdk-devel
+        state: present
+      become: yes
+
+    - name: Create SonarQube User
+      user:
+        name: "{{ sonarqube_user }}"
+        system: true
+        shell: /bin/false
+
+    - name: Create SonarQube Group
+      group:
+        name: "{{ sonarqube_group }}"
+        system: true
+
+    - name: Install Unzip (if not present)
+      yum:
+        name: unzip
+        state: present
+
+    - name: Download SonarQube
+      get_url:
+        url: "{{ sonarqube_download_url }}"
+        dest: "/tmp/sonarqube.zip"
+        mode: '0440'
+
+    - name: Create SonarQube Temporary Extraction Directory
+      file:
+        path: "{{ sonarqube_temp_directory }}"
+        state: directory
+        owner: "{{ sonarqube_user }}"
+        group: "{{ sonarqube_group }}"
+        mode: '0755'
+
+    - name: Ensure SonarQube Installation Directory exists
+      file:
+        path: "{{ sonarqube_install_directory }}"
+        state: directory
+        owner: "{{ sonarqube_user }}"
+        group: "{{ sonarqube_group }}"
+        mode: '0755'
+
+    - name: Unzip SonarQube to Temporary Directory
+      unarchive:
+        src: "/tmp/sonarqube.zip"
+        dest: "{{ sonarqube_temp_directory }}"
+        remote_src: yes
+        owner: "{{ sonarqube_user }}"
+        group: "{{ sonarqube_group }}"
+      become: yes
+
+    - name: Move SonarQube to Installation Directory
+      shell: mv /opt/sonarqube_temp/sonarqube-{{ sonarqube_version }}/* /opt/sonarqube/
+      args:
+        executable: /bin/bash
+      become: yes
+
+    - name: Set Permission for SonarQube Installation
+      file:
+        path: "{{ sonarqube_install_directory }}"
+        owner: "{{ sonarqube_user }}"
+        group: "{{ sonarqube_group }}"
+        recurse: yes
+        mode: '0755'
+
+    - name: Create SonarQube Service File
+      copy:
+        content: |
+          [Unit]
+          Description=SonarQube service
+          After=network.target
+
+          [Service]
+          Type=forking
+          User=sonarqube
+          Group=sonarqube
+          Environment="SONAR_SCANNER_OPTS=-Xmx2G -Xms512M"
+          ExecStart=/opt/sonarqube/bin/linux-x86-64/sonar.sh start
+          ExecStop={{ sonarqube_install_directory }}/bin/linux-x86-64/sonar.sh stop
+          Restart=always
+
+          [Install]
+          WantedBy=multi-user.target
+        dest: /etc/systemd/system/sonarqube.service
+
+    - name: Reload Systemd Daemon
+      systemd:
+        daemon_reload: yes
+
+    - name: Enable and Start SonarQube Service
+      systemd:
+        name: sonarqube
+        enabled: yes
+        state: started

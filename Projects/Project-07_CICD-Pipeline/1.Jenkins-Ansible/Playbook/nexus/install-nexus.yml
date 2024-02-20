@@ -1,0 +1,130 @@
+---
+- name: Install Nexus Repository Manager
+  hosts: webservers
+  become: true
+  vars:
+    nexus_version: "3.61.0-02"
+    nexus_download_url: "https://download.sonatype.com/nexus/3/nexus-{{ nexus_version }}-unix.tar.gz"
+    nexus_install_directory: "/opt/nexus"
+    nexus_data_directory: "/opt/nexus-data"
+    nexus_user: "nexus"
+    nexus_group: "nexus"
+    sonatype_work_directory: "/opt/sonatype-work"  # Define the sonatype work directory
+
+  tasks:
+    - name: Install Java 8 OpenJDK
+      yum:
+        name: java-1.8.0-openjdk-devel
+        state: present
+
+    - name: Install Java 11 OpenJDK
+      yum:
+        name: java-11-openjdk-devel
+        state: present
+
+    - name: Create Nexus User
+      user:
+        name: "{{ nexus_user }}"
+        comment: "Nexus Repository User"
+        system: true
+        shell: /bin/bash
+
+    - name: Create Nexus Group
+      group:
+        name: "{{ nexus_group }}"
+        system: true
+
+    - name: Create Nexus and Sonatype Work Directories
+      file:
+        path: "{{ item }}"
+        state: directory
+        owner: "{{ nexus_user }}"
+        group: "{{ nexus_group }}"
+        mode: '0775'
+      loop:
+        - "{{ nexus_install_directory }}"
+        - "{{ nexus_data_directory }}"
+        - "{{ sonatype_work_directory }}"
+
+    - name: Download Nexus
+      get_url:
+        url: "{{ nexus_download_url }}"
+        dest: "/tmp/nexus.tar.gz"
+
+    - name: Extract Nexus Archive
+      unarchive:
+        src: "/tmp/nexus.tar.gz"
+        dest: "{{ nexus_install_directory }}"
+        remote_src: yes
+        extra_opts: [--strip-components=1]
+        owner: "{{ nexus_user }}"
+        group: "{{ nexus_group }}"
+
+    - name: Ensure Nexus script is executable
+      file:
+        path: "{{ nexus_install_directory }}/bin/nexus"
+        mode: '0755'
+
+    - name: Configure Nexus to Use Custom Data Directory
+      lineinfile:
+        path: "{{ nexus_install_directory }}/bin/nexus.vmoptions"
+        regexp: '^(-Dkaraf.data=).*'
+        line: '-Dkaraf.data={{ nexus_data_directory }}'
+        state: present
+
+    - name: Set run_as_user in nexus.rc
+      lineinfile:
+        path: "{{ nexus_install_directory }}/bin/nexus.rc"
+        line: 'run_as_user="nexus"'
+        create: yes
+
+    - name: Create Nexus Service File
+      copy:
+        content: |
+          [Unit]
+          Description=Nexus Repository Manager
+          After=network.target
+
+          [Service]
+          Type=forking
+          Environment=JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk
+          Environment=INSTALL4J_JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk
+          ExecStart={{ nexus_install_directory }}/bin/nexus start
+          ExecStop={{ nexus_install_directory }}/bin/nexus stop
+          User={{ nexus_user }}
+          Restart=on-abort
+
+          [Install]
+          WantedBy=multi-user.target
+        dest: /etc/systemd/system/nexus.service
+
+    - name: Create a soft link for Nexus
+      file:
+        src: "{{ nexus_install_directory }}/bin/nexus"
+        dest: "/etc/init.d/nexus"
+        state: link
+        force: yes
+
+    - name: Reload Systemd to Recognize Nexus Service
+      systemd:
+        daemon_reload: yes
+
+    - name: Enable and Start Nexus Service
+      systemd:
+        name: nexus
+        enabled: yes
+        state: started
+
+    - name: sleep for 30 seconds and continue with play
+      wait_for: 
+      delay: 30
+      port: 8081
+      
+    - name: init password Nexus
+      shell: cat /opt/sonatype/sonatype-work/nexus3/admin.password
+      changed_when: false
+      register: result
+      
+    - name: print init password jenkins
+      debug:
+      var: result.stdout

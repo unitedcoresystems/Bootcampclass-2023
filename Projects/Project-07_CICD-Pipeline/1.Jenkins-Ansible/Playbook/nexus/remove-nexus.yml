@@ -1,0 +1,60 @@
+---
+- name: Remove Nexus Repository Manager
+  hosts: webservers
+  become: true
+  vars:
+    nexus_install_directory: "/opt/nexus"
+    nexus_data_directory: "/opt/nexus-data"
+    sonatype_work_directory: "/opt/sonatype-work"  # Added variable for Sonatype work directory
+    nexus_user: "nexus"
+    nexus_group: "nexus"
+
+  tasks:
+    - name: Stop Nexus Service
+      systemd:
+        name: nexus
+        state: stopped
+      ignore_errors: yes
+
+    - name: Disable Nexus Service
+      systemd:
+        name: nexus
+        enabled: no
+      ignore_errors: yes
+
+    - name: Remove Nexus Service File
+      file:
+        path: /etc/systemd/system/nexus.service
+        state: absent
+
+    - name: Remove soft link for Nexus
+      file:
+        path: "/etc/init.d/nexus"
+        state: absent
+      ignore_errors: yes
+
+    - name: Remove Nexus Installation, Data, and Sonatype Work Directories
+      file:
+        path: "{{ item }}"
+        state: absent
+      loop:
+        - "{{ nexus_install_directory }}"
+        - "{{ nexus_data_directory }}"
+        - "{{ sonatype_work_directory }}"  # Added the Sonatype work directory to the removal list
+
+    - name: Remove Nexus User
+      user:
+        name: "{{ nexus_user }}"
+        state: absent
+      ignore_errors: yes
+
+    - name: Remove Nexus Group
+      group:
+        name: "{{ nexus_group }}"
+        state: absent
+      ignore_errors: yes
+
+    - name: Reload Systemd
+      systemd:
+        daemon_reload: yes
+

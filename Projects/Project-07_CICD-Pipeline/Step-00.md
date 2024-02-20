@@ -1,14 +1,5 @@
 # Step 1: How to Launch an Ubuntu(22.04) T2 Large Instance 
 
-To launch an Ubuntu 22.04 T2 Large instance on AWS, follow these step-by-step instructions:
-
-#### Prerequisite
-+ Name: Jenkins-Server
-+ AMI:  Ubuntu 22.04 
-+ Instance type:  T2.Large  8GB of RAM.
-+ Security Group: 22, and 8080 
-+ Storage : 30 gb
-+ User Data: [jenkins-ubuntu-user-data](./jenkins-user-data.sh)
 
 1. **Log in to AWS Management Console**:
     - Go to https://aws.amazon.com/ and sign in to your account.

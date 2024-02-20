@@ -1,0 +1,56 @@
+---
+- name: Uninstall SonarQube
+  hosts: webservers
+  become: true
+  vars:
+    sonarqube_install_directory: "/opt/sonarqube"
+    sonarqube_temp_directory: "/opt/sonarqube_temp"
+    sonarqube_user: "sonarqube"
+    sonarqube_group: "sonarqube"
+
+  tasks:
+    - name: Stop SonarQube Service
+      systemd:
+        name: sonarqube
+        state: stopped
+      ignore_errors: yes
+
+    - name: Disable SonarQube Service
+      systemd:
+        name: sonarqube
+        enabled: no
+      ignore_errors: yes
+
+    - name: Remove SonarQube Service File
+      file:
+        path: /etc/systemd/system/sonarqube.service
+        state: absent
+
+    - name: Reload Systemd Daemon
+      systemd:
+        daemon_reload: yes
+
+    - name: Remove SonarQube Installation Directory
+      file:
+        path: "{{ sonarqube_install_directory }}"
+        state: absent
+
+    - name: Remove SonarQube Temporary Extraction Directory
+      file:
+        path: "{{ sonarqube_temp_directory }}"
+        state: absent
+
+    - name: Remove SonarQube User
+      user:
+        name: "{{ sonarqube_user }}"
+        state: absent
+      ignore_errors: yes
+
+    - name: Remove SonarQube Group
+      group:
+        name: "{{ sonarqube_group }}"
+        state: absent
+      ignore_errors: yes
+
+
+   
