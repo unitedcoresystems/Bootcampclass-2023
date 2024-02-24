@@ -10,7 +10,7 @@
 4. **Webhook URL**: 
    - You will need to provide the Payload URL which is the Jenkins URL followed by `/github-webhook/`. It should look something like this:
      ```
-     http://<jenkins-url>/github-webhook/
+     http://jenkins-url/github-webhook/
      ```
    - Replace `<jenkins-url>` with the actual domain name or IP address of your Jenkins server.
 

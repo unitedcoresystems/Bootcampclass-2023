@@ -39,7 +39,7 @@ In this project you will implement a solution that consists of following compone
 #### Prerequisite - Artifact Server
 + Server Name: Nexus-Server
 + AMI:  RHEL 
-+ Instance type:  T2.Micro 1GB of RAM.
++ Instance type:  T2.Medium 4GB of RAM.
 + Security Group: 22, 8081 and 80
 + Storage: 8 gb 
 
