@@ -9,18 +9,8 @@ module "sg" {
   server-ports = var.server-ports
   vpc_id = module.vpc.vpc_id
 }
-module "agent" {
-  source = "./modules/agent"
-  sg = module.sg.sg
-  subnets = module.vpc.subnet_ids
-}
 module "tomcat" {
   source = "./modules/tomcat"
-  sg = module.sg.sg
-  subnets = module.vpc.subnet_ids
-}
-module "jenkins" {
-  source = "./modules/jenkins"
   sg = module.sg.sg
   subnets = module.vpc.subnet_ids
 }
