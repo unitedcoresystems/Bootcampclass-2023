@@ -8,11 +8,11 @@ It is time to start giving Ansible the instructions on what you needs to be perf
 
 In .yml playbook you will write configuration for repeatable, re-usable, and multi-machine tasks that is common to systems within the infrastructure.
 
-(install-tomcat)[./Playbook/]
+[playbook-files](./Playbook/)
 
 or Clone from this repo 
 
-[Pipeline-Playbook]( https://github.com/emortoo/ci-pipeline-playbook.git)
+[Pipeline-Playbook-repo]( https://github.com/emortoo/ci-pipeline-playbook.git)
  
 
 
