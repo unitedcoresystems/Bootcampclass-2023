@@ -35,7 +35,7 @@ services:
       - nexus_data:/nexus-data
 
   tomcat:
-    image: tomcat:9.0
+    image: tomcat:8.0.20-jre8
     ports:
       - "8888:8080"
     volumes:
