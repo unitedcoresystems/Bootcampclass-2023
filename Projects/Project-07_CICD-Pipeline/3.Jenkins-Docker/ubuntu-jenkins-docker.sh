@@ -32,7 +32,7 @@ sudo systemctl start jenkins
 ###################################################################################
 
 #1. Installing Docker and Docker compose, git and java on Amazon linux server 
-sudo apt-get install docker.io -y
+sudo apt-get install docker.io docker-compose -y
 sudo chmod 777 /var/run/docker.sock 
 
 
@@ -42,6 +42,7 @@ sudo systemctl enable docker
 
 #3 Add docker to the user group 
 sudo usermod -aG docker $USER
+sudo chmod +x /usr/local/bin/docker-compose
 
 sudo docker run hello-world
 
