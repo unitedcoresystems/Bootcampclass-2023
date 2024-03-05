@@ -2,8 +2,7 @@
 ### Instructions:
 
 1. **Create a file named docker-compose.yml**
-   - First, you need to crete a docker-compose file named docker-compose.yml in your preferred directory.
-   - You can also clone with `git clone` [dockerfiles](./docker-compose.yml)l to download docker packages directly to the command line.
+   - First, you need to create a docker-compose file named docker-compose.yml in your preferred directory.
 
 ```yaml
 version: '3'
