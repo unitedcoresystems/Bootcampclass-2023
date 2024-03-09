@@ -27,10 +27,10 @@ sudo yum install wget vim tree unzip git-all -y
 #### Run this commands to Install Tomcat
 ```sh
 cd /opt 
-sudo wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.82/bin/apache-tomcat-9.0.82.tar.gz
-sudo tar -xvf apache-tomcat-9.0.82.tar.gz
-sudo rm apache-tomcat-9.0.82.tar.gz
-sudo mv apache-tomcat-9.0.82 tomcat9
+sudo wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.82/bin/apache-tomcat-9.0.86.tar.gz
+sudo tar -xvf apache-tomcat-9.0.86.tar.gz
+sudo rm apache-tomcat-9.0.86.tar.gz
+sudo mv apache-tomcat-9.0.86 tomcat9
 ```
 #### Ensure that Tomcat is running and accesible using this command
 ```sh
