@@ -12,7 +12,7 @@ In .yml playbook you will write configuration for repeatable, re-usable, and mul
 
 or Clone from this repo 
 
-[Pipeline-Playbook-repo]( https://github.com/emortoo/ci-pipeline-playbook.git)
+[Pipeline-Playbook-repo]( https://github.com/emortoo/ansible-config-mgt.git)
  
 
 

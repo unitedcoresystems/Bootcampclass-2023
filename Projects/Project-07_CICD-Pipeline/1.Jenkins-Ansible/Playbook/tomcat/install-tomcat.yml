@@ -4,7 +4,7 @@
   remote_user: ec2-user
   become: true
   vars:
-    tomcat_version: "10.1.18" # Ensure this matches the desired Tomcat version
+    tomcat_version: "10.1.19" # Ensure this matches the desired Tomcat version
     tomcat_download_url: "https://dlcdn.apache.org/tomcat/tomcat-10/v{{ tomcat_version }}/bin/apache-tomcat-{{ tomcat_version }}.tar.gz"
     tomcat_install_directory: "/opt/tomcat10"
 
